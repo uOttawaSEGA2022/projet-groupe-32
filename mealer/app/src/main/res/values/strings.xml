@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MealerApp_Group#32</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="welcome_to_the_ottawa_s_mealer_app">Welcome to the Ottawa\'s Mealer app !</string>
+    <string name="don_t_have_an_account_yet_sign_up_and_get_started_today">Don\'t have an account yet ? Sign up and get started today !</string>
+    <string name="password">Password :</string>
+    <string name="e_mail">E-mail </string>
+    <string name="_3_digits_secret_code">3 digits secret code</string>
+    <string name="your_residential_adress">Your residential address </string>
+    <string name="credit_card_informations">Credit Card Informations</string>
+    <string name="ener_your_mail_adress">Enter your mail address </string>
+    <string name="confirm_the_password">Confirm the password </string>
+    <string name="sign_up_as_a_client">SIGN UP (as a Client)</string>
+    <string name="card_number">Card number :</string>
+    <string name="full_complete_adress">Full complete address</string>
+    <string name="enter_your_fisrt_name">Enter your fisrt name </string>
+    <string name="enter_your_password">Enter your password </string>
+    <string name="enter_your_last_name">Enter your last name </string>
+    <string name="personal_informations">Personal Informations</string>
+    <string name="cvv_code">CVV Code </string>
+    <string name="_16_digits_card_number">16 digits card number</string>
+    <string name="sign_up_client">SIGN UP (as a Client)</string>
+    <string name="enter_your_mail_adress">Enter your mail adress </string>
+    <string name="personal_information">Personal Informations</string>
+    <string name="sign_up_as_a_cook">SIGN UP (as a Cook)</string>
+    <string name="complementary_informations">Complementary Informations</string>
+    <string name="upload_a_picutre_of_your_void_cheque">Upload a picutre of your void cheque ;</string>
+    <string name="cooker_s_description">Cooker\'s description </string>
+    <string name="log_out">LOG OUT</string>
+    <string name="welcome_you_re_signed_in_as_a_cook">Welcome ! You\'re signed in as a Cook :)</string>
+    <string name="log_outclient">LOG OUT</string>
+    <string name="welcome_you_re_signed_in_as_a_client">Welcome ! You\'re signed in as a Client :)</string>
+</resources>
