@@ -27,7 +27,7 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/welcomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome_to_the_ottawa_s_mealer_app"
@@ -37,7 +37,7 @@
                 tools:layout_editor_absoluteY="206dp" />
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
@@ -50,7 +50,7 @@
                 android:textColorHighlight="@color/cardview_dark_background" />
 
             <EditText
-                android:id="@+id/SignInPassword"
+                android:id="@+id/LogInPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/purple"
-                android:text="Sign In"
+                android:text="Log In"
                 android:textColor="#C3D609"
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
@@ -77,7 +77,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/signuptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/don_t_have_an_account_yet_sign_up_and_get_started_today"
@@ -87,7 +87,7 @@
         tools:layout_editor_absoluteY="522dp" />
 
     <Button
-        android:id="@+id/signUpBttn1"
+        android:id="@+id/signupButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"

@@ -33,6 +33,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/enter_your_fisrt_name"
+                android:minHeight="48dp"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
@@ -44,6 +45,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/enter_your_last_name"
+                android:minHeight="48dp"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
@@ -55,6 +57,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/e_mail"
+                android:minHeight="48dp"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
@@ -66,9 +69,11 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/password"
+                android:minHeight="48dp"
                 android:padding="8dp"
                 android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background" />
+                android:textColorHighlight="@color/cardview_dark_background"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/confirm_password1"
@@ -77,6 +82,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/confirm_the_password"
+                android:minHeight="48dp"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
@@ -88,6 +94,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
                 android:hint="@string/your_residential_adress"
+                android:minHeight="48dp"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />

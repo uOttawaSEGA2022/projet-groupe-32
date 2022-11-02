@@ -8,7 +8,6 @@
     <string name="_3_digits_secret_code">3 digits secret code</string>
     <string name="your_residential_adress">Your residential address </string>
     <string name="credit_card_informations">Credit Card Informations</string>
-    <string name="ener_your_mail_adress">Enter your mail address </string>
     <string name="confirm_the_password">Confirm the password </string>
     <string name="sign_up_as_a_client">SIGN UP (as a Client)</string>
     <string name="card_number">Card number :</string>
@@ -26,8 +25,14 @@
     <string name="complementary_informations">Complementary Informations</string>
     <string name="upload_a_picutre_of_your_void_cheque">Upload a picutre of your void cheque ;</string>
     <string name="cooker_s_description">Cooker\'s description </string>
-    <string name="log_out">LOG OUT</string>
+    <string name="log_out">Log out</string>
+    <string name="sign_up_as">Sign Up As:</string>
+    <string name="rejeter_plainte">Rejeter la plainte</string>
+    <string name="accepter_plainte">Accepter la plainte</string>
+    <string name="temporairement">Temporairement </string>
+    <string name="definitivement">Définitivement </string>
     <string name="welcome_you_re_signed_in_as_a_cook">Welcome ! You\'re signed in as a Cook :)</string>
-    <string name="log_outclient">LOG OUT</string>
+    <string name="you_have_successfully_signed_out">You have successfully signed out :)</string>
+    <string name="traiter_les_plaintes">Traiter les plaintes</string>
     <string name="welcome_you_re_signed_in_as_a_client">Welcome ! You\'re signed in as a Client :)</string>
 </resources>
