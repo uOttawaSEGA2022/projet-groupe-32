@@ -45,27 +45,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view.getId()==R.id.signUpBttn1){
             startActivity(new Intent(this, SignupasActivity.class));
         }
+
+
        // Login administrator
-        else if(view.getId()==R.id.loginButton){
+        if(view.getId()==R.id.loginButton){
             UserLogin();
         }
-        // Login administrator
-        /*else if(view.getId()==R.id.){
-            UserLogout();
-        }*/
-    }
-
-    //Logout
-    public void UserLogout(){
-        mAuth.signOut();
-        startActivity(new Intent(MainActivity.this, WelcomeClientActivity.class));
     }
 
     private void UserLogin() {
         //Getting information and trimming it to a string
         String MotDePasse = editTextPassword.getText().toString().trim();
         String adressecourriel= editTextAdresseCourriel.getText().toString().trim();
-        //Getting information from editTextes  MotDePasse and Email
+//Getting information from editTextes  MotDePasse and Email
         if (MotDePasse.isEmpty()) {
             editTextPassword.setError(" Mot de passse est requis");
            editTextPassword.requestFocus();
@@ -86,21 +78,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editTextPassword.requestFocus();
             return;
         }
-
         // Login administrator
         if(MotDePasse.equals("Administrator23") && adressecourriel.equals("administrator23@gmail.com") ){
             startActivity(new Intent(this, WelcomeAdminActivity.class));
         }
-
-        //signing In a user using his firebase Credentials
+     //signing In a user using his firebase Credentials
         mAuth.signInWithEmailAndPassword(adressecourriel,MotDePasse).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+                if(task.isSuccessful()){
                     //getting user userType and use it to sign him in
-                    //String user contient Uid de l'utilisateur
+                    
 //                    String user =task.getResult().getUser().getUid();
-                    //Une fois qu'on a l' Uid de l'utilisateur
 //                    FirebaseDatabase.getInstance().getReference().child("Clients").child(user).child("userType").addListenerForSingleValueEvent(new ValueEventListener() {
 //                        @Override
 //                        public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -119,14 +108,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        }
 //                    });
                     //diriger vers profil utilisateur
-                    startActivity(new Intent(MainActivity.this, WelcomeClientActivity.class));
-                } else {
+                   startActivity(new Intent(MainActivity.this, WelcomeClientActivity.class));
+                }else{
                     Toast.makeText(MainActivity.this, "Failed to login check your credentials", Toast.LENGTH_LONG).show();
                 }
 
             }
-        });
-
+        }
+        );
 
     }
 
