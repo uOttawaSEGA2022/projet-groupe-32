@@ -5,7 +5,7 @@ import java.io.*;
 public class Cooker extends User{
     String description;
     String typeUser="Cooker";
-    List<Plaintes> listeDePlaintes = new ArrayList<Plaintes>();
+    List<Plaintes> listePlaintes = new ArrayList<Plaintes>();
 
     //Constructeur
 
