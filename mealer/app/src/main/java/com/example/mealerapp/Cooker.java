@@ -3,6 +3,8 @@ package com.example.mealerapp;
 public class Cooker extends User{
     String description;
     String typeUser="Cooker";
+    List<Plaintes> listeDePlaintes = new list <Plaintes>();
+
     //Constructeur
 
     //On a en paramettre les paramètres nécessaires à la création de l'objet
