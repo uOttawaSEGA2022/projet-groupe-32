@@ -38,18 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logOut= findViewById(R.id.loginButton);
         logOut.setOnClickListener(this);
 
-        /*Pourquoi pas ne pas créer deux pages de conexions distinctes
-        Apres signup page ou on choisit si on veut sign up as client ou as cook
-        au lieu d'avoir sign up cook puis sign up cook suite.
-        Autant avoir une page pour client et une unique page pour client
-        parceque là ca veut dire que sur une page on recupere la moitie des informations
-        et sur une autre page on recupere les autres
-        ca me derange beaucoup
-        Enlever rendrait plus simple la recuperation des informations
-        et l'ajout des informations dans firebase pour mieux les retrouver
-        */
-
-
         /*
         Armand, l'admin, on ne vérifie pas ses credentials dans le code.
         on ajoute manuellement admin a la table user dans firebase.

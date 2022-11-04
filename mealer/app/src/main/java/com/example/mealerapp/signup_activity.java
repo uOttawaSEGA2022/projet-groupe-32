@@ -15,8 +15,10 @@ public class signup_activity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_page);
+
         signUpAsCook = (Button) findViewById(R.id.SignUpAsCookButton);
         signUpAsCook.setOnClickListener(this);
+
         signUpAsClient = (Button) findViewById(R.id.SignUpAsClientButton);
         signUpAsClient.setOnClickListener(this);
     }
