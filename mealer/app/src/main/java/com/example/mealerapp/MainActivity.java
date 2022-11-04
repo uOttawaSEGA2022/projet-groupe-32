@@ -22,17 +22,42 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
     private  TextView signUp,logOut;
     private EditText editTextAdresseCourriel, editTextPassword;
     private FirebaseAuth mAuth;
     private String uid;
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);//C'est quoi saved instances ?
         setContentView(R.layout.main_page);
+
         signUp = findViewById(R.id.signupButton);
         signUp.setOnClickListener(this);
+
         logOut= findViewById(R.id.loginButton);
         logOut.setOnClickListener(this);
+
+        /*Pourquoi pas ne pas créer deux pages de conexions distinctes
+        Apres signup page ou on choisit si on veut sign up as client ou as cook
+        au lieu d'avoir sign up cook puis sign up cook suite.
+        Autant avoir une page pour client et une unique page pour client
+        parceque là ca veut dire que sur une page on recupere la moitie des informations
+        et sur une autre page on recupere les autres
+        ca me derange beaucoup
+        Enlever rendrait plus simple la recuperation des informations
+        et l'ajout des informations dans firebase pour mieux les retrouver
+        */
+
+
+        /*
+        Armand, l'admin, on ne vérifie pas ses credentials dans le code.
+        on ajoute manuellement admin a la table user dans firebase.
+        On vérifie si les crédentials correspondent a ceux de admin et on load la page admin
+         */
+
+
+
         editTextAdresseCourriel = findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.LogInPassword);
         mAuth = FirebaseAuth.getInstance();
@@ -46,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-       // Login administrator
+       // Login
         if(view.getId()==R.id.loginButton){
             UserLogin();
         }
@@ -65,26 +90,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Getting information and trimming it to a string
         String MotDePasse = editTextPassword.getText().toString().trim();
         String adressecourriel= editTextAdresseCourriel.getText().toString().trim();
-        //Getting information from editTextes  MotDePasse and Email
+
+        //Si le champ du courriel est vide
         if (adressecourriel.isEmpty()) {
-            editTextAdresseCourriel.setError(" Adresse couuriel est requis");
+            editTextAdresseCourriel.setError("Votre email est requis.");
             editTextAdresseCourriel.requestFocus();
             return;
         }
+        //Si le courriel est non valide
         if (!EMAIL_ADDRESS.matcher(adressecourriel).matches()) {
-            editTextAdresseCourriel.setError(" Adresse couuriel non valide");
+            editTextAdresseCourriel.setError("Votre email est non valide.");
             editTextAdresseCourriel.requestFocus();
             return;
         }
+
+        //Si le champ du mot de passe est vide
         if (MotDePasse.isEmpty()) {
-            editTextPassword.setError(" Mot de passse est requis");
+            editTextPassword.setError("Votre mot de passse est requis");
            editTextPassword.requestFocus();
             return;
         }
-
-
+        //Si le mot de passe est non valide
         if (MotDePasse.length() < 8) {
-            editTextPassword.setError(" Mot de passse a une longeur de 8 characteres");
+            editTextPassword.setError(" Mot de passse est court: il faut 8 caractères au minimum");
             editTextPassword.requestFocus();
             return;
 
@@ -96,11 +124,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     //getting user userType and use it to sign him in
 
+                    //String user ? Il n'est utilisé nul par apparemment, il sert à quoi?
                     String user =task.getResult().getUser().getUid();
+
+                    //On va regarder dans la table Users dans firebase
                     FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             User user=snapshot.getValue(User.class);
+
                             //Check le type d'utilisateur et le diriger vers sa page
                             if(user.getUserType().equals("Client")){
                                 //diriger vers profil utilisateur client
@@ -115,13 +147,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 startActivity(new Intent(MainActivity.this, admin_page_activity.class));
                             }
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
-//                  diriger vers profil utilisateur
-//                 startActivity(new Intent(MainActivity.this, client_page_activity.class));
+
                 }else{
                     Toast.makeText(MainActivity.this, "Failed to login check your credentials", Toast.LENGTH_LONG).show();
                 }
