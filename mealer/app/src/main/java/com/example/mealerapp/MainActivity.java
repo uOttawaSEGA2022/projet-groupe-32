@@ -52,13 +52,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view.getId()==R.id.loginButton){
             UserLogin();
         }
-    }
 
+        // Logout
+        if(view.getId()==R.id.logoutButton){
+            UserLogout();
+        }
+    }
+    private void UserLogout() {
+        mAuth.signOut();
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
+    }
     private void UserLogin() {
         //Getting information and trimming it to a string
         String MotDePasse = editTextPassword.getText().toString().trim();
         String adressecourriel= editTextAdresseCourriel.getText().toString().trim();
-//Getting information from editTextes  MotDePasse and Email
+        //Getting information from editTextes  MotDePasse and Email
         if (adressecourriel.isEmpty()) {
             editTextAdresseCourriel.setError(" Adresse couuriel est requis");
             editTextAdresseCourriel.requestFocus();
