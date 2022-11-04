@@ -27,8 +27,10 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.signup_cooker);
         mAuth = FirebaseAuth.getInstance();
+
         SignUp = findViewById(R.id.signUpBttn1);
         SignUp.setOnClickListener(this);
 
@@ -40,15 +42,14 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         editTextAdresse = findViewById(R.id.address);
 
     }
-@Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.signUpBttn1:
-                resisterUser();
-                break;
+    @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.signUpBttn1:
+                    resisterUser();
+                    break;
+            }
         }
-
-    }
 
     private void resisterUser() {
 
@@ -98,25 +99,30 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
             return;
         } else {
             if (!MotDePasse1.equals(MotDePasseConfirm1)) {
-                editTextConfirm.setError(" Champs ne matche pas Mot de passe");
+                editTextConfirm.setError(" Le mot de passe ne correspond pas à celui entré plus haut");
                 editTextConfirm.requestFocus();
                 return;
             }
         }
         if (Adresse1.isEmpty()) {
-            editTextAdresse.setError(" Une adresse est requis");
+            editTextAdresse.setError("Votre adresse est requise");
             editTextAdresse.requestFocus();
             return;
         }
 
+        //On créé notre objet avec ses attributs prioritaires
+        Cooker cooker = new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1);
 
-        User user=new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker","je suis cuisinier");
+
         //User user=new Administrator(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");
-        mAuth.createUserWithEmailAndPassword(user.getCourriel() , user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(cooker.getCourriel() , cooker.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Cooker Itulisateur =new Cooker();
+                    Cooker Itulisateur =cooker; //On lui affecte l'objet plus haut
+                    /*
+                    Pas besoin de tout ça, on a déjà entré les infos dans le constructeur de cooker
+                    A supprimer
                     //User Itulisateur =new Administrator();
                     Itulisateur.setPrenom(Prenom1);
                     Itulisateur.setAdresse(Adresse1);
@@ -125,6 +131,8 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
                     //Itulisateur.setUserType("Administrator");
                     Itulisateur.setNom(Nom1);
                     Itulisateur.setMotDePasse(MotDePasse1);
+                    */
+
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

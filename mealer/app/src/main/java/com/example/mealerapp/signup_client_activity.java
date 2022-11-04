@@ -156,7 +156,8 @@ public class signup_client_activity extends AppCompatActivity implements View.On
         String Adresse2 = editTextAdresse.getText().toString().trim();
         String InformationsCarteCredit2 = editTextInformationsCarteCredit.getText().toString().trim();
         String MotDePasseConfirm2 = editTextConfirm.getText().toString().trim();
-        String cvv2 = editTextCVV.getText().toString().trim();
+        String CVC = editTextCVV.getText().toString().trim();
+
         //Getting TextViews text
         if (Prenom2.isEmpty()) {
             editTextPrenom.setError("Prenom est requis");
@@ -184,7 +185,7 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             return;
         }
 
-        if (MotDePasse2.length() < 4) {
+        if (MotDePasse2.length() < 8) {
             editTextMotDePasse.setError(" Mot de passse a une longeur de 8 characteres");
             editTextMotDePasse.requestFocus();
             return;
@@ -213,8 +214,12 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             editTextInformationsCarteCredit.requestFocus();
             return;
         }
-        if (cvv2.isEmpty()) {
-            editTextCVV.setError("Prenom est requis");
+        if (CVC.isEmpty()) {
+            editTextCVV.setError("Votre cvc est requis");
+            editTextCVV.requestFocus();
+            return;
+        }else if (CVC.length() != 3) {
+            editTextCVV.setError("Votre cvc est invalide");
             editTextCVV.requestFocus();
             return;
         }
@@ -263,13 +268,14 @@ public class signup_client_activity extends AppCompatActivity implements View.On
 //            }
 //        });
 
-        User user=new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,"Client",InformationsCarteCredit2);
+        Client client =new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,CVC, InformationsCarteCredit2);
 
-        mAuth.createUserWithEmailAndPassword(user.getCourriel(),user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(client.getCourriel(),client.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Client Itulisateur = new Client();
+                    Client Itulisateur = client;
+                    /* Inutile
                     Itulisateur.setPrenom(Prenom2);
                     Itulisateur.setAdresse(Adresse2);
                     Itulisateur.setCourriel(adressecourriel2);
@@ -277,6 +283,7 @@ public class signup_client_activity extends AppCompatActivity implements View.On
                     Itulisateur.setNom(Nom2);
                     Itulisateur.setMotDePasse(MotDePasse2);
                     Itulisateur.setInformationsCarteCredit(InformationsCarteCredit2);
+                    */
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

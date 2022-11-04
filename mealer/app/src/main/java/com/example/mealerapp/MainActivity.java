@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
 
         }
+
         //signing In a user using his firebase Credentials
         mAuth.signInWithEmailAndPassword(adressecourriel,MotDePasse).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
