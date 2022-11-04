@@ -1,9 +1,11 @@
 package com.example.mealerapp;
+import java.util.*;
+import java.io.*;
 
 public class Cooker extends User{
     String description;
     String typeUser="Cooker";
-    List<Plaintes> listeDePlaintes = new list <Plaintes>();
+    List<Plaintes> listeDePlaintes = new ArrayList<Plaintes>();
 
     //Constructeur
 
