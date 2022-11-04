@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUpPageActivity extends AppCompatActivity implements View.OnClickListener {
+public class signup_client_activity extends AppCompatActivity implements View.OnClickListener {
 
     public Button SignUp;
     protected EditText editTextPrenom, editTextNom, editTextAdresseCourriel, editTextMotDePasse, editTextCVV, editTextAdresse, editTextConfirm, editTextInformationsCarteCredit;
@@ -27,7 +27,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_page);
+        setContentView(R.layout.signup_client);
         SignUp = findViewById(R.id.signupButton);
         SignUp.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
@@ -67,18 +67,18 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
 //                        @Override
 //                        public void onComplete(@NonNull Task<Void> task) {
 //                            if (task.isSuccessful()) {
-//                                                    Toast.makeText(SignUpPageActivity.this, "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
 //                                //rediriger vers login layout
 //                                                    if(type.equals("Client")){
-//                                                        startActivity(new Intent(SignUpPageActivity.this, WelcomeClientActivity.class));
+//                                                        startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
 //                                                    }else if(type.equals("Cooker")){
-//                                                        startActivity(new Intent(SignUpPageActivity.this, WelcomeCookActivity.class));
+//                                                        startActivity(new Intent(signup_client_activity.this, cooker_page_activity.class));
 //                                                    }
 //
 //
 //
 //                                                } else {
-//                                                    Toast.makeText(SignUpPageActivity.this, "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
 //                                                    //progresseBar.setVisibility(View.GONE);
 //
 //                                                }
@@ -86,7 +86,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
 //                        }
 //                    });
 //                } else {
-//                Toast.makeText(SignUpPageActivity.this, "L'utilisateur  non enregistrer", Toast.LENGTH_LONG).show();
+//                Toast.makeText(signup_client_activity.this, "L'utilisateur  non enregistrer", Toast.LENGTH_LONG).show();
 //                //progresseBar.setVisibility(View.GONE);
 //
 //            }
@@ -106,12 +106,12 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
 //                                            @Override
 //                                            public void onComplete(@NonNull Task<Void> task) {
 //                                                if (task.isSuccessful()) {
-//                                                    Toast.makeText(SignUpPageActivity.this, "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
 //
 //                                                    //rediriger vers login layout
-//                                                    startActivity(new Intent(SignUpPageActivity.this, WelcomeClientActivity.class));
+//                                                    startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
 //                                                } else {
-//                                                    Toast.makeText(SignUpPageActivity.this, "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
+//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
 //                                                    //progresseBar.setVisibility(View.GONE);
 //
 //                                                }
@@ -129,7 +129,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
 ////                                                    Toast.makeText(getApplicationContext(), "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
 ////                                                    //progresseBar.setVisibility(View.GONE);
 ////                                                    //rediriger vers login layout
-////                                                    startActivity(new Intent(getApplicationContext(), WelcomeCookActivity.class));
+////                                                    startActivity(new Intent(getApplicationContext(), cooker_page_activity.class));
 ////                                                } else {
 ////                                                    Toast.makeText(getApplicationContext(), "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
 ////                                                    //progresseBar.setVisibility(View.GONE);
@@ -157,7 +157,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
         String InformationsCarteCredit2 = editTextInformationsCarteCredit.getText().toString().trim();
         String MotDePasseConfirm2 = editTextConfirm.getText().toString().trim();
         String cvv2 = editTextCVV.getText().toString().trim();
-//Getting TextViews text
+        //Getting TextViews text
         if (Prenom2.isEmpty()) {
             editTextPrenom.setError("Prenom est requis");
             editTextPrenom.requestFocus();
@@ -218,7 +218,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
             editTextCVV.requestFocus();
             return;
         }
-//        if(getApplicationContext()==SignUpPageActivity.this){
+//        if(getApplicationContext()==signup_client_activity.this){
 //            user=new Client(Prenom,Nom,adressecourriel,MotDePasse,Adresse,"Client",InformationsCarteCredit);
 //        }else{
 //            user=new Cooker(Prenom,Nom,adressecourriel,MotDePasse,Adresse,"Cooker","Moi je suis cuisinier");
@@ -250,15 +250,15 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
 //                                @Override
 //                                public void onComplete(@NonNull Task<Void> task) {
 //                                    if (task.isSuccessful()) {
-//                                        Toast.makeText(SignUpPageActivity.this, "user registered success", Toast.LENGTH_LONG).show();
-//                                        startActivity(new Intent(SignUpPageActivity.this, WelcomeClientActivity.class));
+//                                        Toast.makeText(signup_client_activity.this, "user registered success", Toast.LENGTH_LONG).show();
+//                                        startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
 //                                    } else {
-//                                        Toast.makeText(SignUpPageActivity.this, "Failed", Toast.LENGTH_LONG).show();
+//                                        Toast.makeText(signup_client_activity.this, "Failed", Toast.LENGTH_LONG).show();
 //                                    }
 //                                }
 //                            });
 //                } else {
-//                    Toast.makeText(SignUpPageActivity.this, "Faileddddd!!!", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(signup_client_activity.this, "Faileddddd!!!", Toast.LENGTH_LONG).show();
 //                }
 //            }
 //        });
@@ -282,15 +282,15 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                            Toast.makeText(SignUpPageActivity.this, "user registered success", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(SignUpPageActivity.this, WelcomeClientActivity.class));
+                            Toast.makeText(signup_client_activity.this, "user registered success", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
                             }else{
-                                Toast.makeText(SignUpPageActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                                Toast.makeText(signup_client_activity.this, "Failed", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
                 }else{
-                    Toast.makeText(SignUpPageActivity.this, "Faileddd", Toast.LENGTH_LONG).show();
+                    Toast.makeText(signup_client_activity.this, "Faileddd", Toast.LENGTH_LONG).show();
                 }
             }
         });

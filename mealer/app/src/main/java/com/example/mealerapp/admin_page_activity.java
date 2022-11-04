@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class WelcomeAdminActivity extends AppCompatActivity {
+public class admin_page_activity extends AppCompatActivity {
 
     private  TextView logOut;
     @Override
@@ -21,7 +21,7 @@ public class WelcomeAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(WelcomeAdminActivity.this, MainActivity.class));
+                startActivity(new Intent(admin_page_activity.this, MainActivity.class));
             }
         });
 

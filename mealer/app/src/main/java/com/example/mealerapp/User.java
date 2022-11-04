@@ -2,15 +2,11 @@ package com.example.mealerapp;
 public  class User{
     String Prenom;
     String Nom;
-     String Courriel;
-     String MotDePasse;
-     String Adresse;
-     String UserType;
+    String Courriel;
+    String MotDePasse;
+    String Adresse;
+    String UserType;
 
-    //Constructeur
-    public User(){
-
-    }
     public User (String prenom,String nom, String courriel, String motDePasse,String UserType, String adresse){
         this.Prenom = prenom;
         this.Nom = nom;
@@ -70,17 +66,11 @@ public  class User{
 
     //S'inscrire
     public void SignUp(){
-        //Récupérer les entrées de l'utilisateur dans des variables
-        //Ajouter un ligne a la table User avec les contenus des variables récupérés
-
 
     }
 
     //Se connecter
     public void SignIn(){
-        //Recupérer email entré
-        //Récupérer mot de passe entré
-        //Regarder dans la table à la ligne où se trouve l'email si le MotDePasse est identique
 
     }
 

@@ -5,7 +5,6 @@ import static android.util.Patterns.EMAIL_ADDRESS;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CookersignupPageActivity extends AppCompatActivity implements View.OnClickListener{
+public class signup_cooker_activity extends AppCompatActivity implements View.OnClickListener{
     private Button SignUp;
     public EditText editTextPrenom, editTextNom, editTextAdresseCourriel, editTextMotDePasse, editTextAdresse, editTextConfirm;
     private FirebaseAuth mAuth;
@@ -28,7 +27,7 @@ public class CookersignupPageActivity extends AppCompatActivity implements View.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cookersignup_page);
+        setContentView(R.layout.signup_cooker);
         mAuth = FirebaseAuth.getInstance();
         SignUp = findViewById(R.id.signUpBttn1);
         SignUp.setOnClickListener(this);
@@ -131,15 +130,15 @@ public class CookersignupPageActivity extends AppCompatActivity implements View.
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(CookersignupPageActivity.this,"user registered success",Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(CookersignupPageActivity.this, WelcomeCookActivity.class));
+                                        Toast.makeText(signup_cooker_activity.this,"user registered success",Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(signup_cooker_activity.this, cooker_page_activity.class));
                                     }else{
-                                        Toast.makeText(CookersignupPageActivity.this,"Failed",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(signup_cooker_activity.this,"Failed",Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                 }else{
-                    Toast.makeText(CookersignupPageActivity.this,"Faileddddd!!!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(signup_cooker_activity.this,"Faileddddd!!!",Toast.LENGTH_LONG).show();
                 }
             }
         });

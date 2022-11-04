@@ -5,11 +5,9 @@ import static android.util.Patterns.EMAIL_ADDRESS;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String uid;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_page);
         signUp = findViewById(R.id.signupButton);
         signUp.setOnClickListener(this);
         logOut= findViewById(R.id.loginButton);
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view){
         if(view.getId()==R.id.signupButton){
-            startActivity(new Intent(this, SignupasActivity.class));
+            startActivity(new Intent(this, signup_activity.class));
         }
 
 
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth.signOut();
         startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
+
     private void UserLogin() {
         //Getting information and trimming it to a string
         String MotDePasse = editTextPassword.getText().toString().trim();
@@ -84,13 +83,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        if (MotDePasse.length() < 4) {
+        if (MotDePasse.length() < 8) {
             editTextPassword.setError(" Mot de passse a une longeur de 8 characteres");
             editTextPassword.requestFocus();
             return;
 
         }
-     //signing In a user using his firebase Credentials
+        //signing In a user using his firebase Credentials
         mAuth.signInWithEmailAndPassword(adressecourriel,MotDePasse).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -105,15 +104,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //Check le type d'utilisateur et le diriger vers sa page
                             if(user.getUserType().equals("Client")){
                                 //diriger vers profil utilisateur client
-                                startActivity(new Intent(MainActivity.this, WelcomeClientActivity.class));
+                                startActivity(new Intent(MainActivity.this, client_page_activity.class));
                             }
                             else if(user.getUserType().equals("Cooker")){
                                 //diriger vers profil utilisateur cooker
-                                startActivity(new Intent(MainActivity.this, WelcomeCookActivity.class));
+                                startActivity(new Intent(MainActivity.this, cooker_page_activity.class));
                             }
                             else if(user.getUserType().equals("Administrator")){
                                 //diriger vers profil utilisateur admin
-                                startActivity(new Intent(MainActivity.this, WelcomeAdminActivity.class));
+                                startActivity(new Intent(MainActivity.this, admin_page_activity.class));
                             }
                         }
                         @Override
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
 //                  diriger vers profil utilisateur
-//                 startActivity(new Intent(MainActivity.this, WelcomeClientActivity.class));
+//                 startActivity(new Intent(MainActivity.this, client_page_activity.class));
                 }else{
                     Toast.makeText(MainActivity.this, "Failed to login check your credentials", Toast.LENGTH_LONG).show();
                 }
@@ -131,5 +130,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         );
 
     }
-
 }
