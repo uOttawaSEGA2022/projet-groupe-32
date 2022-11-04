@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class WelcomeClientActivity extends AppCompatActivity implements View.OnClickListener{
+import com.google.firebase.auth.FirebaseAuth;
+
+public class WelcomeClientActivity extends AppCompatActivity{
     private TextView logOut;
 
     @Override
@@ -15,12 +17,13 @@ public class WelcomeClientActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcomepage_client);
         logOut = (TextView) findViewById(R.id.logout_btn);
-        logOut.setOnClickListener(this);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(WelcomeClientActivity.this, MainActivity.class));
+            }
+        });
     }
 
-    public void onClick(View view) {
-        if (view.getId() == R.id.logout_btn) {
-            startActivity(new Intent(this, MainActivity.class));
-        }
-    }
 }

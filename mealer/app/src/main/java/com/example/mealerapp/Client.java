@@ -1,6 +1,8 @@
 package com.example.mealerapp;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Client extends User {
     String typeUser;
     String InformationsCarteCredit;
@@ -10,10 +12,9 @@ public Client(){
 
 }
     public Client(String prenom, String nom, String courriel, String motDePasse, String adressecourriel, String typeUser, String InformationsCarteCredit) {
-        super(prenom, nom, courriel, motDePasse, adressecourriel);
+        super(prenom, nom, courriel, motDePasse, typeUser, adressecourriel);
         typeUser = "Client";
         this.InformationsCarteCredit = InformationsCarteCredit;
-        ;
         //On appelle le constructeur de la classe parent User
     }
 

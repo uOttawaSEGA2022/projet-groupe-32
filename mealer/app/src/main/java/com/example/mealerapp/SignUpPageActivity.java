@@ -264,6 +264,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
 //        });
 
         User user=new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,"Client",InformationsCarteCredit2);
+
         mAuth.createUserWithEmailAndPassword(user.getCourriel(),user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -277,7 +278,7 @@ public class SignUpPageActivity extends AppCompatActivity implements View.OnClic
                     Itulisateur.setMotDePasse(MotDePasse2);
                     Itulisateur.setInformationsCarteCredit(InformationsCarteCredit2);
 
-                    FirebaseDatabase.getInstance().getReference("Clients").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){

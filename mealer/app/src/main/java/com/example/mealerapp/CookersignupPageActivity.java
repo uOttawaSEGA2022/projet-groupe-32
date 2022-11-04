@@ -110,19 +110,23 @@ public class CookersignupPageActivity extends AppCompatActivity implements View.
             return;
         }
 
+
         User user=new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker","je suis cuisinier");
+        //User user=new Administrator(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");
         mAuth.createUserWithEmailAndPassword(user.getCourriel() , user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User Itulisateur =new Cooker();
+                    Cooker Itulisateur =new Cooker();
+                    //User Itulisateur =new Administrator();
                     Itulisateur.setPrenom(Prenom1);
                     Itulisateur.setAdresse(Adresse1);
                     Itulisateur.setCourriel(adressecourriel1);
                     Itulisateur.setUserType("Cooker");
+                    //Itulisateur.setUserType("Administrator");
                     Itulisateur.setNom(Nom1);
                     Itulisateur.setMotDePasse(MotDePasse1);
-                    FirebaseDatabase.getInstance().getReference("Cookers").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

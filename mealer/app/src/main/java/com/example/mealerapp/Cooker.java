@@ -10,7 +10,7 @@ public class Cooker extends User{
     //On a en paramettre les paramètres nécessaires à la création de l'objet
     public Cooker(String prenom,String nom, String courriel, String motDePasse, String adresse, String typeUser, String description){
         //On appelle le constructeur de la classe parent User
-        super(prenom, nom, courriel, motDePasse, adresse);
+        super(prenom, nom, courriel, motDePasse,typeUser, adresse);
         typeUser="Cooker";
         this.description=description;
     }

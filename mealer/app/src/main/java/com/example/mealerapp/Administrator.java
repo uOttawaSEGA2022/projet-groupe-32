@@ -7,9 +7,13 @@ public class Administrator extends User{
         //Ce constructeur n'est pas vraiment nécessaire car l'admin se trouvera déjà dans la base de données
 
         public Administrator(String prenom,String nom, String courriel, String motDePasse,String adresse,String typeUser){
-        super(prenom, nom, courriel, motDePasse, adresse);
+        super(prenom, nom, courriel, motDePasse,typeUser, adresse);
             typeUser= "Admin";
             //On appelle le constructeur de la classe parent User
+
+    }
+
+    public Administrator() {
 
     }
 }

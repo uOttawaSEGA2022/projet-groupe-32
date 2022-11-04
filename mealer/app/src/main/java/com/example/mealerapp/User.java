@@ -11,12 +11,13 @@ public  class User{
     public User(){
 
     }
-    public User (String prenom,String nom, String courriel, String motDePasse, String adresse){
+    public User (String prenom,String nom, String courriel, String motDePasse,String UserType, String adresse){
         this.Prenom = prenom;
         this.Nom = nom;
         this.Courriel = courriel;
         this.MotDePasse = motDePasse;
         this.Adresse = adresse;
+        this.UserType= UserType;
     }
 
     public String getPrenom() {
