@@ -1,8 +1,12 @@
 package com.example.mealerapp;
+import java.util.*;
+import java.io.*;
 
 public class Cooker extends User{
     String description;
     String typeUser="Cooker";
+    List<Plaintes> listePlaintes = new ArrayList<Plaintes>();
+
     //Constructeur
 
     //On a en paramettre les paramètres nécessaires à la création de l'objet

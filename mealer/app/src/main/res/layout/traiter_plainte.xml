@@ -38,9 +38,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/rejeter_plainte"
                 android:background="@drawable/custom_edittext"
+                android:onClick="onClick"
                 android:padding="8dp"
+                android:text="@string/rejeter_plainte"
                 android:textColor="#ABBC0B" />
 
             <Button

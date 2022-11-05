@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextPassword = (EditText) findViewById(R.id.LogInPassword);
         mAuth = FirebaseAuth.getInstance();
     }
+
+
+
     public void onClick(View view){
         if(view.getId()==R.id.signupButton){
             startActivity(new Intent(this, signup_activity.class));
