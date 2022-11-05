@@ -34,25 +34,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         signUp = findViewById(R.id.signupButton);
         signUp.setOnClickListener(this);
-
         logOut= findViewById(R.id.loginButton);
         logOut.setOnClickListener(this);
-
         /*
         Armand, l'admin, on ne vérifie pas ses credentials dans le code.
         on ajoute manuellement admin a la table user dans firebase.
         On vérifie si les crédentials correspondent a ceux de admin et on load la page admin
          */
 
-
-
         editTextAdresseCourriel = findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.LogInPassword);
         mAuth = FirebaseAuth.getInstance();
     }
-
-
-
     public void onClick(View view){
         if(view.getId()==R.id.signupButton){
             startActivity(new Intent(this, signup_activity.class));
@@ -148,6 +141,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         );
-
     }
 }

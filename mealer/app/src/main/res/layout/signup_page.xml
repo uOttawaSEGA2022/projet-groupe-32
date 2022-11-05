@@ -48,12 +48,13 @@
             android:id="@+id/SignUpAsCookButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="Cooker"
             android:textColor="#D9EF02"
             android:textColorHighlight="#ABBC05"
             android:textColorLink="#B8CA07"
-            android:padding="8dp"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/SignUpAsClientButton"
