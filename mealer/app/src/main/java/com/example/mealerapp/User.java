@@ -15,7 +15,9 @@ public  class User{
         this.Adresse = adresse;
         this.UserType= UserType;
     }
+public User(){
 
+}
     public String getPrenom() {
         return Prenom;
     }
