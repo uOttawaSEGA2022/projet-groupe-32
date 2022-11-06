@@ -35,7 +35,7 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/logout_btn"
+                android:id="@+id/logoutButton"
                 android:layout_width="27dp"
                 android:layout_height="37dp"
                 android:minWidth="48dp"

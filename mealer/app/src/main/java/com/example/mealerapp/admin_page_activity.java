@@ -9,16 +9,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class admin_page_activity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -26,24 +19,10 @@ public class admin_page_activity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
-    private TextView logOut;
-
-    /* On doit récupérer la liste des plaintes associées au cuisinier
-    on peut aller cherche
-     */
-    //private ListView listView;
-    //FirebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_welcomepage);
-        //listView = findViewById(idlistview);
-        //FirebaseDatabase.getInstance().getReference().child("Plaintes").get();
-        //ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout, listePlaintes, arraylist)
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
+        setContentView(R.layout.admin_page);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -61,7 +40,6 @@ public class admin_page_activity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_logout:
-                        FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -70,10 +48,12 @@ public class admin_page_activity extends AppCompatActivity {
             }
         });
     }
-        public boolean onOptionsItemSelected (@NonNull MenuItem item){
-            if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
+}

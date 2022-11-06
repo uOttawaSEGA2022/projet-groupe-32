@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             UserLogin();
         }
 
-        // Logout
-//        if(view.getId()==R.id.logoutButton){
-//            UserLogout();
-//        }
+        //Logout
+        if(view.getId()==R.id.logoutButton){
+         UserLogout();
+        }
     }
     private void UserLogout() {
         mAuth.signOut();
