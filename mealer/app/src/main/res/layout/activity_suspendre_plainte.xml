@@ -45,7 +45,8 @@
             <EditText
                 android:id="@+id/startDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/jusquau"
@@ -55,10 +56,13 @@
                 android:text="jusqu'au :"
                 tools:layout_editor_absoluteX="37dp"
                 tools:layout_editor_absoluteY="226dp" />
+
             <EditText
                 android:id="@+id/finishDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
 
             <Button

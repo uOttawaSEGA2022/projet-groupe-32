@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/fonddecran"
-    tools:context=".MainActivity">
+    tools:context=".user_list">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,17 +32,21 @@
 
             <ImageButton
                 android:id="@+id/logout_btn"
-                android:layout_width="27dp"
-                android:layout_height="37dp"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_logout_24"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                card_view:srcCompat="@drawable/ic_baseline_logout_24"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-            <ListView
-                android:id="@+id/listViewXML"
-                android:layout_width="18dp"
-                android:layout_height="516dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/userList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constrainBottom_toBottomOf="parent"
+                app:layout_constrainEnd_toEndOf="parent"
+                app:layout_constrainStart_toStartOf="parent"
+                app:layout_constrainTop_toTopOf="parent"/>
 
 
         </LinearLayout>
