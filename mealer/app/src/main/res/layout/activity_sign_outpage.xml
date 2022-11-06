@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -21,18 +23,26 @@
         app:srcCompat="@drawable/fonddecran2" />
 
     <TextView
-        android:id="@+id/adminsignoutText"
+        android:id="@+id/textView34"
         android:layout_width="299dp"
         android:layout_height="78dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/you_have_successfully_signed_out"
         android:textColor="@color/purple"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.554" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 
