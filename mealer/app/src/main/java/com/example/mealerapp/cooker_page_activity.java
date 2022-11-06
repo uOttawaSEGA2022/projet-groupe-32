@@ -16,7 +16,7 @@ public class cooker_page_activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooker_page);
-        logOut = (TextView) findViewById(R.id.logout_btn);
+        logOut = (TextView) findViewById(R.id.logoutButton);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
