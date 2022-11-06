@@ -4,7 +4,6 @@ package com.example.mealerapp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Client extends User {
-    String typeUser = "Client";
     String CVC;
     String InformationsCarteCredit;
     //Constructeur
@@ -20,7 +19,7 @@ public class Client extends User {
         return InformationsCarteCredit;
     }
     public String getTypeUser() {
-        return typeUser;
+        return "Client";
     }
 
 

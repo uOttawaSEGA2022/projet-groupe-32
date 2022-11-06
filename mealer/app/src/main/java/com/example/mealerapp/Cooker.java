@@ -4,7 +4,6 @@ import java.io.*;
 
 public class Cooker extends User{
     String description;
-    String typeUser="Cooker";
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
 
     //Constructeur
@@ -20,7 +19,7 @@ public class Cooker extends User{
     }
 
     public String getTypeUser() {
-        return typeUser;
+        return "Cooker";
     }
 
     public void setDescription(String description) {
