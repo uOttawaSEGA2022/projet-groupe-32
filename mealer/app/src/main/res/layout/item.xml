@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="567dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -113,17 +113,43 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="descriptionPlainte:"
                 android:textSize="26sp"
-                android:textStyle="bold"
-                android:text="descriptionPlainte" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/descriptionPlainte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="26sp"
-                android:textStyle="bold"
-                android:text="TextView" />
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="544dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/AccepterplainteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Accepter"
+                android:textColor="#FFEB3B"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/Refuserplainte_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Refuser"
+                android:textColor="#FFEB3B"
+                android:textSize="10sp" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
