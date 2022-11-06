@@ -141,7 +141,7 @@ public class signup_client_activity extends AppCompatActivity implements View.On
                     Plainte plainte4 = new Plainte("Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
                     Plainte plainte5 = new Plainte("Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
 
-                    FirebaseDatabase.getInstance().getReference("Plaintes").setValue(plainte1);
+                    FirebaseDatabase.getInstance().getReference("Plaintes").push().setValue(plainte1);
                     FirebaseDatabase.getInstance().getReference("Plaintes").setValue(plainte2);
                     FirebaseDatabase.getInstance().getReference("Plaintes").setValue(plainte3);
                     FirebaseDatabase.getInstance().getReference("Plaintes").setValue(plainte4);
