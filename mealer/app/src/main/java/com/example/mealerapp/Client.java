@@ -24,7 +24,7 @@ public class Client extends User {
     }
 
 
-    public void setInformationsCarteCredit(String informationsCarteCredit) {
+    public void setInformationsCarteCredit(String CVC, String informationsCarteCredit) {
         InformationsCarteCredit = informationsCarteCredit;
     }
 }

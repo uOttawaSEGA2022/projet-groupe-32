@@ -120,19 +120,6 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Cooker Itulisateur =cooker; //On lui affecte l'objet plus haut
-                    /*
-                    Pas besoin de tout ça, on a déjà entré les infos dans le constructeur de cooker
-                    A supprimer
-                    //User Itulisateur =new Administrator();
-                    Itulisateur.setPrenom(Prenom1);
-                    Itulisateur.setAdresse(Adresse1);
-                    Itulisateur.setCourriel(adressecourriel1);
-                    Itulisateur.setUserType("Cooker");
-                    //Itulisateur.setUserType("Administrator");
-                    Itulisateur.setNom(Nom1);
-                    Itulisateur.setMotDePasse(MotDePasse1);
-                    */
-
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

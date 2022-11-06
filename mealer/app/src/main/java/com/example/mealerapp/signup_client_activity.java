@@ -275,16 +275,6 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Client Itulisateur = client;
-                    /* Inutile
-                    Itulisateur.setPrenom(Prenom2);
-                    Itulisateur.setAdresse(Adresse2);
-                    Itulisateur.setCourriel(adressecourriel2);
-                    Itulisateur.setUserType("Client");
-                    Itulisateur.setNom(Nom2);
-                    Itulisateur.setMotDePasse(MotDePasse2);
-                    Itulisateur.setInformationsCarteCredit(InformationsCarteCredit2);
-                    */
-
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
