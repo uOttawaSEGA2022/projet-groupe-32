@@ -16,7 +16,9 @@ public class Plainte {
     String idClient;
     String idCuisinier;
     String datePlainte;
+    String descriptionPlainte;
     boolean plainteTraitee=false;//Par défaut toutes les plaintes sont non résolues
+
 
     public Plainte(){
     }
