@@ -128,7 +128,7 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             return;
         }
 
-        Client client =new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,CVC, InformationsCarteCredit2);
+        Client client =new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,CVC,InformationsCarteCredit2);
 
         mAuth.createUserWithEmailAndPassword(client.getCourriel(),client.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -140,17 +140,17 @@ public class signup_client_activity extends AppCompatActivity implements View.On
                     Plainte plainte3 = new Plainte("Brulée", "ydjido@gmail.com", "aguigma@gmail.com","03/11/2022","Je suis très déçue: un énorme goût de brulé . Je n’ai pas fini mon plat qui a fini à la poubelle. En espérant que ce soit juste une erreur qui sera vite réparée.");
                     Plainte plainte4 = new Plainte("Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
                     Plainte plainte5 = new Plainte("Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
-                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte1);
-                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte2);
-                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte3);
-                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte4);
-                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte5);
+                    FirebaseDatabase.getInstance().getReference().child("Plaintes").setValue(plainte1);
+                    FirebaseDatabase.getInstance().getReference().child("Plaintes").setValue(plainte2);
+                    FirebaseDatabase.getInstance().getReference().child("Plaintes").setValue(plainte3);
+                    FirebaseDatabase.getInstance().getReference().child("Plaintes").setValue(plainte4);
+                    FirebaseDatabase.getInstance().getReference().child("Plaintes").setValue(plainte5);
 
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                            Toast.makeText(signup_client_activity.this, "user registered success", Toast.LENGTH_LONG).show();
+                            Toast.makeText(signup_client_activity.this, "user registered successefully", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
                             }else{
                                 Toast.makeText(signup_client_activity.this, "Failed", Toast.LENGTH_LONG).show();
