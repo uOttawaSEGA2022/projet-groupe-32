@@ -48,103 +48,7 @@ public class signup_client_activity extends AppCompatActivity implements View.On
                 resisterUser();
                 break;
         }
-//
     }
-//    public void createAccountOnFirebase(User user,String email,String password){
-//        email=user.getCourriel();
-//        password=user.getMotDePasse();
-//        String type=user.getUserType();
-//        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                Client Utili;
-//                if(type.equals("Client")){
-//                    Utili=new Client(user.getPrenom(),user.getNom(),user.getCourriel(),user.getMotDePasse(),user.getAdresse(),user.getUserType(),"");
-//                }
-//
-//                if(task.isSuccessful()){
-//                    FirebaseDatabase.getInstance().getReference(type).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()) {
-//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
-//                                //rediriger vers login layout
-//                                                    if(type.equals("Client")){
-//                                                        startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
-//                                                    }else if(type.equals("Cooker")){
-//                                                        startActivity(new Intent(signup_client_activity.this, cooker_page_activity.class));
-//                                                    }
-//
-//
-//
-//                                                } else {
-//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
-//                                                    //progresseBar.setVisibility(View.GONE);
-//
-//                                                }
-//
-//                        }
-//                    });
-//                } else {
-//                Toast.makeText(signup_client_activity.this, "L'utilisateur  non enregistrer", Toast.LENGTH_LONG).show();
-//                //progresseBar.setVisibility(View.GONE);
-//
-//            }
-//            }
-//        });
-//    }
-//    public void createAccountOnFirebase(User user,String email,String password){
-//        mAuth.createUserWithEmailAndPassword(user.getCourriel(), user.getMotDePasse()).addOnCompleteListener(
-//                new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-////                            if (user.UserType.equals("Client")) {
-//                                FirebaseDatabase.getInstance().getReference("Cookers")
-//                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                if (task.isSuccessful()) {
-//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
-//
-//                                                    //rediriger vers login layout
-//                                                    startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
-//                                                } else {
-//                                                    Toast.makeText(signup_client_activity.this, "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
-//                                                    //progresseBar.setVisibility(View.GONE);
-//
-//                                                }
-//                                            }
-//
-//                                        });
-////                            }
-////                            else if (user.UserType.equals("Cooker")) {
-////                                FirebaseDatabase.getInstance().getReference("Cookers")
-////                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-////
-////                                            @Override
-////                                            public void onComplete(@NonNull Task<Void> task) {
-////                                                if (task.isSuccessful()) {
-////                                                    Toast.makeText(getApplicationContext(), "L'utilisateur  enregistrer", Toast.LENGTH_LONG).show();
-////                                                    //progresseBar.setVisibility(View.GONE);
-////                                                    //rediriger vers login layout
-////                                                    startActivity(new Intent(getApplicationContext(), cooker_page_activity.class));
-////                                                } else {
-////                                                    Toast.makeText(getApplicationContext(), "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
-////                                                    //progresseBar.setVisibility(View.GONE);
-////
-////                                                }
-////                                            }
-////
-////                                        });
-////                            }
-//                        } else {
-//                            Toast.makeText(getApplicationContext(), "L'utilisateur  non enregistrer essaiyer encore", Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                        });
-    //   }
 
 
     private void resisterUser() {
@@ -223,50 +127,6 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             editTextCVV.requestFocus();
             return;
         }
-//        if(getApplicationContext()==signup_client_activity.this){
-//            user=new Client(Prenom,Nom,adressecourriel,MotDePasse,Adresse,"Client",InformationsCarteCredit);
-//        }else{
-//            user=new Cooker(Prenom,Nom,adressecourriel,MotDePasse,Adresse,"Cooker","Moi je suis cuisinier");
-//        }
-//        if(user.UserType.equals("Client")){
-//
-//        }else if (user.UserType.equals("Client")){
-//
-//        }
-//        createAccountOnFirebase(user,user.getCourriel(),user.getMotDePasse());
-//Sending user to firebase
-//        Client user = new Client(Prenom2, Nom2, adressecourriel2, MotDePasse2, Adresse2, "Client",InformationsCarteCredit2);
-//        mAuth.createUserWithEmailAndPassword(user.getCourriel(), user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    Client Itulisateur = new Client();
-//                    Itulisateur.setPrenom(Prenom2);
-//                    Itulisateur.setAdresse(Adresse2);
-//                    Itulisateur.setCourriel(adressecourriel2);
-//                    Itulisateur.setUserType("Client");
-//                    Itulisateur.setNom(Nom2);
-//                    Itulisateur.setMotDePasse(MotDePasse2);
-//                    Itulisateur.setInformationsCarteCredit(InformationsCarteCredit2);
-//
-//
-//                    FirebaseDatabase.getInstance().getReference("Client").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                            .setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    if (task.isSuccessful()) {
-//                                        Toast.makeText(signup_client_activity.this, "user registered success", Toast.LENGTH_LONG).show();
-//                                        startActivity(new Intent(signup_client_activity.this, client_page_activity.class));
-//                                    } else {
-//                                        Toast.makeText(signup_client_activity.this, "Failed", Toast.LENGTH_LONG).show();
-//                                    }
-//                                }
-//                            });
-//                } else {
-//                    Toast.makeText(signup_client_activity.this, "Faileddddd!!!", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
 
         Client client =new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,CVC, InformationsCarteCredit2);
 
@@ -275,6 +135,17 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Client Itulisateur = client;
+                    Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
+                    Plainte plainte2 = new Plainte("Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
+                    Plainte plainte3 = new Plainte("Brulée", "ydjido@gmail.com", "aguigma@gmail.com","03/11/2022","Je suis très déçue: un énorme goût de brulé . Je n’ai pas fini mon plat qui a fini à la poubelle. En espérant que ce soit juste une erreur qui sera vite réparée.");
+                    Plainte plainte4 = new Plainte("Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
+                    Plainte plainte5 = new Plainte("Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
+                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte1);
+                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte2);
+                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte3);
+                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte4);
+                    FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte5);
+
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

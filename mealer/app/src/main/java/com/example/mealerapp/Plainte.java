@@ -32,12 +32,13 @@ public class Plainte {
     public Plainte(){
     }
 
-    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte){
+    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
         //On appelle le constructeur de la classe parent User
         titrePlainte = titre_Plainte;
         idClient = id_Client;
         idCuisinier = id_Cuisinier;
         datePlainte = date_Plainte;//Touver comment stocker une date
+        descriptionPlainte = description_Plainte;
     }
 
     public boolean getPlainteTraitee(){
@@ -48,8 +49,8 @@ public class Plainte {
         plainteTraitee = true;
     }
 
-    public void writeNewPlainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte) {
-        Plainte plainte = new Plainte(titre_Plainte, id_Client, id_Cuisinier,date_Plainte);
+    public static void writeNewPlainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
+        Plainte plainte = new Plainte(titre_Plainte, id_Client, id_Cuisinier,date_Plainte,description_Plainte);
         FirebaseDatabase.getInstance().getReference().child("Plainte").setValue(plainte);
     }
 
