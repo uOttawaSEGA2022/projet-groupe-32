@@ -8,6 +8,7 @@ public class Client extends User {
     String InformationsCarteCredit;
     //Constructeur
     //On a en paramettre les paramètres nécessaires à la création de l'objet
+
     public Client(String prenom, String nom, String courriel, String motDePasse, String adressecourriel,String CVC, String InformationsCarteCredit) {
         super(prenom, nom, courriel, motDePasse,"Client", adressecourriel);
         this. CVC = CVC;
