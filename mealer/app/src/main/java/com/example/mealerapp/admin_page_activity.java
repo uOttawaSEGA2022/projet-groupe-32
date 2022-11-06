@@ -15,6 +15,10 @@ import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class admin_page_activity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -24,10 +28,20 @@ public class admin_page_activity extends AppCompatActivity {
 
     private TextView logOut;
 
+    /* On doit récupérer la liste des plaintes associées au cuisinier
+    on peut aller cherche
+     */
+    //private ListView listView;
+    //FirebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_welcomepage);
+        //listView = findViewById(idlistview);
+        //FirebaseDatabase.getInstance().getReference().child("Plaintes").get();
+        //ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout, listePlaintes, arraylist)
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);

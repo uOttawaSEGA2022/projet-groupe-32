@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="263dp"
                 android:layout_height="wrap_content"
-                android:text="Boite de réception"
+                android:text="Boîte de réception"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="30sp"
