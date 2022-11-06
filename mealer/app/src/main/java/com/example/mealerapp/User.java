@@ -6,6 +6,7 @@ public  class User{
     String MotDePasse;
     String Adresse;
     String UserType;
+    Boolean authorized=true;
 
     public User (String prenom,String nom, String courriel, String motDePasse,String UserType, String adresse){
         this.Prenom = prenom;
