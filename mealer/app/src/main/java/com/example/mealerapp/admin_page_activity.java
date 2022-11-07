@@ -37,12 +37,12 @@ public class admin_page_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_page);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
+       // actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
+        //drawerLayout.addDrawerListener(actionBarDrawerToggle);
+       // actionBarDrawerToggle.syncState();
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+         /*   @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
@@ -60,7 +60,7 @@ public class admin_page_activity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });*/
 
         ArrayAdapter<Plainte> plaintsArrayAdapter = new ArrayAdapter<Plainte> (this, android.R.layout.simple_list_item_1, plaintsArrayList) ;
 
@@ -114,6 +114,31 @@ public class admin_page_activity extends AppCompatActivity {
         }) ;*/
 
     }
+
+
+
+FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for(DataSnapshot postSnapshot : snapshot.getChildren() ){
+                Cooker cook =postSnapshot.getValue(Cooker.class);
+                if(cook.getNom().equals(nom) && cook.getPrenom().equals(prenom)){
+                    cook.setSuspension("oui");
+                    cook.setSuspensionTime(cook.getSuspensionTime);
+                    startActivity(new Intent(Plaintes.this, admin_page_activity.class));
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Failed to suspend Cook", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
