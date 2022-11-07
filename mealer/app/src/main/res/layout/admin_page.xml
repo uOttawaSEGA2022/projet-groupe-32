@@ -30,7 +30,7 @@
 
 
             <ImageButton
-                android:id="@+id/logout_btn"
+                android:id="@+id/logout_Button"
                 android:layout_width="26dp"
                 android:layout_height="39dp"
                 android:background="@drawable/ic_baseline_logout_24"

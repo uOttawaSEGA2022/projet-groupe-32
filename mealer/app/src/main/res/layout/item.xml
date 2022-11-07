@@ -120,7 +120,7 @@
             <TextView
                 android:id="@+id/descriptionPlainte"
                 android:layout_width="wrap_content"
-                android:layout_height="418dp"
+                android:layout_height="396dp"
                 android:text="Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline."
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -136,20 +136,22 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/accepter_Btn"
+            android:id="@+id/accepterPlainteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClickAccepter"
             android:text="Accepter"
-            android:textColor="#FFEB3B"/>
+            android:textColor="#FFEB3B" />
 
         <Button
-            android:id="@+id/rejeter_Btn"
+            android:id="@+id/rejeterPlainteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClickRejetter"
             android:text="Rejeter"
-            android:textColor="#FFEB3B"/>
+            android:textColor="#FFEB3B" />
 
     </LinearLayout>
 

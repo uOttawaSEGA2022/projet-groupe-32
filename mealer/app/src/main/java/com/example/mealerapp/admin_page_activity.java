@@ -116,28 +116,29 @@ public class admin_page_activity extends AppCompatActivity {
     }
 
 
-
-FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for(DataSnapshot postSnapshot : snapshot.getChildren() ){
-                Cooker cook =postSnapshot.getValue(Cooker.class);
-                if(cook.getNom().equals(nom) && cook.getPrenom().equals(prenom)){
-                    cook.setSuspension("oui");
-                    cook.setSuspensionTime(cook.getSuspensionTime);
-                    startActivity(new Intent(Plaintes.this, admin_page_activity.class));
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Failed to suspend Cook", Toast.LENGTH_LONG).show();
+    /*
+    FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot postSnapshot : snapshot.getChildren() ){
+                    Cooker cook =postSnapshot.getValue(Cooker.class);
+                    if(cook.getNom().equals(nom) && cook.getPrenom().equals(prenom)){
+                        cook.setSuspension("oui");
+                        cook.setSuspensionTime(cook.getSuspensionTime);
+                        startActivity(new Intent(Plaintes.this, admin_page_activity.class));
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Failed to suspend Cook", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
-        }
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        }
-    });
+            }
+        });
+     */
 
 
     @Override
