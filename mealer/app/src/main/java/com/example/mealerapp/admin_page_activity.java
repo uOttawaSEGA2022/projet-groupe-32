@@ -25,10 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class admin_page_activity extends AppCompatActivity {
-    DrawerLayout drawerLayout;
+    //DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
-    ActionBarDrawerToggle actionBarDrawerToggle;
+    //Toolbar toolbar;
+    //ActionBarDrawerToggle actionBarDrawerToggle;
     ListView plaintsListView ;
     ArrayList<Plainte> plaintsArrayList = new ArrayList<>() ;
     DatabaseReference myRef ;
@@ -37,10 +37,12 @@ public class admin_page_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_page);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
+        //drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        //actionBarDrawerToggle.syncState();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        /*
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,6 +63,7 @@ public class admin_page_activity extends AppCompatActivity {
                 return true;
             }
         });
+         */
 
         ArrayAdapter<Plainte> plaintsArrayAdapter = new ArrayAdapter<Plainte> (this, android.R.layout.simple_list_item_1, plaintsArrayList) ;
 
@@ -114,7 +117,7 @@ public class admin_page_activity extends AppCompatActivity {
         }) ;*/
 
     }
-
+    /*
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
@@ -122,4 +125,6 @@ public class admin_page_activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+     */
 }
