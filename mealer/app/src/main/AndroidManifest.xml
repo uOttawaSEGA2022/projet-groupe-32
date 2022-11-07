@@ -12,13 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealerApp"
         tools:targetApi="31">
-        <activity
-            android:name=".user_list"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".SuspendrePlainte"
             android:exported="false">
@@ -34,14 +28,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TraitementdeplaintesActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".traiter_plainte_activity"
+            android:name=".item_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -89,13 +76,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".admin_page_activity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".cooker_page_activity"
             android:exported="false">

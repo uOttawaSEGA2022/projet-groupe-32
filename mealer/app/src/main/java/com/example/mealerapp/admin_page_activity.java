@@ -50,7 +50,7 @@ public class admin_page_activity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_plaintes:
-                        startActivity(new Intent(getApplicationContext(), TraitementdeplaintesActivity.class));
+                        startActivity(new Intent(getApplicationContext(), item_activity.class));
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.nav_logout:
