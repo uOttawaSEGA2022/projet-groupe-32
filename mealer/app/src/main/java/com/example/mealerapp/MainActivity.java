@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 startActivity(new Intent(MainActivity.this, admin_page_activity.class));
                             }
                         }
-
+                        //Nothing
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
