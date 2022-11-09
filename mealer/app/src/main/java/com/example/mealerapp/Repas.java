@@ -1,22 +1,26 @@
 package com.example.mealerapp;
 
+import java.util.UUID;
+
 public class Repas {
+    private String idRepas;
     private String repasName;
     private String repasIngredients;
     private String descriptionRepas;
     private String cuisineType;
     private String repasType;
     private int price;
-    private String id;
 
-    public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, String repasType, int price, String id){
+
+    public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, int price){
         repasName = name;
         this.repasIngredients = repasIngredients;
         this.descriptionRepas = descriptionRepas;
         this.cuisineType = cuisineType;
-        this.repasType = repasType;
+        this.idRepas = UUID.randomUUID().toString();
+        //this.repasType = repasType;
         this.price = price;
-        this.id = id;
+
     }
 
     public String getRepasName() {return repasName;}
@@ -24,6 +28,6 @@ public class Repas {
     public String getRepasDescription() {return descriptionRepas;}
     public String getCuisineType() {return cuisineType;}
     public String getRepasType() {return repasType;}
+    public String getId(){return idRepas;}
     public int getPrice() {return price;}
-    public String getId() {return id;}
 }

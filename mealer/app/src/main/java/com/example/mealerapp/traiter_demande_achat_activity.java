@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class traiter_demande_achat_activity extends AppCompatActivity {
 
@@ -58,6 +59,9 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
+        Demande demande = new Demande("amin_nna@gmail.com", repas);
+        demande.addDemandeDatabase();
 
         databaseDemandes.addValueEventListener(new ValueEventListener() {
             @Override
