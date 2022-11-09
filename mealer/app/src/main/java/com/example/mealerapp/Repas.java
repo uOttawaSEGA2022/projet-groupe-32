@@ -11,6 +11,7 @@ public class Repas {
     private String repasType;
     private int price;
 
+        public Repas(){}
 
     public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, int price){
         repasName = name;

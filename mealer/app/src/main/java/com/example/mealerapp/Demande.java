@@ -9,7 +9,7 @@ public class Demande {
     String idDemande;
     String dateDemande;
     String idClient;
-    Boolean demandeTraitee = false;
+    Boolean demandeTraitee=false;
     Repas repas;
 
     public Demande(){}
@@ -18,12 +18,19 @@ public class Demande {
         this.repas = repas;
         this.idClient = idClient;
         this.idDemande = UUID.randomUUID().toString();
-
     }
 
     public void addDemandeDatabase(){
         FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).setValue(this);
     }
+    public boolean demandeTraitee(){return demandeTraitee;};
+    public void traiterDemande(){
+        if ( !this.demandeTraitee){
+            this.demandeTraitee=true;
+            return;
+        }
+        this.demandeTraitee=false;
+    };
 
 
     public Repas getRepas(){
@@ -34,6 +41,10 @@ public class Demande {
     }
 
     public String getId(){
+        return idDemande;
+    }
+
+    public String getIdClient(){
         return idClient;
     }
 

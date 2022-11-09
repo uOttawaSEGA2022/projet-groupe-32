@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -27,9 +28,8 @@ import java.util.UUID;
 
 public class traiter_demande_achat_activity extends AppCompatActivity {
 
-    EditText editTextName;
-    EditText editTextPrice;
-    Button buttonAddProduct;
+
+
     ListView listViewDemandes;
 
     List<Demande> demandesArrayList;
@@ -38,8 +38,11 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_demande_achat);
+
 
         listViewDemandes = (ListView) findViewById(R.id.listViewDemandes);
         databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
@@ -49,7 +52,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Demande demande = demandesArrayList.get(i);
-                showAccepterRejeter(demande.getId());
+                showAccepterRejeter(demande);
                 return true;
             }
         });
@@ -59,9 +62,11 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        /*
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
         Demande demande = new Demande("amin_nna@gmail.com", repas);
         demande.addDemandeDatabase();
+         */
 
         databaseDemandes.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,14 +75,16 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
                 demandesArrayList.clear();
 
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    Demande demande = data.getValue(Demande.class) ;
-                    //Rajouter if demandeTraitee==false
-                    demandesArrayList.add(demande) ; }
+                    Demande demande = data.getValue(Demande.class);
+                    assert demande != null;
+                    if ( !demande.demandeTraitee()) {
+                        demandesArrayList.add(demande);
+                    }
+                }
 
-                ArrayAdapter<Demande> demandesAdapter = new ArrayAdapter<Demande>(traiter_demande_achat_activity.this, android.R.layout.simple_list_item_1, demandesArrayList) ;
+                ArrayAdapter<Demande> demandesAdapter = new DemandeList(traiter_demande_achat_activity.this, demandesArrayList) ;
                 listViewDemandes.setAdapter(demandesAdapter) ;
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -85,7 +92,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     }
 
 
-    private void showAccepterRejeter(final String demandeId) {
+    private void showAccepterRejeter(Demande demande) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -103,7 +110,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         buttonAccepterDemande.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                accepterDemande(demandeId);
+                accepterDemande(demande);
                 b.dismiss();
             }
         });
@@ -111,23 +118,24 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         buttonRefuserDemande.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                refuserDemande(demandeId);
+                refuserDemande(demande);
                 b.dismiss();
             }
         });
 
     }
 
-    private void accepterDemande(String id) {
+    private void accepterDemande(Demande demande) {
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Demandes").child(id);
-        Toast.makeText(getApplicationContext(), "Demande traitee", Toast.LENGTH_LONG).show();
+        demande.traiterDemande();
+        Toast.makeText(getApplicationContext(), "Demande acceptée", Toast.LENGTH_LONG).show();
+
     }
 
-    private void refuserDemande(String id) {
+    private void refuserDemande(Demande demande) {
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Demandes").child(id);
-        Toast.makeText(getApplicationContext(), "Product deleted", Toast.LENGTH_LONG).show();
+        demande.traiterDemande();
+        Toast.makeText(getApplicationContext(), "Demande refusée", Toast.LENGTH_LONG).show();
     }
 
 
