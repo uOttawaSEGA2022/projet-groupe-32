@@ -81,5 +81,4 @@ public class admin_page_activity extends AppCompatActivity {
             }
         });
     }
-
 }
