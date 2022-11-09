@@ -1,29 +1,29 @@
 package com.example.mealerapp;
 
 public class Repas {
-    private String RepasName;
-    private String RepasIngredients;
-    private String DescriptionRepas;
-    private String CuisineType;
-    private String RepasType;
-    private int Price;
-    private String Id;
+    private String repasName;
+    private String repasIngredients;
+    private String descriptionRepas;
+    private String cuisineType;
+    private String repasType;
+    private int price;
+    private String id;
 
     public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, String repasType, int price, String id){
-        RepasName = name;
-        RepasIngredients = repasIngredients;
-        DescriptionRepas = descriptionRepas;
-        CuisineType = cuisineType;
-        RepasType = repasType;
-        Price = price;
-        Id = id;
+        repasName = name;
+        repasIngredients = repasIngredients;
+        descriptionRepas = descriptionRepas;
+        cuisineType = cuisineType;
+        repasType = repasType;
+        price = price;
+        id = id;
     }
 
-    public String getRepasName() {return RepasName;}
-    public String getRepasIngredients() {return RepasIngredients;}
-    public String getDescriptionRepas() {return DescriptionRepas;}
-    public String getCuisineType() {return CuisineType;}
-    public String getRepasType() {return RepasType;}
-    public int getPrice() {return Price;}
-    public String getId() {return Id;}
+    public String getRepasName() {return repasName;}
+    public String getRepasIngredients() {return repasIngredients;}
+    public String getDescriptionRepas() {return descriptionRepas;}
+    public String getCuisineType() {return cuisineType;}
+    public String getRepasType() {return repasType;}
+    public int getPrice() {return price;}
+    public String getId() {return id;}
 }
