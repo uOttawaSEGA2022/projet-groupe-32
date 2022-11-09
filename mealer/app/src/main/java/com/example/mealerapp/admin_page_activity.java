@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
@@ -23,129 +24,52 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class admin_page_activity extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
     ListView plaintsListView ;
-    ArrayList<Plainte> plaintsArrayList = new ArrayList<>() ;
+    ArrayList<Plainte> plaintsArrayList ;
     DatabaseReference myRef ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_page);
-       // actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open, R.string.menu_Close);
-        //drawerLayout.addDrawerListener(actionBarDrawerToggle);
-       // actionBarDrawerToggle.syncState();
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       // navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-         /*   @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(), admin_page_activity.class));
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_plaintes:
-                        startActivity(new Intent(getApplicationContext(), item_activity.class));
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.nav_logout:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                }
-                return true;
-            }
-        });*/
 
-        ArrayAdapter<Plainte> plaintsArrayAdapter = new ArrayAdapter<Plainte> (this, android.R.layout.simple_list_item_1, plaintsArrayList) ;
-
-        plaintsListView = findViewById(R.id.listViewPlaints) ;
-        plaintsListView.setAdapter(plaintsArrayAdapter);
+        plaintsListView = (ListView) findViewById(R.id.listViewPlaints) ;
 
         myRef = FirebaseDatabase.getInstance().getReference("Plaintes") ;
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    Plainte plainte = data.getValue(Plainte.class) ;
-                    plaintsArrayList.add(plainte) ;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-       /* EventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Plainte plainte = DataSnapshot.getValue(adm
-                plaintsArrayList.add(plainte) ;
-                plaintsArrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                plaintsArrayAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        }) ;*/
-
+        plaintsArrayList = new ArrayList<>() ;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-    /*
-    FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot postSnapshot : snapshot.getChildren() ){
-                    Cooker cook =postSnapshot.getValue(Cooker.class);
-                    if(cook.getNom().equals(nom) && cook.getPrenom().equals(prenom)){
-                        cook.setSuspension("oui");
-                        cook.setSuspensionTime(cook.getSuspensionTime);
-                        startActivity(new Intent(Plaintes.this, admin_page_activity.class));
-                    }
-                    else{
-                        Toast.makeText(MainActivity.this, "Failed to suspend Cook", Toast.LENGTH_LONG).show();
-                    }
-                }
+
+                for (DataSnapshot data : snapshot.getChildren()) {
+
+                    Plainte plainte = data.getValue(Plainte.class) ;
+                    plaintsArrayList.add(plainte) ; }
+
+                ArrayAdapter<Plainte> plaintsAdapter = new ArrayAdapter<Plainte>(admin_page_activity.this, android.R.layout.simple_list_item_1, plaintsArrayList) ;
+                plaintsListView.setAdapter(plaintsAdapter) ;
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-     */
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
