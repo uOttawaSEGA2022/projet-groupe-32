@@ -63,12 +63,18 @@ public class Plainte {
          */
     }
 
+    public String getDescriptionPlainte() { return  descriptionPlainte ;}
+
+    public String getTitrePlainte() { return  titrePlainte ;}
+
     public boolean getPlainteTraitee(){
         return plainteTraitee;
     }
 
-    public void setPlainteTraitee(){
-        plainteTraitee = true;
+    public void setPlainteTraitee(){ plainteTraitee = true; }
+
+    public String toString () {
+        return titrePlainte +"/n" + descriptionPlainte ;
     }
     /*
     public static void writeNewPlainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
