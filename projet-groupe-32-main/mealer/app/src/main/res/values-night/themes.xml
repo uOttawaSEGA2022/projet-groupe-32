@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MealerApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#090B09</item>
+        <item name="colorPrimaryVariant">#0C0E0C</item>
+        <item name="colorOnPrimary">#060906</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#0B0E0B</item>
+        <item name="colorSecondaryVariant">#0E120F</item>
+        <item name="colorOnSecondary">#0A0C0A</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

@@ -41,7 +41,7 @@ public class Plainte {
 
     public Plainte(){
     }
-    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
+    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
         //On appelle le constructeur de la classe parent User
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
@@ -63,13 +63,18 @@ public class Plainte {
          */
     }
 
+    public String getDescriptionPlainte() { return  descriptionPlainte ;}
+
+    public String getTitrePlainte() { return  titrePlainte ;}
+
     public boolean getPlainteTraitee(){
         return plainteTraitee;
     }
 
-    public void setPlainteTraitee(){
-        plainteTraitee = true;
-    }
+    public void setPlainteTraitee(){ plainteTraitee = true; }
+
+    public String toString () {
+        return "Titre:" + titrePlainte + "/n" + "Description: " + descriptionPlainte + "/n"; }
     /*
     public static void writeNewPlainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
         Plainte plainte = new Plainte(titre_Plainte, id_Client, id_Cuisinier,date_Plainte,description_Plainte);
