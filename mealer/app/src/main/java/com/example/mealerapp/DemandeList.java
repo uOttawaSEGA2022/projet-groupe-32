@@ -30,8 +30,8 @@ public class DemandeList extends ArrayAdapter<Demande> {
         TextView textViewDate = (TextView) listViewItem.findViewById(R.id.textViewDate);
 
         Demande demande = demandes.get(position);
-        textViewRepas.setText("Repas");
-        textViewDate.setText("08/11/22");
+        textViewRepas.setText(demande.getRepas().getRepasName());
+        textViewDate.setText(demande.getDate());
         return listViewItem;
     }
 }

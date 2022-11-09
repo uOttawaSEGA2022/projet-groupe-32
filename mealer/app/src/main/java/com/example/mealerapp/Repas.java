@@ -11,17 +11,17 @@ public class Repas {
 
     public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, String repasType, int price, String id){
         repasName = name;
-        repasIngredients = repasIngredients;
-        descriptionRepas = descriptionRepas;
-        cuisineType = cuisineType;
-        repasType = repasType;
-        price = price;
-        id = id;
+        this.repasIngredients = repasIngredients;
+        this.descriptionRepas = descriptionRepas;
+        this.cuisineType = cuisineType;
+        this.repasType = repasType;
+        this.price = price;
+        this.id = id;
     }
 
     public String getRepasName() {return repasName;}
     public String getRepasIngredients() {return repasIngredients;}
-    public String getDescriptionRepas() {return descriptionRepas;}
+    public String getRepasDescription() {return descriptionRepas;}
     public String getCuisineType() {return cuisineType;}
     public String getRepasType() {return repasType;}
     public int getPrice() {return price;}
