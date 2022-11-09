@@ -67,6 +67,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class) ;
+                    //Rajouter if demandeTraitee==false
                     demandesArrayList.add(demande) ; }
 
                 ArrayAdapter<Demande> demandesAdapter = new ArrayAdapter<Demande>(traiter_demande_achat_activity.this, android.R.layout.simple_list_item_1, demandesArrayList) ;
