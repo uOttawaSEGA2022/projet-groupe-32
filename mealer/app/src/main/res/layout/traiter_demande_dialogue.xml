@@ -17,18 +17,22 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonAccepterDemande"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Accepter " />
-
-            <Button
                 android:id="@+id/buttonRefuserDemande"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Refuser" />
+                android:text="Refuser"
+                android:textColor="#FFFFFF"
+                app:iconTint="#F4F1F1"
+                app:rippleColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/buttonAccepterDemande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Accepter "
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
 

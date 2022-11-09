@@ -40,21 +40,15 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_demande_achat);
 
-
         listViewDemandes = (ListView) findViewById(R.id.listViewDemandes);
-
-
-        databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes") ;
-
+        databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
         demandesArrayList = new ArrayList<>();
-
-
 
         listViewDemandes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Demande demande = demandesArrayList.get(i);
-                //showAccepterRejeter(demande.getId());
+                showAccepterRejeter(demande.getId());
                 return true;
             }
         });
@@ -86,7 +80,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     }
 
 
-    private void showAccepterRejeter(final String demandeId, String productName) {
+    private void showAccepterRejeter(final String demandeId) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -97,7 +91,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         final Button buttonAccepterDemande = (Button) dialogView.findViewById(R.id.buttonAccepterDemande);
         final Button buttonRefuserDemande = (Button) dialogView.findViewById(R.id.buttonRefuserDemande);
 
-        dialogBuilder.setTitle(productName);
+        dialogBuilder.setTitle("");
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
@@ -122,16 +116,13 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     private void accepterDemande(String id) {
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Demandes").child(id);
-
         Toast.makeText(getApplicationContext(), "Demande traitee", Toast.LENGTH_LONG).show();
     }
 
-    private boolean refuserDemande(String id) {
+    private void refuserDemande(String id) {
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Demandes").child(id);
         Toast.makeText(getApplicationContext(), "Product deleted", Toast.LENGTH_LONG).show();
-
-        return true ;
     }
 
 

@@ -82,18 +82,4 @@ public class admin_page_activity extends AppCompatActivity {
         });
     }
 
-    public View getView (int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.plaint_display_layout, null, true);
-
-        TextView textViewPlaintDescription = (TextView) listViewItem.findViewById(R.id.textViewPlaintDescription);
-        TextView textViewPlaintTitle = (TextView) listViewItem.findViewById(R.id.textViewPlaintTitle);
-
-        Plainte plainte = plaintsArrayList.get(position);
-
-        textViewPlaintDescription.setText(plainte.getDescriptionPlainte());
-        textViewPlaintTitle.setText(plainte.getTitrePlainte());
-        return listViewItem;
-    }
-    //méthode a effacer si l'affichage des plaintes est correct (Amina)
 }
