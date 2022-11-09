@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,15 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class traiter_demande_achat_activity extends AppCompatActivity {
-    /*
+
     EditText editTextName;
     EditText editTextPrice;
     Button buttonAddProduct;
-    ListView listViewProducts;
+    ListView listViewDemandes;
 
-    //List<Demandes> demande;
+    List<Demande> demandesArrayList;
 
-    DatabaseReference databaseProducts ;
+    DatabaseReference databaseDemandes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +44,17 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         listViewDemandes = (ListView) findViewById(R.id.listViewDemandes);
 
 
-        databaseProducts = FirebaseDatabase.getInstance().getReference("Demandes") ;
+        databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes") ;
 
-        products = new ArrayList<>();
+        demandesArrayList = new ArrayList<>();
 
 
 
-        listViewProducts.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewDemandes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Product product = products.get(i);
-                showAccepterRejeter(product.getId(), product.getProductName());
+                Demande demande = demandesArrayList.get(i);
+                //showAccepterRejeter(demande.getId());
                 return true;
             }
         });
@@ -64,18 +65,18 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        databaseProducts.addValueEventListener(new ValueEventListener() {
+        databaseDemandes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                products.clear();
+                demandesArrayList.clear();
 
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    Product product = data.getValue(Demande.class) ;
-                    products.add(product) ; }
+                    Demande demande = data.getValue(Demande.class) ;
+                    demandesArrayList.add(demande) ; }
 
-                Demande demande = new (traiter_demande_achat_activity.this, products) ;
-                listViewProducts.setAdapter(productsAdapter) ;
+                ArrayAdapter<Demande> demandesAdapter = new ArrayAdapter<Demande>(traiter_demande_achat_activity.this, android.R.layout.simple_list_item_1, demandesArrayList) ;
+                listViewDemandes.setAdapter(demandesAdapter) ;
             }
 
             @Override
@@ -85,82 +86,55 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     }
 
 
-    private void showAccepterRejeter(final String productId, String productName) {
+    private void showAccepterRejeter(final String demandeId, String productName) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.update_dialog, null);
+        final View dialogView = inflater.inflate(R.layout.traiter_demande_dialogue, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
-        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
-        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateProduct);
-        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteProduct);
+
+        final Button buttonAccepterDemande = (Button) dialogView.findViewById(R.id.buttonAccepterDemande);
+        final Button buttonRefuserDemande = (Button) dialogView.findViewById(R.id.buttonRefuserDemande);
 
         dialogBuilder.setTitle(productName);
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
-        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+        buttonAccepterDemande.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = editTextName.getText().toString().trim();
-                double price = Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
-                if (!TextUtils.isEmpty(name)) {
-                    updateProduct(productId, name, price);
-                    b.dismiss();
-                }
-            }
-        });
-
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteProduct(productId);
+                accepterDemande(demandeId);
                 b.dismiss();
             }
         });
+
+        buttonRefuserDemande.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refuserDemande(demandeId);
+                b.dismiss();
+            }
+        });
+
     }
 
-    private void updateProduct(String id, String name, double price) {
+    private void accepterDemande(String id) {
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("products").child(id) ;
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Demandes").child(id);
 
-        Product product = new Product(id, name, price) ;
-        db.setValue(product) ;
-        Toast.makeText(getApplicationContext(), "Product updated", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Demande traitee", Toast.LENGTH_LONG).show();
     }
 
-    private boolean deleteProduct(String id) {
+    private boolean refuserDemande(String id) {
 
-        DatabaseReference dbase = FirebaseDatabase.getInstance().getReference("products").child(id) ;
-        dbase.removeValue();
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Demandes").child(id);
         Toast.makeText(getApplicationContext(), "Product deleted", Toast.LENGTH_LONG).show();
 
         return true ;
     }
 
-    private void addProduct() {
 
-        String name = editTextName.getText().toString().trim() ;
-        double price = Double.parseDouble(String.valueOf(editTextPrice.getText().toString())) ;
 
-        if (!TextUtils.isEmpty(name)) {
-
-            String id = databaseProducts.push().getKey() ;
-            Product product = new Product(id, name, price) ;
-
-            databaseProducts.child(id).setValue(product) ;
-
-            editTextName.setText("");
-            editTextPrice.setText("");
-
-            Toast.makeText(this, "Product added", Toast.LENGTH_LONG).show() ;
-        }
-
-        else {
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show() ; }
-    }
-    */
 
 }
