@@ -11,4 +11,5 @@ public class suspendre_cooker_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suspendre_cooker);
     }
+
 }

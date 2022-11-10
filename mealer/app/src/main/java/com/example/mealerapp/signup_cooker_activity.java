@@ -18,11 +18,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class signup_cooker_activity extends AppCompatActivity implements View.OnClickListener{
     private Button SignUp;
     public EditText editTextPrenom, editTextNom, editTextAdresseCourriel, editTextMotDePasse, editTextAdresse, editTextConfirm;
     private FirebaseAuth mAuth;
-
+String description;
     //@SuppressLint("MissingInflatedId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,7 +113,8 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         }
 
         //On créé notre objet avec ses attributs prioritaires
-        Cooker cooker = new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1);
+         List<Plainte> list = null; //liste associer a chaque cook
+        Cooker cooker = new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1, description, "non","",list);
 
 
         //User user=new Administrator(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");
