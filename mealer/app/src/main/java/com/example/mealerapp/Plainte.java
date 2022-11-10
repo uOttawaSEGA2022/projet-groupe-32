@@ -1,6 +1,5 @@
 package com.example.mealerapp;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,7 +34,6 @@ public class Plainte {
 
     String titrePlainte;
     String idClient;
-    String id;
     String idCuisinier;
     String datePlainte;
     String descriptionPlainte;
@@ -43,7 +41,7 @@ public class Plainte {
 
     public Plainte(){
     }
-    public Plainte(String id,String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
+    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
         //On appelle le constructeur de la classe parent User
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
@@ -65,39 +63,18 @@ public class Plainte {
          */
     }
 
-    public String getTitrePlainte() {
-        return titrePlainte;
-    }
+    public String getDescriptionPlainte() { return  descriptionPlainte ;}
+
+    public String getTitrePlainte() { return  titrePlainte ;}
 
     public boolean getPlainteTraitee(){
         return plainteTraitee;
     }
 
-    public String getIdCuisinier() {
-        return idCuisinier;
-    }
+    public void setPlainteTraitee(){ plainteTraitee = true; }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setPlainteTraitee(){
-        plainteTraitee = true;
-    }
-
-    public String getPlainteDescription() {
-        return descriptionPlainte;
-    }
-    DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Plaintes");
-    public void addPlainte(){
-
-        if(!TextUtils.isEmpty(this.getTitrePlainte())){
-
-            String id =databaseReference.push().getKey();
-            Plainte plainte =new Plainte(id,)
-        }
-
-    }
+    public String toString () {
+        return "Titre:" + titrePlainte + "/n" + "Description: " + descriptionPlainte + "/n"; }
     /*
     public static void writeNewPlainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
         Plainte plainte = new Plainte(titre_Plainte, id_Client, id_Cuisinier,date_Plainte,description_Plainte);

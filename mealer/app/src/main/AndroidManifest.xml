@@ -13,14 +13,21 @@
         android:theme="@style/Theme.MealerApp"
         tools:targetApi="31">
         <activity
-            android:name=".Cook_Temporary_suspension"
+            android:name=".traiter_menu_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Cook_Indefinitly_suspension"
+            android:name=".traiter_demande_dialogue_activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".traiter_demande_achat_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
