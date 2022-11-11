@@ -37,7 +37,6 @@ public class admin_page_activity extends AppCompatActivity {
     ListView plaintsListView ;
     ArrayList<Plainte> plaintsArrayList ;
     DatabaseReference myRef ;
-    private Activity context ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,8 @@ public class admin_page_activity extends AppCompatActivity {
         plaintsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(context, item_activity.class));
+                Plainte intentedPlaint = plaintsArrayList.get(i) ;
+                startActivity(new Intent(admin_page_activity.this, item_activity.class).putExtra("numeroPlainte", intentedPlaint.getID()));
             }
         });
 

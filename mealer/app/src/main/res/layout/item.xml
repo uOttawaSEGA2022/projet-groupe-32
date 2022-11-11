@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="567dp"
+        android:layout_height="636dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -22,15 +22,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="titre Plainte:"
+                android:text="Titre :"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/titrePlainte"
-                android:layout_width="121dp"
+                android:layout_width="339dp"
                 android:layout_height="wrap_content"
-                android:text="Indigeste"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -44,15 +43,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="id Client:"
+                android:text="Client:"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/idClient"
-                android:layout_width="wrap_content"
+                android:layout_width="336dp"
                 android:layout_height="wrap_content"
-                android:text="amin_nna@gmail.com"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -66,15 +64,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="idCuisinier:"
+                android:text="Cuisinier"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/idCuisinier"
-                android:layout_width="wrap_content"
+                android:layout_width="303dp"
                 android:layout_height="wrap_content"
-                android:text="aguigma@gmail.com"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -89,15 +86,14 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="datePlainte:"
+                android:text="Date d'émission:"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/datePlainte"
-                android:layout_width="wrap_content"
+                android:layout_width="219dp"
                 android:layout_height="wrap_content"
-                android:text="03/11/2022"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -113,18 +109,16 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="descriptionPlainte:"
+                android:text="Description:"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/descriptionPlainte"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="396dp"
-                android:text="Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline."
                 android:textSize="15sp"
                 android:textStyle="bold" />
-
 
 
         </LinearLayout>

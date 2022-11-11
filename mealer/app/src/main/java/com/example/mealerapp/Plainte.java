@@ -32,17 +32,21 @@ import java.util.ArrayList;
 
 public class Plainte {
 
-    String titrePlainte;
-    String idClient;
-    String idCuisinier;
-    String datePlainte;
-    String descriptionPlainte;
+    private int noPlaint =0;
+    private int plaintID ;
+    private String titrePlainte;
+    private String idClient;
+    private String idCuisinier;
+    private String datePlainte;
+    private String descriptionPlainte;
     boolean plainteTraitee=false;//Par défaut toutes les plaintes sont non résolues
 
     public Plainte(){
     }
     public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
         //On appelle le constructeur de la classe parent User
+        this.plaintID=noPlaint+1 ;
+        noPlaint++;
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
         this.idCuisinier = id_Cuisinier;
@@ -72,6 +76,14 @@ public class Plainte {
     }
 
     public void setPlainteTraitee(){ plainteTraitee = true; }
+
+    public int getID() { return this.plaintID ; }
+
+    public String getIdClient() { return idClient ; }
+
+    public String getIdCuisinier () { return idCuisinier ; }
+
+    public String getDatePlainte () { return datePlainte ; }
 
     public String toString () {
         return "Titre:" + titrePlainte + "/n" + "Description: " + descriptionPlainte + "/n"; }
