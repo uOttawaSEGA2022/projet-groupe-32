@@ -23,11 +23,7 @@ public class item_activity extends AppCompatActivity {
 
     Button Accept ;
     Button Decline ;
-    TextView editTextPlaintTitle ;
-    TextView editTextClientId ;
-    TextView editTextCookerId ;
-    TextView editTextEmissionDate ;
-    TextView editTextPlaintDescription ;
+    TextView editTextPlaintTitle, editTextClientId, editTextCookerId, editTextEmissionDate, editTextPlaintDescription ;
     DatabaseReference dbPlaint = FirebaseDatabase.getInstance().getReference().child("Plaintes") ;
     int ID ;
     Plainte plainte ;
