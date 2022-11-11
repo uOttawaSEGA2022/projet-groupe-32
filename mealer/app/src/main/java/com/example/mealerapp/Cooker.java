@@ -7,14 +7,17 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
+    String UserType;
     //Constructeur
 
     //On a en paramettre les paramètres nécessaires à la création de l'objet
-    public Cooker(String prenom,String nom, String courriel, String motDePasse,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
+    public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
         //On appelle le constructeur de la classe parent User
-        super(prenom, nom, courriel, motDePasse,"Cooker", adresse);
+        super(prenom, nom, courriel, motDePasse, UserType, adresse);
         this.listePlaintes=listePlaintes;
+        this.suspension="non";
         this.suspensionEndTime="";
+        this.UserType=UserType;
     }
 
     public List <Plainte> getList(){

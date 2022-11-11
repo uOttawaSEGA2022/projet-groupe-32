@@ -114,7 +114,10 @@ String description;
 
         //On créé notre objet avec ses attributs prioritaires
          List<Plainte> list = null; //liste associer a chaque cook
-        Cooker cooker = new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1, description, "non","",list);
+        Cooker cooker = new Cooker(Prenom1,Nom1,
+                adressecourriel1,MotDePasse1,"Cooker",
+                Adresse1,"je suis un cook",
+                "non", "non",list);
 
 
         //User user=new Administrator(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");

@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -121,7 +122,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                             else if(user.getUserType().equals("Cooker")){
                                 //diriger vers profil utilisateur cooker
-                                startActivity(new Intent(MainActivity.this, cooker_page_activity.class));
+                                DatabaseReference data= FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
+                                data.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        Cooker cook =snapshot.getValue(Cooker.class);
+                                        if (cook.getSuspension().equals("oui temporairement")){
+                                            //redirect him to the suspended page
+                                            Intent intent=new Intent(MainActivity.this,Cook_Temporary_suspension.class);
+                                            intent.putExtra("SuspensionEndTime",cook.getSuspensionEndTime());
+                                            startActivity(intent);
+                                        }else if(cook.getSuspension().equals("oui Indefinitly")){
+                                            startActivity(new Intent(MainActivity.this, Cook_Indefinitly_suspension.class));
+                                        }
+                                        else{
+                                            //redirect him to his working profil
+                                            startActivity(new Intent(MainActivity.this, cooker_page_activity.class));
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                             }
                             else if(user.getUserType().equals("Administrator")){
                                 //diriger vers profil utilisateur admin
