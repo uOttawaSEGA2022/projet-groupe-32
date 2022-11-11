@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                             else if(user.getUserType().equals("Cooker")){
                                 //diriger vers profil utilisateur cooker
-                                startActivity(new Intent(MainActivity.this, traiter_demande_achat_activity.class));
+                                startActivity(new Intent(MainActivity.this, cooker_page_activity.class));
                             }
                             else if(user.getUserType().equals("Administrator")){
                                 //diriger vers profil utilisateur admin

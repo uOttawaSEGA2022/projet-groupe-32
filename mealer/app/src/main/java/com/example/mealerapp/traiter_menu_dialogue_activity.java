@@ -79,7 +79,7 @@ public class traiter_menu_dialogue_activity extends AppCompatActivity {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.offrir_retirer_repas, null);
+        final View dialogView = inflater.inflate(R.layout.traiter_menu_dialogue, null);
         dialogBuilder.setView(dialogView);
 
 
