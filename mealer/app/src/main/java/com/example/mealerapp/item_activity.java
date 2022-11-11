@@ -36,7 +36,7 @@ public class item_activity extends AppCompatActivity {
 
         Intent importedData = getIntent() ;
         if (importedData !=null && importedData.hasExtra("numeroPlainte")) {
-            ID=importedData.getIntExtra("numeroPlainte",0) ;
+            ID=importedData.getIntExtra("numeroPlainte",-1) ;
         }
 
 
@@ -52,7 +52,7 @@ public class item_activity extends AppCompatActivity {
         Decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Plainte rejetée", Toast.LENGTH_LONG).show() ;
+                Toast.makeText(getApplicationContext(), "Plainte rejetée" + "/n" + "Redirection vers la boite de réception", Toast.LENGTH_LONG).show() ;
                 startActivity(new Intent(item_activity.this, admin_page_activity.class));
             }
         });
