@@ -52,18 +52,23 @@ public class admin_page_activity extends AppCompatActivity {
     String plainteId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // String Id=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-
-        //String Id1=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-        //Plainte plainte1 = new Plainte(Id,"Indigeste", "amin_nna@gmail.com", "2@gmail.com","03/11/2022","oui");
-       // Plainte plainte2 = new Plainte(Id1,"Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
-       // FirebaseDatabase.getInstance().getReference("Plaintes").child(Id).setValue(plainte1);
-       // FirebaseDatabase.getInstance().getReference("Plaintes").child(Id1).setValue(plainte2);
 
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_page);
+        /*
+        Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
+        Plainte plainte2 = new Plainte("Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
+        Plainte plainte3 = new Plainte("Brulé", "ydjido@gmail.com", "aguigma@gmail.com","03/11/2022","Je suis très déçu: un énorme goût de brulé . Je n’ai pas fini mon plat qui a fini à la poubelle. En espérant que ce soit juste une erreur qui sera vite réparée.");
+        Plainte plainte4 = new Plainte("Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
+        Plainte plainte5 = new Plainte("Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
+        plainte1.addPlainteDatabase();
+        plainte2.addPlainteDatabase();
+        plainte3.addPlainteDatabase();
+        plainte4.addPlainteDatabase();
+        plainte5.addPlainteDatabase();
+         */
 
         plaintsListView = (ListView) findViewById(R.id.listViewPlaints) ;
         plaintsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -71,10 +76,10 @@ public class admin_page_activity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Plainte actualPlainte = (Plainte) plaintsListView.getItemAtPosition(i);
                 plainte=actualPlainte;
-                plainteId=actualPlainte.getId().trim();
+                plainteId=actualPlainte.getidPlainte().trim();
                 Log.i("admin_page_activity","CLE "+plainteId);
                 Log.i("admin_page_activity","la cle de plainte est "+plainte.tString());
-                showRejectSuspendDialog(actualPlainte.getId(),actualPlainte);
+                showRejectSuspendDialog(actualPlainte.getidPlainte(),actualPlainte);
                 return true;
             }
         });

@@ -111,7 +111,8 @@
                         android:layout_margin="10dp"
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardCornerRadius="30dp">
+                        app:cardCornerRadius="30dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
 
                         <LinearLayout
                             android:id="@+id/ajouterUnRepas"

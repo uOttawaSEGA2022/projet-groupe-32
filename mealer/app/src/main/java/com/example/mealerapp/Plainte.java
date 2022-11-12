@@ -28,12 +28,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class Plainte {
-    String Id;
-    private int noPlaint =0;
-    private int plaintID ;
+    private String idPlainte ;
     private String titrePlainte;
     private String idClient;
     private String idCuisinier;
@@ -43,48 +42,30 @@ public class Plainte {
 
     public Plainte(){
     }
-    public Plainte(String Id,String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
+    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
         //On appelle le constructeur de la classe parent User;
-        this.Id=Id;
-        this.plaintID=noPlaint+1 ;
-        noPlaint++;
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
         this.idCuisinier = id_Cuisinier;
         this.datePlainte = date_Plainte;//Touver comment stocker une date
         this.descriptionPlainte = description_Plainte;
-//        this.Id=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//        String Id1=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//        String Id2=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//        String Id3=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//        String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//        Plainte plainte1 = new Plainte(Id,"Indigeste", "amin_nna@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
-//        Plainte plainte2 = new Plainte(Id1,"Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
-//        Plainte plainte3 = new Plainte(Id2,"Brulé", "ydjido@gmail.com", "aguigma@gmail.com","03/11/2022","Je suis très déçu: un énorme goût de brulé . Je n’ai pas fini mon plat qui a fini à la poubelle. En espérant que ce soit juste une erreur qui sera vite réparée.");
-//        Plainte plainte4 = new Plainte(Id3,"Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
-//        Plainte plainte5 = new Plainte(Id4,"Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
-//        //Plainte depose = plainte1;
-//        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id).setValue(plainte1);
-//        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id1).setValue(plainte2);
-//        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id2).setValue(plainte3);
-//            FirebaseDatabase.getInstance().getReference("Plaintes").child(Id3).setValue(plainte4);
-//        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id4).setValue(plainte5);
-//        FirebaseDatabase.getInstance().getReference("Plaintes").child(FirebaseAuth.getInstance().getCurrentUser().getEmail()).setValue(plainte5);
-
-}
-
-    public String getDescriptionPlainte() { return  descriptionPlainte ;}
-
-    public String getTitrePlainte() { return  titrePlainte ;}
-
+        this.idPlainte= UUID.randomUUID().toString();
+    }
+    public void setPlainteTraitee(){ plainteTraitee = true; }
     public boolean getPlainteTraitee(){
         return plainteTraitee;
     }
+    public String getDescriptionPlainte() { return  descriptionPlainte ;}
+    public String getTitrePlainte() { return  titrePlainte ;}
 
 
-    public void setPlainteTraitee(){ plainteTraitee = true; }
 
-    public int getID() { return this.plaintID ; }
+    public void addPlainteDatabase(){
+        FirebaseDatabase.getInstance().getReference("Plaintes").child(this.idPlainte).setValue(this);
+    }
+
+
+    public String getidPlainte() { return this.idPlainte; }
 
     public String getIdClient() { return idClient ; }
 
@@ -93,22 +74,17 @@ public class Plainte {
     public String getDatePlainte () { return datePlainte ; }
 
     public String toString () {
-        return "Titre:" + titrePlainte + "/n" + "Description: " + descriptionPlainte + "/n"; }
+        return "Titre:" + titrePlainte + "\n" + "Client: " + getIdClient() + "\n"+ "Cuisinier: " + getIdCuisinier() + "n"; }
 
-    public String getIdCuisinier() {
-        return idCuisinier;
-    }
 
-    public String getId() {
-        return Id;
-    }
-    /*
-    public static void writeNewPlainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte) {
-        Plainte plainte = new Plainte(titre_Plainte, id_Client, id_Cuisinier,date_Plainte,description_Plainte);
-        FirebaseDatabase.getInstance().getReference().child("Plaintes").setValue(plainte);
-    }
-     */
     public String tString(){
-        return "cle "+this.getId()+" "+this.getIdCuisinier()+" "+this.getTitrePlainte();
+        return "cle "+this.idPlainte+" "+this.getIdCuisinier()+" "+this.getTitrePlainte();
     }
 }
+
+//        Plainte plainte1 = new Plainte(Id,"Indigeste", "amin_nna@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
+//        Plainte plainte2 = new Plainte(Id1,"Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
+//        Plainte plainte3 = new Plainte(Id2,"Brulé", "ydjido@gmail.com", "aguigma@gmail.com","03/11/2022","Je suis très déçu: un énorme goût de brulé . Je n’ai pas fini mon plat qui a fini à la poubelle. En espérant que ce soit juste une erreur qui sera vite réparée.");
+//        Plainte plainte4 = new Plainte(Id3,"Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
+//        Plainte plainte5 = new Plainte(Id4,"Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
+//        /

@@ -23,6 +23,7 @@ public class Demande {
     public void addDemandeDatabase(){
         FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).setValue(this);
     }
+
     public boolean demandeTraitee(){return demandeTraitee;};
     public void traiterDemande(){
         if ( !this.demandeTraitee){
