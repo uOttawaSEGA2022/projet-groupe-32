@@ -42,14 +42,15 @@ public class Plainte {
 
     public Plainte(){
     }
-    public Plainte(String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
+    public Plainte(String idPlainte,String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
         //On appelle le constructeur de la classe parent User;
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
         this.idCuisinier = id_Cuisinier;
         this.datePlainte = date_Plainte;//Touver comment stocker une date
         this.descriptionPlainte = description_Plainte;
-        this.idPlainte= UUID.randomUUID().toString();
+        this.idPlainte= idPlainte;
+    //UUID.randomUUID().toString();
     }
     public void setPlainteTraitee(){ plainteTraitee = true; }
     public boolean getPlainteTraitee(){
@@ -66,6 +67,10 @@ public class Plainte {
 
 
     public String getidPlainte() { return this.idPlainte; }
+
+    public void setIdPlainte(String idPlainte) {
+        this.idPlainte = idPlainte;
+    }
 
     public String getIdClient() { return idClient ; }
 

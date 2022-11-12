@@ -30,6 +30,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String uid;
 
     protected void onCreate(Bundle savedInstanceState){
+
+//        String Id="ZDCRr9A2xqSEuV9jBKJ82wVdmrn2";
+//        String Id1="9ji8VUyh0VNmDYW7CgYRaLU06lE2";
+//        String Id2="LPjxf4C8b9TDO8Vy4iNFPtfJU742";
+//        String Id3="bDeWI33UPrYCm5RjWaZxqsu56gu1";
+//        User user=new User("Admin","Admin","administrator23@gmail.com","Administrator23","Administrator","12 street");
+//        Cooker cook1= new Cooker("ht","dhg","wwe@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
+//        Cooker cook2= new Cooker("qqww","lhsgchgjh","aguigma@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
+//        Cooker cook3= new Cooker("hserfrdsgfg","yhjtfjh","aguig@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
+//        FirebaseDatabase.getInstance().getReference("Users").child(Id).setValue(user);
+//        FirebaseDatabase.getInstance().getReference("Users").child(Id1).setValue(cook1);
+//        FirebaseDatabase.getInstance().getReference("Users").child(Id2).setValue(cook2);
+//        FirebaseDatabase.getInstance().getReference("Users").child(Id3).setValue(cook3);
+//
+//
+//
+//
+//        String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
+//        String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
+//        Plainte plainte1 = new Plainte(Id4,"Indigeste", "amin_nna@gmail.com", "wwe@gmail.com","03/11/2022","oui oui");
+//        Plainte plainte2 = new Plainte(Id14,"Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
+//        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id4).setValue(plainte1);
+//        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id14).setValue(plainte2);
+//
+
+
+
+
+
+
+
+
+
+
         super.onCreate(savedInstanceState);//C'est quoi saved instances ?
         setContentView(R.layout.main_page);
 

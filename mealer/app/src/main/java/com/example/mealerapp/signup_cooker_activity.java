@@ -24,7 +24,6 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
     private Button SignUp;
     public EditText editTextPrenom, editTextNom, editTextAdresseCourriel, editTextMotDePasse, editTextAdresse, editTextConfirm;
     private FirebaseAuth mAuth;
-String description;
     //@SuppressLint("MissingInflatedId")
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,22 +113,27 @@ String description;
 
         //On créé notre objet avec ses attributs prioritaires
          List<Plainte> list = null; //liste associer a chaque cook
-        Cooker cooker = new Cooker(Prenom1,Nom1,
-                adressecourriel1,MotDePasse1,"Cooker",
-                Adresse1,"je suis un cook",
+       Cooker cooker = new Cooker(Prenom1,Nom1,
+               adressecourriel1,MotDePasse1,"Cooker",
+               Adresse1,"je suis un cook",
                 "non", "non",list);
 
 
-        //User user=new Administrator(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");
-        mAuth.createUserWithEmailAndPassword(cooker.getCourriel() , cooker.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        User user=new User(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");
+        mAuth.createUserWithEmailAndPassword(user.getCourriel() , user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        //mAuth.createUserWithEmailAndPassword(cooker.getCourriel() , cooker.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Cooker Itulisateur =cooker; //On lui affecte l'objet plus haut
+                    user.setUserType("Administrator");
+                    //cooker.setUserType("Cooker");
+                    //Cooker Itulisateur =cooker; //On lui affecte l'objet plus haut
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            //.setValue(cooker).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+
                                     if(task.isSuccessful()){
                                         Toast.makeText(signup_cooker_activity.this,"user registered success",Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(signup_cooker_activity.this, cooker_page_activity.class));
