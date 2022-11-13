@@ -63,7 +63,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         /*
-        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"amin_nna@gmail.com");
         Demande demande = new Demande("amin_nna@gmail.com", repas);
         demande.addDemandeDatabase();
          */

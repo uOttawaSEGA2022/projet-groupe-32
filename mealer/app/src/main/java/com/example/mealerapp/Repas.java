@@ -10,6 +10,7 @@ public class Repas {
     private String cuisineType;
     private String repasType;
     private int price;
+    Boolean repasRetirer=false;
 
         public Repas(){}
 
@@ -31,4 +32,13 @@ public class Repas {
     public String getRepasType() {return repasType;}
     public String getId(){return idRepas;}
     public int getPrice() {return price;}
+
+    public boolean repasRetirer(){return repasRetirer;};
+    public void traiterRepas(){
+        if ( !this.repasRetirer){
+            this.repasRetirer=true;
+            return;
+        }
+        this.repasRetirer=false;
+    };
 }
