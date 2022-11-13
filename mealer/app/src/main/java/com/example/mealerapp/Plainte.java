@@ -1,4 +1,5 @@
 package com.example.mealerapp;
+
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -32,59 +33,74 @@ import java.util.UUID;
 
 
 public class Plainte {
-    private String idPlainte ;
+    private String idPlainte;
     private String titrePlainte;
     private String idClient;
     private String idCuisinier;
     private String datePlainte;
     private String descriptionPlainte;
-    boolean plainteTraitee=false;//Par défaut toutes les plaintes sont non résolues
+    boolean plainteTraitee = false;//Par défaut toutes les plaintes sont non résolues
 
-    public Plainte(){
+    public Plainte() {
     }
-    public Plainte(String idPlainte,String titre_Plainte, String id_Client, String id_Cuisinier,String date_Plainte,String description_Plainte){
+
+    public Plainte(String idPlainte, String titre_Plainte, String id_Client, String id_Cuisinier, String date_Plainte, String description_Plainte) {
         //On appelle le constructeur de la classe parent User;
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
         this.idCuisinier = id_Cuisinier;
         this.datePlainte = date_Plainte;//Touver comment stocker une date
         this.descriptionPlainte = description_Plainte;
-        this.idPlainte= idPlainte;
-    //UUID.randomUUID().toString();
+        this.idPlainte = idPlainte;
+        //UUID.randomUUID().toString();
     }
-    public void setPlainteTraitee(){ plainteTraitee = true; }
-    public boolean getPlainteTraitee(){
+
+    public void setPlainteTraitee() {
+        plainteTraitee = true;
+    }
+
+    public boolean getPlainteTraitee() {
         return plainteTraitee;
     }
-    public String getDescriptionPlainte() { return  descriptionPlainte ;}
-    public String getTitrePlainte() { return  titrePlainte ;}
+
+    public String getDescriptionPlainte() {
+        return descriptionPlainte;
+    }
+
+    public String getTitrePlainte() {
+        return titrePlainte;
+    }
 
 
-
-    public void addPlainteDatabase(){
+    public void addPlainteDatabase() {
         FirebaseDatabase.getInstance().getReference("Plaintes").child(this.idPlainte).setValue(this);
     }
 
 
-    public String getidPlainte() { return this.idPlainte; }
+    public String getidPlainte() {
+        return this.idPlainte;
+    }
 
     public void setIdPlainte(String idPlainte) {
         this.idPlainte = idPlainte;
     }
 
-    public String getIdClient() { return idClient ; }
-
-    public String getIdCuisinier () { return idCuisinier ; }
-
-    public String getDatePlainte () { return datePlainte ; }
-
-    public String toString () {
-        return "Titre:" + titrePlainte + "\n" + "Client: " + getIdClient() + "\n"+ "Cuisinier: " + getIdCuisinier() + "n"; }
-
-
-    public String tString(){
-        return "cle "+this.idPlainte+" "+this.getIdCuisinier()+" "+this.getTitrePlainte();
+    public String getIdClient() {
+        return idClient;
     }
+
+    public String getIdCuisinier() {
+        return idCuisinier;
+    }
+
+    public String getDatePlainte() {
+        return datePlainte;
+    }
+
+    public String toString() {
+        return "Titre:" + titrePlainte + "\n" + "description : " + getDescriptionPlainte() + "\n";
+    }
+
 }
 
 //        Plainte plainte1 = new Plainte(Id,"Indigeste", "amin_nna@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");

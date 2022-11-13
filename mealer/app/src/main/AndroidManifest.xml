@@ -41,6 +41,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Cook_Indefinitly_suspension"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AcceptationplainteActivity"
             android:exported="false">
             <meta-data
@@ -98,6 +105,13 @@
         </activity>
         <activity
             android:name=".cooker_page_activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Cook_Temporary_suspension"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

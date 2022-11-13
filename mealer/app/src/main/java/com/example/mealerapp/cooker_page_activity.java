@@ -12,14 +12,15 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class cooker_page_activity extends AppCompatActivity implements OnClickListener{
     private TextView logOut;
-
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooker_page);
+        mAuth=FirebaseAuth.getInstance();
     }
     public void onClick(View view){
-        if(view.getId()==R.id.logout_Button){
+        if(view.getId()==R.id.logout_ButtonAdmin){
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
@@ -40,6 +41,10 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
 
         if(view.getId()==R.id.traiterDemandes){
             startActivity(new Intent(cooker_page_activity.this, traiter_demande_achat_activity.class));
+        }
+        if(view.getId()==R.id.logout_ButtonAdmin){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
     }
 

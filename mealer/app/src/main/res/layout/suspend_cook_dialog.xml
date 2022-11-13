@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/titrePlainte"
-                android:layout_width="339dp"
+                android:layout_width="334dp"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -43,13 +43,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Client:"
+                android:text="Client : "
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/idClient"
-                android:layout_width="336dp"
+                android:layout_width="321dp"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cuisinier"
+                android:text="Cuisinier : "
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -92,14 +92,14 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description:"
+                android:text="Description :"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/descriptionPlainte"
                 android:layout_width="match_parent"
-                android:layout_height="396dp"
+                android:layout_height="501dp"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 

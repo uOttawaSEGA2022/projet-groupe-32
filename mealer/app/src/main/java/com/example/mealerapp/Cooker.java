@@ -16,11 +16,14 @@ public class Cooker extends User{
         this.listePlaintes=listePlaintes;
         this.suspension="non";
         this.suspensionEndTime="";
-        this.UserType="";
+        this.UserType="Cooker";
     }
+    public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse){
+        super(prenom, nom, courriel, motDePasse, UserType, adresse);
+    };
     public Cooker(){
 
-    };
+    }
     public List <Plainte> getList(){
         return listePlaintes;
     }
