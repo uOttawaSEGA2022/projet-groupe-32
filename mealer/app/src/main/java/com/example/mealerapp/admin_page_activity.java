@@ -191,6 +191,11 @@ public class admin_page_activity extends AppCompatActivity {
         });
     }
 
+        /*
+        Cette page va afficher la iste des plaintes
+        De cette page en cliquant sur une plainte, on voit item_activity
+        Sur item activity
+         */
 
     private void showRejectSuspendDialog(String id, Plainte plainte) {
 

@@ -7,6 +7,10 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
+    int nombreRepasVendus = 0;
+    String moyenne;
+    List<Integer> notesRecues = new ArrayList();
+
     //Constructeur
     //On a en paramettre les paramètres nécessaires à la création de l'objet
     public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
@@ -49,4 +53,30 @@ public class Cooker extends User{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getMoyenne(){
+        if (!notesRecues.isEmpty()){
+            return "Pas de notes";
+        }
+       else {
+           int moy=0;
+            for (int i : notesRecues) {
+                moy += i;
+            }
+            moy /= notesRecues.size();
+            return moy +"";
+        }
+    }
+
+    public void setNote(int note){
+        notesRecues.add(note);
+    }
+
+    public String getnombreRepasVendus(){
+        return nombreRepasVendus+"";
+    }
+
+
+
+
 }

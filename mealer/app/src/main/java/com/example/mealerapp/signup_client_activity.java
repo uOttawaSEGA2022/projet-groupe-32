@@ -149,7 +149,7 @@ public class signup_client_activity extends AppCompatActivity implements View.On
                         }
                     });
                     }else{
-                        Toast.makeText(signup_client_activity.this, "Faileddd", Toast.LENGTH_LONG).show();
+                        Toast.makeText(signup_client_activity.this, "Failed", Toast.LENGTH_LONG).show();
                     }
                 }
 

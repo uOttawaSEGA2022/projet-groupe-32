@@ -21,6 +21,9 @@ private TextView textView;
         logOut = (Button) findViewById(R.id.logoutButton);
         String suspensionEndTime=getIntent().getStringExtra("SuspensionEndTime");
         textView.setText(suspensionEndTime);
+
+        //Dans cette classe, on va lancer un dialogue showAccepterRejeter(demande);
+
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,5 +31,7 @@ private TextView textView;
                 startActivity(new Intent(Cook_Temporary_suspension.this, MainActivity.class));
             }
         });
+
+
     }
 }
