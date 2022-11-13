@@ -1,14 +1,7 @@
 package com.example.mealerapp;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -27,11 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,51 +36,33 @@ public class admin_page_activity extends AppCompatActivity {
     ArrayList<Plainte> plaintsArrayList ;
     DatabaseReference myRef ;
     private Activity context ;
-    String suspensionEndTime;
     Plainte plainte;
     String plainteId;
+    String idCuisinierEnCause;
+    String suspensionEndTime;
+    TextView editTextTitre,editTextDescription,editTextClient,editTextCuisinier;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_page);
-        /*
-        Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
-        Plainte plainte2 = new Plainte("Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
-        Plainte plainte3 = new Plainte("Brulé", "ydjido@gmail.com", "aguigma@gmail.com","03/11/2022","Je suis très déçu: un énorme goût de brulé . Je n’ai pas fini mon plat qui a fini à la poubelle. En espérant que ce soit juste une erreur qui sera vite réparée.");
-        Plainte plainte4 = new Plainte("Intoxiqué", "imaneL@gmail.com", "aguigma@gmail.com","03/11/2022","Plus jamais je ne recommanderais chez ce cuisnier! J'ai passé une semaine à l'hopital pour intoxiquation alimentaire!");
-        Plainte plainte5 = new Plainte("Inmangeable", "bertrand@gmail.com", "aguigma@gmail.com","03/11/2022","Le souci a été le tajine au veau et au miel avec abricots et pruneaux. La viande trop séche hélas et le tout trop sucré beaucoup trop. J ai donné ce que j ai pu à mon mari et laissé le reste. Puis j ai commandé une assiette de 3 fromages hélas non savoyards les 3. Et nous sommes en Savoie pays du fromage. Enfin mon mari a mangé mon dessert au marron et le sien hélas trop écoeurants surtout cette tarte à la praline.");
-        plainte1.addPlainteDatabase();
-        plainte2.addPlainteDatabase();
-        plainte3.addPlainteDatabase();
-        plainte4.addPlainteDatabase();
-        plainte5.addPlainteDatabase();
-         */
+        plaintsListView = (ListView) findViewById(R.id.listViewPlaints);
 
-        plaintsListView = (ListView) findViewById(R.id.listViewPlaints) ;
+        ///initialiser les textView findViewById()
+        myRef = FirebaseDatabase.getInstance().getReference("Plaintes");
+        plaintsArrayList = new ArrayList<>() ;
         plaintsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Plainte actualPlainte = (Plainte) plaintsListView.getItemAtPosition(i);
                 plainte=actualPlainte;
-                plainteId=actualPlainte.getidPlainte().trim();
-                Log.i("admin_page_activity","CLE "+plainteId);
-                Log.i("admin_page_activity","la cle de plainte est "+plainte.tString());
-                showRejectSuspendDialog(actualPlainte.getidPlainte(),actualPlainte);
+                plainteId=actualPlainte.getidPlainte();
+               // Log.i("admin_page_activity","CLE "+plainteId);
+                idCuisinierEnCause=plainte.getIdCuisinier();
+                //Log.i("admin_page_activity","la cle de plainte est "+plainte.tString());
+                showRejectSuspendDialog(plainteId,actualPlainte);
                 return true;
             }
         });
-//        plaintsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                startActivity(new Intent(context, item_activity.class));
-//            }
-//        });
-
-        myRef = FirebaseDatabase.getInstance().getReference("Plaintes") ;
-        plaintsArrayList = new ArrayList<>() ;
     }
 
     @Override
@@ -102,12 +73,12 @@ public class admin_page_activity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                plaintsArrayList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
-
                     Plainte plainte = data.getValue(Plainte.class) ;
+                    plainte.setIdPlainte(data.getKey());
+                   // Log.i("admin_page_activity","la cle de plainte est "+plainte.tString());
                     plaintsArrayList.add(plainte) ; }
-
                 ArrayAdapter<Plainte> plaintsAdapter = new ArrayAdapter<Plainte>(admin_page_activity.this, android.R.layout.simple_list_item_1, plaintsArrayList) ;
                 plaintsListView.setAdapter(plaintsAdapter) ;
             }
@@ -118,32 +89,33 @@ public class admin_page_activity extends AppCompatActivity {
         });
     }
     private void suspendre_Cook(String id,String SuspensionType) {
+        Log.i("admin_page_activity","la date est "+suspensionEndTime);
+        Log.i("admin_page_activity","le type est"+SuspensionType);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Plaintes").child(plainteId);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String cook_email = plainte.getIdCuisinier();
+                //String cook_email = String.valueOf(databaseReference.child("idCuisinier").getKey());
+                String cook_email=idCuisinierEnCause;
+               // Log.i("admin_page_activity","Ca prend comme email $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+cook_email);
                 DatabaseReference data = FirebaseDatabase.getInstance().getReference("Users");
                 data.addListenerForSingleValueEvent(new ValueEventListener() {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                             //going through the database of users to find the right cooker by comparing their email adress
                             if (postSnapshot != null) {
-                                //Cooker cook = postSnapshot.getValue(Cooker.class);
-                                if (postSnapshot.getValue(Cooker.class).getCourriel().equals(cook_email)) {
-                                    Cooker new_Cook_Status;
-                                    new_Cook_Status = new Cooker(
-                                            postSnapshot.getValue(Cooker.class).getPrenom(),
-                                            postSnapshot.getValue(Cooker.class).getNom(),
-                                            postSnapshot.getValue(Cooker.class).getCourriel(),
-                                            postSnapshot.getValue(Cooker.class).getMotDePasse(),
-                                            "Cooker",
-                                            postSnapshot.getValue(Cooker.class).getAdresse(),
-                                            postSnapshot.getValue(Cooker.class).getDescription(),
-                                            showCalendarDialog()[0],
-                                            suspensionEndTime,
-                                            postSnapshot.getValue(Cooker.class).getList());
-                                    data.setValue(new_Cook_Status); // replace the cook with his suspended status
+                                String chemin =postSnapshot.getKey();
+                               // Log.i("admin_page_activity","le chemin est"+chemin);
+                                Cooker cook = postSnapshot.getValue(Cooker.class);
+                               //Log.i("admin_page_activity","Ca aurait pu prendre comme email *****************************"+cook.getCourriel());
+                                String ckk="Cooker";
+                                if (cook.getCourriel().equals(cook_email)) {
+                                        data.child(chemin).child("suspension").setValue(SuspensionType);
+                                        data.child(chemin).child("suspensionEndTime").setValue(suspensionEndTime);
+
+                                   // data.child(chemin).setValue(new_Cook_Status); // replace the cook with his suspended status
+                                    deletePlainte(id);//remove plainte from databade
+                                    break;
                                 }
                             }
                         }
@@ -154,16 +126,11 @@ public class admin_page_activity extends AppCompatActivity {
 
                     }
                 });
-
-                databaseReference.removeValue();//remove plainte from databade
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error){
 
             }
-
         });
     }
 
@@ -179,6 +146,7 @@ public class admin_page_activity extends AppCompatActivity {
         buttonIndefiniment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 suspendre_Cook(id,"oui Indefinement");
                 b.dismiss();
             }
@@ -186,33 +154,32 @@ public class admin_page_activity extends AppCompatActivity {
         buttonTemporaire.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String suspens_Date[]=showCalendarDialog();
-                suspensionEndTime=suspens_Date[0];
-                suspendre_Cook(id,"oui Temporairement");
+                showCalendarDialog(id);
                 b.dismiss();
             }
         });
     }
 
-    private String[] showCalendarDialog(){
+    private void showCalendarDialog(String id){
+
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.calendar_to_get_suspension_period, null);
         dialogBuilder.setView(dialogView);
         final CalendarView calendarView = dialogView.findViewById(R.id.calendarView);
-        final EditText editTextDate = dialogView.findViewById(R.id.editTextDate);
         final AlertDialog b = dialogBuilder.create();
-        final String[] date = {" "};
+        final String[] date = new String[1];
         b.show();
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                date[0] = (month+1)+"/"+month+"/"+day;
-                editTextDate.setText(date[0]);
+                date[0] = year+"/"+month+"/"+day;
+                suspensionEndTime= date[0];
+                suspendre_Cook(id,"oui Temporairement");
+                Log.i("admin_page_activity","le dadddddddddddddddddddd est"+ date[0]);
                 b.dismiss();
             }
         });
-        return date;
     }
 
 
@@ -224,9 +191,11 @@ public class admin_page_activity extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.suspend_cook_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final Button buttonReject = (Button) dialogView.findViewById(R.id.buttonRejectPlaite);
-        final Button buttonSuspend = (Button) dialogView.findViewById(R.id.buttonSuspendCook);
+        final Button buttonReject = (Button) dialogView.findViewById(R.id.rejeterPlainteButton);
+        final Button buttonSuspend = (Button) dialogView.findViewById(R.id.accepterPlainteButton);
 
+        /////////////////////////////////////////////////////////////////////detail de la plaite a afficher
+        editTextTitre.setText(plainte.getTitrePlainte());
         final AlertDialog b = dialogBuilder.create();
         b.show();
         buttonSuspend.setOnClickListener(new View.OnClickListener() {
@@ -235,7 +204,6 @@ public class admin_page_activity extends AppCompatActivity {
             public void onClick(View view) {
                 b.dismiss();
                 showSuspensionTypeDialog(id);
-
             }
         });
         buttonReject.setOnClickListener(new View.OnClickListener() {
@@ -255,6 +223,7 @@ public class admin_page_activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 database.removeValue();
+                //onStart();
                 Toast.makeText(getApplicationContext(),"Plainte supprime de la base de donnee", Toast.LENGTH_LONG).show();
             }
             @Override
