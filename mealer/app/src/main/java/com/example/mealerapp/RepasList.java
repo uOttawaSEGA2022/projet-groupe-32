@@ -33,7 +33,4 @@ public class RepasList extends ArrayAdapter<Repas> {
         return listViewItem;
     }
 
-
-
-
 }

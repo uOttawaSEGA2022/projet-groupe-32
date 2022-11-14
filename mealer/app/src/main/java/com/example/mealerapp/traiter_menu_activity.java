@@ -35,6 +35,10 @@ public class traiter_menu_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_menu);
 
+
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
+        repas.addRepasDatabase();
+
         listViewRepas = (ListView) findViewById(R.id.listViewRepas);
         databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
         repasArrayList = new ArrayList<>();
@@ -53,6 +57,9 @@ public class traiter_menu_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+
+
 
         databaseRepas.addValueEventListener(new ValueEventListener() {
             @Override
@@ -118,13 +125,23 @@ public class traiter_menu_activity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Repas offert", Toast.LENGTH_LONG).show();
     }
 
-    private void retirerRepas(Repas repas) {
+    public void retirerRepas(Repas repas) {
+        /*
+         * supprimer un repas de la base des données
+         * */
 
-        repas.traiterRepas();
-        Toast.makeText(getApplicationContext(), "Repas retiré", Toast.LENGTH_LONG).show();
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId());
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                database.removeValue();
+                Toast.makeText(getApplicationContext(), "Repas retiré de la base de donnée", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
     }
-
-
-
-
 }

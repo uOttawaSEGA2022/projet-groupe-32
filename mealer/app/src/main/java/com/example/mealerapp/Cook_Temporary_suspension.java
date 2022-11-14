@@ -18,7 +18,7 @@ private TextView textView;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook_temporary_suspension);
         textView=findViewById(R.id.textViewDate);
-        logOut = (Button) findViewById(R.id.logoutButton);
+        logOut = (Button) findViewById(R.id.logout_Button);
         String suspensionEndTime=getIntent().getStringExtra("SuspensionEndTime");
         textView.setText(suspensionEndTime);
 

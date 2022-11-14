@@ -1,5 +1,7 @@
 package com.example.mealerapp;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.UUID;
 
 public class Repas {
@@ -10,7 +12,7 @@ public class Repas {
     private String cuisineType;
     private String repasType;
     private int price;
-    Boolean repasRetirer=false;
+    Boolean repasStatus=false;
 
         public Repas(){}
 
@@ -24,6 +26,9 @@ public class Repas {
         this.price = price;
 
     }
+    public void addRepasDatabase(){
+        FirebaseDatabase.getInstance().getReference("Repas").child(this.idRepas).setValue(this);
+    }
 
     public String getRepasName() {return repasName;}
     public String getRepasIngredients() {return repasIngredients;}
@@ -33,12 +38,12 @@ public class Repas {
     public String getId(){return idRepas;}
     public int getPrice() {return price;}
 
-    public boolean repasRetirer(){return repasRetirer;};
+    public boolean repasRetirer(){return repasStatus;};
     public void traiterRepas(){
-        if ( !this.repasRetirer){
-            this.repasRetirer=true;
+        if ( !this.repasStatus){
+            this.repasStatus=true;
             return;
         }
-        this.repasRetirer=false;
+        this.repasStatus=false;
     };
 }

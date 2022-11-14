@@ -17,7 +17,7 @@ public class client_page_activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_page);
-        logOut = (Button) findViewById(R.id.logoutButton);
+        logOut = (Button) findViewById(R.id.logout_Button);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
