@@ -31,7 +31,7 @@ public class Repas {
 
     }
     public void addRepasDatabase(){
-        FirebaseDatabase.getInstance().getReference("Repas").child(this.idRepas).setValue(this);
+        FirebaseDatabase.getInstance().getReference("Repas").child(idRepas).setValue(this);
     }
 
     public String getRepasName() {return repasName;}
