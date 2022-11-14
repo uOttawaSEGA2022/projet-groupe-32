@@ -39,6 +39,33 @@ public class traiter_menu_activity extends AppCompatActivity {
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
         repas.addRepasDatabase();
 
+        Repas repas2 = new Repas("Tajine au poulet","citron,coriandre,cumin,gingembre frais,oignon,navet,carottes,huile d'olive, poulet avec os,safran,eau bouillante","Ce plat typique du maroc fait un excellent repas à manger en famille ou avec des invités.","Marocaine",100);
+        repas2.addRepasDatabase();
+
+        Repas repas3 = new Repas("Tajine au boeuf ","citron,coriandre,cumin,gingembre frais,oignon,navet,carottes,huile d'olive, viande de boeuf avec os,safran,eau bouillante","Ce plat typique du maroc fait un excellent repas à manger en famille ou avec des invités.","Marocaine",100);
+        repas3.addRepasDatabase();
+
+        Repas repas4 = new Repas("Gyozas","Vinaigre de riz,Sauce soja,Porc,Huile de sésame,Sauce soja,Ail,Choux chinois,huile d'olive,Gingembre frais,Huile de tournesol,Ciboulette","Raviolis japonais.","Japonaise",50);
+        repas4.addRepasDatabase();
+
+        Repas repas5 = new Repas("Pizza Margherita","salt,passata,fresh basil,huile d'olive,flour,instant yeast,mozzarella,parmesan,cherry tomatoes,basil leaves,Ciboulette","Raviolis japonais.","Italienne",50);
+        repas5.addRepasDatabase();
+
+        Repas repas6 = new Repas("Kopto","feuilles de moringa,oignons,piment,tomates,pâte d’arachide","Sauce au feuilles de moringa et pate d’arachide.","Nigérienne",50);
+        repas6.addRepasDatabase();
+
+        Repas repas7 = new Repas("Awara","soybeans,water,salt,pepper,onions,vegetables,oil,lemon","Awara is a low-fat,high-protein soy food that is often offeredin blocks .","Nigérienne",55);
+        repas7.addRepasDatabase();
+
+        Repas repas8 = new Repas("Pastilla","poulet,oignons,huile d'olive,sel,poivre noivre,canelle moulue,safran,Gingembre moulu,Eau,Coriandre fraîche hachée,oeufs,sucre,amandes,Eau de fleur d'oranger","Recette Pastilla marocaine au poulet et amandes.","Marocaine",110);
+        repas8.addRepasDatabase();
+
+        Repas repas9 = new Repas("Bibimbap","vinaigre de riz,sucre,eau,carotte,sel,riz,viande de boeuf,sauce soya,sirop d’érable,huile de sésame,sauce sriracha,ail,poivre","bol coréen de riz,de légumes, d’oeuf et de boeuf.","Coréenne",70);
+        repas9.addRepasDatabase();
+
+        Repas repas10 = new Repas("Paella","Riz,Chorizo,Petits pois,Tomates,Cuisses de poulet,Poivrons rouge,Cubes de bouillon de volaille,Oignons,Ail,Huile d'olive,Persil,Sel,poivre","Paella au poulet et au chorizo.","Espagnole",40);
+        repas10.addRepasDatabase();
+
         listViewRepas = (ListView) findViewById(R.id.listViewRepas);
         databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
         repasArrayList = new ArrayList<>();
