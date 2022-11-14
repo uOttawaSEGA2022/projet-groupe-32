@@ -26,10 +26,18 @@ public class RepasList extends ArrayAdapter<Repas> {
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
         TextView textViewPrice = (TextView) listViewItem.findViewById(R.id.textViewPrice);
+        TextView textViewStatus = (TextView) listViewItem.findViewById(R.id.textViewStatus);
 
         Repas repa = repas.get(position);
         textViewName.setText(repa.getRepasName());
         textViewPrice.setText(String.valueOf(repa.getPrice()));
+        if ( repa.getStatus()){
+            textViewStatus.setText("Repas offert dans le menu");
+        }
+        else {
+            textViewStatus.setText("Repas non offert dans le menu");
+        }
+
         return listViewItem;
     }
 

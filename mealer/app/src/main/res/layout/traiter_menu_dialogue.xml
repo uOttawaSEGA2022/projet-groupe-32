@@ -27,11 +27,11 @@
                 app:rippleColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/buttonRetirerRepas"
+                android:id="@+id/buttonDesoffrirRepas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rejeter"
+                android:text="Désoffrir"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>

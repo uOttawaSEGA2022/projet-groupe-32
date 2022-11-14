@@ -46,4 +46,7 @@ public class Repas {
         }
         this.repasStatus=false;
     };
+    public Boolean getStatus(){
+        return repasStatus;
+    }
 }

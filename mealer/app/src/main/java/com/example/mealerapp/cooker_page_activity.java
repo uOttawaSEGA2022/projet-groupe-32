@@ -31,7 +31,7 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
         mAuth=FirebaseAuth.getInstance();
     }
     public void onClick(View view){
-        if(view.getId()==R.id.logout_ButtonAdmin){
+        if(view.getId()==R.id.logout_Button){
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
@@ -53,7 +53,7 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
         if(view.getId()==R.id.traiterDemandes){
             startActivity(new Intent(cooker_page_activity.this, traiter_demande_achat_activity.class));
         }
-        if(view.getId()==R.id.logout_ButtonAdmin){
+        if(view.getId()==R.id.logout_Button){
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
