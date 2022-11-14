@@ -16,7 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class cooker_page_activity extends AppCompatActivity implements OnClickListener{
+public class cooker_page_activity extends AppCompatActivity implements  View.OnClickListener {
     private TextView logOut;
     TextView viewRepasVendus, viewNote;
 
@@ -29,10 +29,12 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
         viewRepasVendus = (EditText) findViewById(R.id.viewNbRepasVendus);
         viewNote = (EditText) findViewById(R.id.viewNote);
         mAuth=FirebaseAuth.getInstance();
+
     }
+
     public void onClick(View view){
-        if(view.getId()==R.id.logout_Button){
-            FirebaseAuth.getInstance().signOut();
+        if(view.getId()==R.id.logout_Button_Dashboard){
+            mAuth.signOut();
             startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
 
