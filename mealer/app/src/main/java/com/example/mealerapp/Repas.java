@@ -44,16 +44,15 @@ public class Repas {
 
     public  void traiterRepas(){
         if ( this.repasStatus=="false"){
-            Log.i("Traiter une demande",  this.repasStatus);
+            Log.i("Traiter un repas",  this.repasStatus);
             this.repasStatus="true";
-            Log.i("Traiter une demande",  this.repasStatus);
-            //FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).child("demandeTraitee").setValue("true");
+            Log.i("Traiter un repas",  this.repasStatus);
             return;
         }
         else {
-            Log.i("Traiter une demande",  this.repasStatus + " id : " + this.idRepas);
+            Log.i("Traiter un repas",  this.repasStatus + " id : " + this.idRepas);
             this.repasStatus = "false";
-            Log.i("Traiter une demande",  this.repasStatus);
+            Log.i("Traiter un repas",  this.repasStatus);
 
         }
     };

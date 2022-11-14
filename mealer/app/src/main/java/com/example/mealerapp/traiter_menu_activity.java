@@ -102,7 +102,7 @@ public class traiter_menu_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class) ;
-                    Log.i("Demande parcourue ",  repas.getRepasStatus() + " id : " + repas.getId());
+                    Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getId());
                     if ( repas.getRepasStatus().equals("false")) {
                         repasArrayList.add(repas);
                     }

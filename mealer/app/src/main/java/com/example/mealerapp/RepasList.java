@@ -31,7 +31,7 @@ public class RepasList extends ArrayAdapter<Repas> {
         Repas repa = repas.get(position);
         textViewName.setText(repa.getRepasName());
         textViewPrice.setText(String.valueOf(repa.getPrice()));
-        if ( repa.getStatus()){
+        if ( repa.getRepasStatus()=="true"){
             textViewStatus.setText("Repas offert dans le menu");
         }
         else {
