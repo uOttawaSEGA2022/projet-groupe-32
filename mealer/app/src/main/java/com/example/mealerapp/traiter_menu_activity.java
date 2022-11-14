@@ -36,7 +36,7 @@ public class traiter_menu_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_menu);
 
-
+        /*
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
         repas.addRepasDatabase();
 
@@ -67,6 +67,10 @@ public class traiter_menu_activity extends AppCompatActivity {
         Repas repas10 = new Repas("Paella","Riz,Chorizo,Petits pois,Tomates,Cuisses de poulet,Poivrons rouge,Cubes de bouillon de volaille,Oignons,Ail,Huile d'olive,Persil,Sel,poivre","Paella au poulet et au chorizo.","Espagnole",40);
         repas10.addRepasDatabase();
 
+         */
+
+
+
 
 
 
@@ -80,7 +84,7 @@ public class traiter_menu_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Repas repas = repasArrayList.get(i);
-                Log.i("Repas cliqué",  repas.getRepasStatus() + " id : " + repas.getId());
+                Log.i("Repas cliqué",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
                 showOffrirRetirer(repas);
                 return true;
             }
@@ -103,10 +107,10 @@ public class traiter_menu_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class) ;
-                    Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getId());
-                    if ( repas.getRepasStatus().equals("false")) {
-                        repasArrayList.add(repas);
-                    }
+                    Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
+
+                    repasArrayList.add(repas);
+
                     //Si idCuisnier de repas == id du cuisinier connecte
                 }
 
@@ -158,8 +162,8 @@ public class traiter_menu_activity extends AppCompatActivity {
 
         //repas.traiterRepas();
 
-        Log.i("Repas offert",  repas.getRepasStatus() + " id : " + repas.getId());
-        FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).child("repasStatus").setValue("true");
+        Log.i("Repas offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
+        FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas()).child("repasStatus").setValue("true");
         Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
     }
 
@@ -168,7 +172,7 @@ public class traiter_menu_activity extends AppCompatActivity {
          * supprimer un repas de la base des données
          * */
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId());
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

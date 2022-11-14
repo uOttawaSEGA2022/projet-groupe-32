@@ -38,7 +38,7 @@ public class Repas {
     public String getRepasIngredients() {return repasIngredients;}
     public String getRepasDescription() {return descriptionRepas;}
     public String getCuisineType() {return cuisineType;}
-    public String getId(){return this.idRepas;}
+    public String getIdRepas(){return this.idRepas;}
     public int getPrice() {return price;}
 
 
