@@ -36,7 +36,7 @@ public class traiter_menu_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_menu);
 
-        /*
+
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
         repas.addRepasDatabase();
 
@@ -66,7 +66,7 @@ public class traiter_menu_activity extends AppCompatActivity {
 
         Repas repas10 = new Repas("Paella","Riz,Chorizo,Petits pois,Tomates,Cuisses de poulet,Poivrons rouge,Cubes de bouillon de volaille,Oignons,Ail,Huile d'olive,Persil,Sel,poivre","Paella au poulet et au chorizo.","Espagnole",40);
         repas10.addRepasDatabase();
-        */
+
 
 
 
@@ -156,7 +156,8 @@ public class traiter_menu_activity extends AppCompatActivity {
     private void offrirRepas(Repas repas) {
 
         //repas.traiterRepas();
-        //FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).setValue(repas);
+
+        Log.i("Repas offert",  repas.getRepasStatus() + " id : " + repas.getId());
         FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).child("repasStatus").setValue("true");
         Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
     }
