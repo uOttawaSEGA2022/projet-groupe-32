@@ -80,6 +80,7 @@ public class traiter_menu_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Repas repas = repasArrayList.get(i);
+                Log.i("Repas cliqué",  repas.getRepasStatus() + " id : " + repas.getId());
                 showOffrirRetirer(repas);
                 return true;
             }
