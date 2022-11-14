@@ -65,12 +65,15 @@ public class traiter_menu_activity extends AppCompatActivity {
 
         Repas repas10 = new Repas("Paella","Riz,Chorizo,Petits pois,Tomates,Cuisses de poulet,Poivrons rouge,Cubes de bouillon de volaille,Oignons,Ail,Huile d'olive,Persil,Sel,poivre","Paella au poulet et au chorizo.","Espagnole",40);
         repas10.addRepasDatabase();
+        */
 
-         */
+
+
+
 
         listViewRepas = (ListView) findViewById(R.id.listViewRepas);
         databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
-        repasArrayList = new ArrayList<>();
+        repasArrayList = new ArrayList<Repas>();
 
         listViewRepas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -99,9 +102,10 @@ public class traiter_menu_activity extends AppCompatActivity {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class) ;
                     assert repas != null;
-                    if ( !repas.repasRetirer()) {
-                        repasArrayList.add(repas);
-                    }
+                    //Si idCuisnier de repas == id du cuisinier connecte
+
+                    repasArrayList.add(repas);
+
                 }
 
                 ArrayAdapter<Repas> repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
@@ -124,7 +128,7 @@ public class traiter_menu_activity extends AppCompatActivity {
 
 
         final Button buttonOffrirRepas = (Button) dialogView.findViewById(R.id.buttonOffrirRepas);
-        final Button buttonRetirerRepas = (Button) dialogView.findViewById(R.id.buttonDesoffrirRepas);
+        final Button buttonDesoffirRepas = (Button) dialogView.findViewById(R.id.buttonDesoffrirRepas);
 
         dialogBuilder.setTitle("");
         final AlertDialog b = dialogBuilder.create();
@@ -138,10 +142,10 @@ public class traiter_menu_activity extends AppCompatActivity {
             }
         });
 
-        buttonRetirerRepas.setOnClickListener(new View.OnClickListener() {
+        buttonDesoffirRepas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                retirerRepas(repas);
+                offrirRepas(repas);
                 b.dismiss();
             }
         });
@@ -151,7 +155,9 @@ public class traiter_menu_activity extends AppCompatActivity {
     private void offrirRepas(Repas repas) {
 
         repas.traiterRepas();
-        Toast.makeText(getApplicationContext(), "Repas offert", Toast.LENGTH_LONG).show();
+        //FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).setValue(repas);
+        FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).setValue(repas);
+        Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
     }
 
     public void retirerRepas(Repas repas) {

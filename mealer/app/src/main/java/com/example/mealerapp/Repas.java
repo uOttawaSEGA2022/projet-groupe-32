@@ -10,20 +10,22 @@ public class Repas {
     private String repasIngredients;
     private String descriptionRepas;
     private String cuisineType;
-    private String repasType;
     private int price;
-    Boolean repasStatus=false;
+    boolean repasStatus;
 
-        public Repas(){}
+    public Repas(){
+        }
+
+
 
     public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, int price){
-        repasName = name;
+        this.repasName = name;
         this.repasIngredients = repasIngredients;
         this.descriptionRepas = descriptionRepas;
         this.cuisineType = cuisineType;
         this.idRepas = UUID.randomUUID().toString();
-        //this.repasType = repasType;
         this.price = price;
+        this.repasStatus= false;
 
     }
     public void addRepasDatabase(){
@@ -34,19 +36,24 @@ public class Repas {
     public String getRepasIngredients() {return repasIngredients;}
     public String getRepasDescription() {return descriptionRepas;}
     public String getCuisineType() {return cuisineType;}
-    public String getRepasType() {return repasType;}
-    public String getId(){return idRepas;}
+    public String getId(){return this.idRepas;}
     public int getPrice() {return price;}
 
-    public boolean repasRetirer(){return repasStatus;};
-    public void traiterRepas(){
+
+    public  void traiterRepas(){
         if ( !this.repasStatus){
             this.repasStatus=true;
-            return;
+            //FirebaseDatabase.getInstance().getReference("Repas").child(this.idRepas).child(repasName).setValue("Mdodifié");
+
         }
-        this.repasStatus=false;
+        else {
+            this.repasStatus = false;
+            //FirebaseDatabase.getInstance().getReference("Repas").child(this.idRepas).child("repasStatus").setValue(false);
+
+        }
     };
-    public Boolean getStatus(){
+
+    public boolean getStatus(){
         return repasStatus;
     }
 }
