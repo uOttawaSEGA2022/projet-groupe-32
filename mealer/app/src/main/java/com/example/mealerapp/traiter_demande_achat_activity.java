@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,6 +53,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Demande demande = demandesArrayList.get(i);
+                Log.i("Demande ajoutée",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
                 showAccepterRejeter(demande);
                 return true;
             }
@@ -62,11 +64,12 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        /*
-        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"amin_nna@gmail.com");
+
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
         Demande demande = new Demande("amin_nna@gmail.com", repas);
         demande.addDemandeDatabase();
-         */
+
+
 
         databaseDemandes.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,13 +79,13 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
-                    assert demande != null;
-                    if ( !demande.demandeTraitee()) {
+                    Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
+                    if ( demande.getDemandeTraitee().equals("false")) {
                         demandesArrayList.add(demande);
                     }
                 }
 
-                ArrayAdapter<Demande> demandesAdapter = new DemandeList(traiter_demande_achat_activity.this, demandesArrayList) ;
+                DemandeList demandesAdapter = new DemandeList(traiter_demande_achat_activity.this, demandesArrayList) ;
                 listViewDemandes.setAdapter(demandesAdapter) ;
             }
             @Override
@@ -127,7 +130,9 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
     private void accepterDemande(Demande demande) {
 
-        demande.traiterDemande();
+        //demande.traiterDemande();
+        Log.i("Traiter une demande",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
+        FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("demandeTraitee").setValue("true");
         Toast.makeText(getApplicationContext(), "Demande acceptée", Toast.LENGTH_LONG).show();
 
     }

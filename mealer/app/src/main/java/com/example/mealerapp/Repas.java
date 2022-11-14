@@ -11,7 +11,7 @@ public class Repas {
     private String descriptionRepas;
     private String cuisineType;
     private int price;
-    boolean repasStatus;
+    private boolean repasStatus;
 
     public Repas(){
         }
