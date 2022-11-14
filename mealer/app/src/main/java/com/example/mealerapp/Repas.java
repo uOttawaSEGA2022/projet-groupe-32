@@ -1,5 +1,7 @@
 package com.example.mealerapp;
 
+import android.util.Log;
+
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
@@ -11,7 +13,7 @@ public class Repas {
     private String descriptionRepas;
     private String cuisineType;
     private int price;
-    private boolean repasStatus;
+    private String repasStatus;
 
     public Repas(){
         }
@@ -25,7 +27,7 @@ public class Repas {
         this.cuisineType = cuisineType;
         this.idRepas = UUID.randomUUID().toString();
         this.price = price;
-        this.repasStatus= false;
+        this.repasStatus= "false";
 
     }
     public void addRepasDatabase(){
@@ -41,19 +43,22 @@ public class Repas {
 
 
     public  void traiterRepas(){
-        if ( !this.repasStatus){
-            this.repasStatus=true;
-            //FirebaseDatabase.getInstance().getReference("Repas").child(this.idRepas).child(repasName).setValue("Mdodifié");
-
+        if ( this.repasStatus=="false"){
+            Log.i("Traiter une demande",  this.repasStatus);
+            this.repasStatus="true";
+            Log.i("Traiter une demande",  this.repasStatus);
+            //FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).child("demandeTraitee").setValue("true");
+            return;
         }
         else {
-            this.repasStatus = false;
-            //FirebaseDatabase.getInstance().getReference("Repas").child(this.idRepas).child("repasStatus").setValue(false);
+            Log.i("Traiter une demande",  this.repasStatus + " id : " + this.idRepas);
+            this.repasStatus = "false";
+            Log.i("Traiter une demande",  this.repasStatus);
 
         }
     };
 
-    public boolean getStatus(){
-        return repasStatus;
+    public String getRepasStatus(){
+        return this.repasStatus;
     }
 }

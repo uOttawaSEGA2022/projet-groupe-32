@@ -1,6 +1,7 @@
 package com.example.mealerapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -101,14 +102,16 @@ public class traiter_menu_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class) ;
-                    assert repas != null;
+                    Log.i("Demande parcourue ",  repas.getRepasStatus() + " id : " + repas.getId());
+                    if ( repas.getRepasStatus().equals("false")) {
+                        repasArrayList.add(repas);
+                    }
                     //Si idCuisnier de repas == id du cuisinier connecte
 
-                    repasArrayList.add(repas);
 
                 }
 
-                ArrayAdapter<Repas> repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
+                RepasList repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
                 listViewRepas.setAdapter(repasAdapter) ;
             }
 
