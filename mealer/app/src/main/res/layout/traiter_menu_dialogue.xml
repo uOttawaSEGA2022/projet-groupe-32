@@ -17,22 +17,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonOffrirRepas"
+                android:id="@+id/buttonChangerStatusRepas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Offrir"
+                android:text="Changer status repas"
                 android:textColor="#FFFFFF"
                 app:iconTint="#F4F1F1"
                 app:rippleColor="#FFFFFF" />
-
-            <Button
-                android:id="@+id/buttonDesoffrirRepas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Désoffrir"
-                android:textColor="#FFFFFF" />
 
         </LinearLayout>
 

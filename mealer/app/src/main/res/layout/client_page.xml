@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/fonddecran2" />
 
     <Button
-        android:id="@+id/logout_Button"
+        android:id="@+id/logout_Button_traiter_demande"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_out"

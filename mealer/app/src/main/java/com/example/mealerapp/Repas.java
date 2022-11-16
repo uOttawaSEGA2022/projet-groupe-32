@@ -14,6 +14,7 @@ public class Repas {
     private String cuisineType;
     private int price;
     private String repasStatus;
+    private String idCuisinier;
 
     public Repas(){
         }
@@ -42,17 +43,15 @@ public class Repas {
     public int getPrice() {return price;}
 
 
-    public  void traiterRepas(){
+    public  void traiterRepas(Repas repas){
         if ( this.repasStatus=="false"){
-            Log.i("Traiter un repas",  this.repasStatus);
             this.repasStatus="true";
-            Log.i("Traiter un repas",  this.repasStatus);
+            FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas()).child("repasStatus").setValue("true");
             return;
         }
         else {
-            Log.i("Traiter un repas",  this.repasStatus + " id : " + this.idRepas);
             this.repasStatus = "false";
-            Log.i("Traiter un repas",  this.repasStatus);
+            FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas()).child("repasStatus").setValue("false");
 
         }
     };
