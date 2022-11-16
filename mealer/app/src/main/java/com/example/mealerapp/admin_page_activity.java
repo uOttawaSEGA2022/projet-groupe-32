@@ -46,7 +46,7 @@ public class admin_page_activity extends AppCompatActivity {
         setContentView(R.layout.admin_page);
         mAuth=FirebaseAuth.getInstance();
         plaintsListView = (ListView) findViewById(R.id.listViewPlaints);
-        logOut=findViewById(R.id.logout_Button);
+        logOut=findViewById(R.id.logout_Button_traiter_demande);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

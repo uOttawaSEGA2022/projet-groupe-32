@@ -15,7 +15,7 @@ private Button logOut;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cook_indefinitly_suspension);
-        logOut = (Button) findViewById(R.id.logout_Button);
+        logOut = (Button) findViewById(R.id.logout_Button_traiter_demande);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

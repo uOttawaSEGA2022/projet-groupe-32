@@ -45,7 +45,7 @@ public class Plainte {
     }
 
     public Plainte(String idPlainte, String titre_Plainte, String id_Client, String id_Cuisinier, String date_Plainte, String description_Plainte) {
-        //On appelle le constructeur de la classe parent User;
+
         this.titrePlainte = titre_Plainte;
         this.idClient = id_Client;
         this.idCuisinier = id_Cuisinier;

@@ -1,16 +1,18 @@
 package com.example.mealerapp;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
 public class Demande {
-    String idDemande;
-    String dateDemande;
-    String idClient;
-    Boolean demandeTraitee=false;
-    Repas repas;
+    private String idDemande;
+    private String dateDemande;
+    private String idClient;
+    private String demandeTraitee;
+    private Repas repas;
 
     public Demande(){}
 
@@ -18,19 +20,30 @@ public class Demande {
         this.repas = repas;
         this.idClient = idClient;
         this.idDemande = UUID.randomUUID().toString();
+        this.demandeTraitee="false";
     }
 
     public void addDemandeDatabase(){
-        FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).setValue(this);
+
+        FirebaseDatabase.getInstance().getReference("Demandes").child(idDemande).setValue(this);
     }
 
-    public boolean demandeTraitee(){return demandeTraitee;};
+    public String getDemandeTraitee(){return this.demandeTraitee;};
+
     public void traiterDemande(){
-        if ( !this.demandeTraitee){
-            this.demandeTraitee=true;
+        if ( this.demandeTraitee=="false"){
+            Log.i("Traiter une demande",  this.demandeTraitee);
+            this.demandeTraitee="true";
+            Log.i("Traiter une demande",  this.demandeTraitee);
+            //FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).child("demandeTraitee").setValue("true");
             return;
         }
-        this.demandeTraitee=false;
+        else {
+            Log.i("Traiter une demande",  this.demandeTraitee + " id : " + this.idDemande);
+            this.demandeTraitee = "false";
+            Log.i("Traiter une demande",  this.demandeTraitee);
+            //FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).child("demandeTraitee").setValue("false");
+        }
     };
 
 
@@ -41,7 +54,7 @@ public class Demande {
         return dateDemande;
     }
 
-    public String getId(){
+    public String getIdDemande(){
         return idDemande;
     }
 

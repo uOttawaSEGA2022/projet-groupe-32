@@ -1,10 +1,10 @@
 package com.example.mealerapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -65,20 +65,19 @@ public class traiter_menu_activity extends AppCompatActivity {
 
         Repas repas10 = new Repas("Paella","Riz,Chorizo,Petits pois,Tomates,Cuisses de poulet,Poivrons rouge,Cubes de bouillon de volaille,Oignons,Ail,Huile d'olive,Persil,Sel,poivre","Paella au poulet et au chorizo.","Espagnole",40);
         repas10.addRepasDatabase();
-        */
 
-
-
+         */
 
 
         listViewRepas = (ListView) findViewById(R.id.listViewRepas);
         databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
-        repasArrayList = new ArrayList<Repas>();
+        repasArrayList = new ArrayList<>();
 
         listViewRepas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Repas repas = repasArrayList.get(i);
+                Log.i("Repas cliqué",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
                 showOffrirRetirer(repas);
                 return true;
             }
@@ -91,8 +90,6 @@ public class traiter_menu_activity extends AppCompatActivity {
         super.onStart();
 
 
-
-
         databaseRepas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,14 +98,14 @@ public class traiter_menu_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class) ;
-                    assert repas != null;
-                    //Si idCuisnier de repas == id du cuisinier connecte
+                    Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
 
                     repasArrayList.add(repas);
 
+                    //Si idCuisnier de repas == id du cuisinier connecte
                 }
 
-                ArrayAdapter<Repas> repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
+                RepasList repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
                 listViewRepas.setAdapter(repasAdapter) ;
             }
 
@@ -127,45 +124,35 @@ public class traiter_menu_activity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
 
-        final Button buttonOffrirRepas = (Button) dialogView.findViewById(R.id.buttonOffrirRepas);
-        final Button buttonDesoffirRepas = (Button) dialogView.findViewById(R.id.buttonDesoffrirRepas);
+        final Button buttonChangerStatusRepas = (Button) dialogView.findViewById(R.id.buttonChangerStatusRepas);
 
         dialogBuilder.setTitle("");
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
-        buttonOffrirRepas.setOnClickListener(new View.OnClickListener() {
+        buttonChangerStatusRepas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                offrirRepas(repas);
+                offrirdesoffrirRepas(repas);
                 b.dismiss();
             }
         });
 
-        buttonDesoffirRepas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                offrirRepas(repas);
-                b.dismiss();
-            }
-        });
 
     }
 
-    private void offrirRepas(Repas repas) {
+    private void offrirdesoffrirRepas(Repas repas) {
 
-        repas.traiterRepas();
-        //FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).setValue(repas);
-        FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId()).setValue(repas);
+        repas.traiterRepas(repas);
         Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
     }
 
-    public void retirerRepas(Repas repas) {
-        /*
-         * supprimer un repas de la base des données
-         * */
+    /*public void desoffrirRepas(Repas repas) {
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repas.getId());
+         * supprimer un repas de la base des données
+         *
+
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -175,7 +162,6 @@ public class traiter_menu_activity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
+        });*/
 
     }
-}
