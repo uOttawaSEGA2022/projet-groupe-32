@@ -12,7 +12,7 @@ public class Repas {
     private String repasIngredients;
     private String descriptionRepas;
     private String cuisineType;
-    private int price;
+    private double price;
     private String repasStatus;
     private String idCuisinier;
 
@@ -21,12 +21,13 @@ public class Repas {
 
 
 
-    public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, int price){
+    public Repas(String name, String repasIngredients, String descriptionRepas, String cuisineType, double price,String idCuisinierC){
         this.repasName = name;
         this.repasIngredients = repasIngredients;
         this.descriptionRepas = descriptionRepas;
         this.cuisineType = cuisineType;
         this.idRepas = UUID.randomUUID().toString();
+        this.idCuisinier= idCuisinierC;
         this.price = price;
         this.repasStatus= "false";
 
@@ -40,7 +41,8 @@ public class Repas {
     public String getRepasDescription() {return descriptionRepas;}
     public String getCuisineType() {return cuisineType;}
     public String getIdRepas(){return this.idRepas;}
-    public int getPrice() {return price;}
+    public String getIdCuisinier(){return this.idCuisinier;}
+    public double getPrice() {return price;}
 
 
     public  void traiterRepas(Repas repas){

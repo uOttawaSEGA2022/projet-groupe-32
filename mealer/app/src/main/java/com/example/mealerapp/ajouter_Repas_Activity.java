@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,10 +24,15 @@ public class ajouter_Repas_Activity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     Button ajouterRepas;
     EditText editTextNom, editTextIngredients, editTextTypedeCuisine, editTextPrice, editTextDescription;
+    FirebaseAuth mAuth;
+    String idConnectedCooker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth=FirebaseAuth.getInstance();
+        idConnectedCooker = mAuth.getUid();
+        Log.i("connected cooker is : ", idConnectedCooker);
         setContentView(R.layout.activity_ajouter_repas);
         databaseReference = FirebaseDatabase.getInstance().getReference("Repas");
         ajouterRepas = findViewById(R.id.AjouterRepas);
@@ -57,23 +64,23 @@ public class ajouter_Repas_Activity extends AppCompatActivity {
         double price1 = 0;
 
         if (nomRepas.isEmpty()) {
-            editTextNom.setError("Prenom est requis");
+            editTextNom.setError("Nomdu repas est requis");
             editTextNom.requestFocus();
             return;
         }
         if (Ingredients.isEmpty()) {
-            editTextIngredients.setError(" Nom est requis");
+            editTextIngredients.setError("Entrez au moin un ingrédient");
             editTextIngredients.requestFocus();
             return;
         }
         if (typeDeCuisine.isEmpty()) {
-            editTextTypedeCuisine.setError(" Adresse couuriel est requis");
+            editTextTypedeCuisine.setError("Type de cuisine est requis");
             editTextTypedeCuisine.requestFocus();
             return;
         }
 
         if (price.isEmpty()) {
-            editTextPrice.setError(" Mot de passse est requis");
+            editTextPrice.setError("Le prix est requis");
             editTextPrice.requestFocus();
             return;
         } else {
@@ -89,11 +96,11 @@ public class ajouter_Repas_Activity extends AppCompatActivity {
 
 
         if (description.isEmpty()) {
-            editTextDescription.setError(" Mot de passse est requis");
+            editTextDescription.setError("La description est requise");
             editTextDescription.requestFocus();
             return;
         }
-        Repas repas = new Repas(nomRepas, Ingredients, typeDeCuisine, price1, description);
+        Repas repas = new Repas(nomRepas, Ingredients, description, typeDeCuisine, price1, idConnectedCooker);
         editTextIngredients.getText().clear();
         editTextPrice.getText().clear();
         editTextNom.getText().clear();
@@ -102,7 +109,7 @@ public class ajouter_Repas_Activity extends AppCompatActivity {
 
 
         if (!(repas == null)) {
-            databaseReference.child(repas.getId()).setValue(repas);
+            databaseReference.child(repas.getIdRepas()).setValue(repas);
             Toast.makeText(this, "repas ajouter", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Repas non ajouter Reessayer", Toast.LENGTH_LONG).show();

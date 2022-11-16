@@ -34,7 +34,7 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
 
         if(view.getId()==R.id.ajouterUnRepas){
             //Page avec le formulaire pour ajouter un repas
-            startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
+            startActivity(new Intent(cooker_page_activity.this, ajouter_Repas_Activity.class));
         }
 
         if(view.getId()==R.id.retirerUnRepas){

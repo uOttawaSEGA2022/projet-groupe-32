@@ -78,22 +78,16 @@
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
 
-            <TextView
-                android:id="@+id/textView555"
-                android:layout_width="92dp"
-                android:layout_height="34dp"
-                android:text="Description" />
-
             <EditText
                 android:id="@+id/editTextRepasDescription"
-                android:layout_width="313dp"
-                android:layout_height="119dp"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/custom_edittext"
-                android:minHeight="48dp"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background" />
+                android:ems="10"
+                android:foreground="@drawable/custom_edittext"
+                android:gravity="start|top"
+                android:hint="Description du repas"
+                android:inputType="textMultiLine" />
 
 
         </LinearLayout>
