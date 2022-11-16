@@ -3,7 +3,9 @@ package com.example.mealerapp;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.util.UUID;
 
@@ -31,11 +33,16 @@ public class Demande {
     public String getDemandeTraitee(){return this.demandeTraitee;};
 
     public void traiterDemande(){
+        String idConnectedCooker;
+        FirebaseAuth mAuth;
+        mAuth=FirebaseAuth.getInstance();
+        idConnectedCooker = mAuth.getUid();
+        DatabaseReference valueRef = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).child("nombreRepasVendus");
         if ( this.demandeTraitee=="false"){
-            Log.i("Traiter une demande",  this.demandeTraitee);
+            Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
+            valueRef.setValue(ServerValue.increment(1));
             this.demandeTraitee="true";
-            Log.i("Traiter une demande",  this.demandeTraitee);
-            //FirebaseDatabase.getInstance().getReference("Demandes").child(this.idDemande).child("demandeTraitee").setValue("true");
+            FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
             return;
         }
         else {

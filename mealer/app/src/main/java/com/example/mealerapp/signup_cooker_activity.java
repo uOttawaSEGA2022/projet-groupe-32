@@ -115,20 +115,21 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         }
 
         //On créé notre objet avec ses attributs prioritaires
-         List<Plainte> list = null; //liste associer a chaque cook
+        /*
+        List<Plainte> list = null; //liste associer a chaque cook
        Cooker cooker = new Cooker(Prenom1,Nom1,
                adressecourriel1,MotDePasse1,"Cooker",
                Adresse1,"je suis un cook",
                 "non", "non",list);
+        */
 
-
-        User user=new User(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1,"Cooker");
+        Cooker user=new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,"Cooker",Adresse1);
         mAuth.createUserWithEmailAndPassword(user.getCourriel() , user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
         //mAuth.createUserWithEmailAndPassword(cooker.getCourriel() , cooker.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    user.setUserType("Administrator");
+                    //user.setUserType("Administrator");
                     //cooker.setUserType("Cooker");
                     //Cooker Itulisateur =cooker; //On lui affecte l'objet plus haut
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())

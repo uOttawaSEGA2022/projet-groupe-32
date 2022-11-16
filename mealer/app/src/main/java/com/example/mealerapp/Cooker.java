@@ -7,23 +7,25 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
-    int nombreRepasVendus = 0;
+    int nombreRepasVendus;
     String moyenne;
     List<Integer> notesRecues = new ArrayList();
 
     //Constructeur
     //On a en paramettre les paramètres nécessaires à la création de l'objet
-    public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
+    public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse){
         //On appelle le constructeur de la classe parent User
         super(prenom, nom, courriel, motDePasse, UserType, adresse);
         this.description=description;
-        this.listePlaintes=listePlaintes;
         this.suspension="non";
         this.suspensionEndTime="";
+        this.nombreRepasVendus=0;
+        this.moyenne="";
         this.UserType="Cooker";
     }
-    public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse){
+    public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
         super(prenom, nom, courriel, motDePasse, UserType, adresse);
+        this.listePlaintes=listePlaintes;
     };
     public Cooker(){
 
@@ -31,6 +33,7 @@ public class Cooker extends User{
     public List <Plainte> getList(){
         return listePlaintes;
     }
+
     public String getSuspension(){
         return suspension;
     }
@@ -60,10 +63,12 @@ public class Cooker extends User{
         }
        else {
            int moy=0;
-            for (int i : notesRecues) {
-                moy += i;
-            }
-            moy /= notesRecues.size();
+           if ( notesRecues.size() != 0) {
+               for (int i : notesRecues) {
+                   moy += i;
+               }
+               moy /= notesRecues.size();
+           }
             return moy +"";
         }
     }
@@ -72,8 +77,8 @@ public class Cooker extends User{
         notesRecues.add(note);
     }
 
-    public String getnombreRepasVendus(){
-        return nombreRepasVendus+"";
+    public int getnombreRepasVendus(){
+        return nombreRepasVendus;
     }
 
 
