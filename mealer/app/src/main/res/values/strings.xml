@@ -41,4 +41,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_your_fisrt_name">Enter your first name</string>
     <string name="repas">Repas</string>
+    <string name="Description" />
+    <string name="Price" />
+    <string name="Type_de_cuisine" />
+    <string name="Ingredient" />
+    <string name="Nom_du_repas" />
+    <string name="Ajouter" />
 </resources>

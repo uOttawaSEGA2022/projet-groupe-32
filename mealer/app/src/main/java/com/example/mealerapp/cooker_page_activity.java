@@ -28,7 +28,6 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
         setContentView(R.layout.cooker_page);
         viewRepasVendus = (EditText) findViewById(R.id.viewNbRepasVendus);
         viewNote = (EditText) findViewById(R.id.viewNote);
-        mAuth=FirebaseAuth.getInstance();
     }
     public void onClick(View view){
         if(view.getId()==R.id.logout_Button){
@@ -38,12 +37,12 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
 
         if(view.getId()==R.id.ajouterUnRepas){
             //Page avec le formulaire pour ajouter un repas
-            startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
+            startActivity(new Intent(cooker_page_activity.this, ajouter_Repas_Activity.class));
         }
 
         if(view.getId()==R.id.retirerUnRepas){
             //Page avec la liste des repas associes au cuisiner
-            startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
+            startActivity(new Intent(cooker_page_activity.this, traiter_menu_activity.class));
         }
 
         if(view.getId()==R.id.traiterMenu){
@@ -52,10 +51,6 @@ public class cooker_page_activity extends AppCompatActivity implements OnClickLi
 
         if(view.getId()==R.id.traiterDemandes){
             startActivity(new Intent(cooker_page_activity.this, traiter_demande_achat_activity.class));
-        }
-        if(view.getId()==R.id.logout_Button){
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
     }
     @Override

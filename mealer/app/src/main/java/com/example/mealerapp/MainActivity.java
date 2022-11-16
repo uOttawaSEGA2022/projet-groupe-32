@@ -173,8 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     //diriger vers profil utilisateur cooker
 
 
-
-
                                                     Log.i("MainActivity", "le suspensionqqqqq on datat change est" + suspension);
                                                     Log.i("MainActivity", "le suspensionTimeqqqqqq on datat change est" + suspensionEndTime);
 

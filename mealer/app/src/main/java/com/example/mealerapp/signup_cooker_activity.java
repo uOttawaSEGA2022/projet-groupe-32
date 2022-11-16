@@ -79,6 +79,7 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         if (!EMAIL_ADDRESS.matcher(adressecourriel1).matches()) {
             editTextAdresseCourriel.setError(" Adresse couuriel non valide");
             editTextAdresseCourriel.requestFocus();
+            editTextAdresseCourriel.getText().clear();
             return;
         }
         if (MotDePasse1.isEmpty()) {
@@ -90,6 +91,7 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         if (MotDePasse1.length() < 8) {
             editTextMotDePasse.setError(" Mot de passse a une longeur de 8 characteres");
             editTextMotDePasse.requestFocus();
+            editTextMotDePasse.getText().clear();
             return;
         }
 
@@ -102,6 +104,7 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
             if (!MotDePasse1.equals(MotDePasseConfirm1)) {
                 editTextConfirm.setError(" Le mot de passe ne correspond pas à celui entré plus haut");
                 editTextConfirm.requestFocus();
+                editTextConfirm.getText().clear();
                 return;
             }
         }

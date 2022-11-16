@@ -172,7 +172,6 @@ public class traiter_menu_activity extends AppCompatActivity {
                 database.removeValue();
                 Toast.makeText(getApplicationContext(), "Repas retiré de la base de donnée", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }

@@ -37,8 +37,6 @@ public class RepasList extends ArrayAdapter<Repas> {
         else {
             textViewStatus.setText("Repas non offert dans le menu");
         }
-
         return listViewItem;
     }
-
 }
