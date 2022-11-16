@@ -11,6 +11,7 @@ import java.util.UUID;
 
 public class Demande {
     private String idDemande;
+    private String idCooker;
     private String dateDemande;
     private String idClient;
     private String demandeTraitee;
@@ -68,5 +69,7 @@ public class Demande {
     public String getIdClient(){
         return idClient;
     }
+
+
 
 }

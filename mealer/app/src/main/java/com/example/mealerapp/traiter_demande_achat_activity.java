@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,10 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
     DatabaseReference databaseDemandes;
 
+    FirebaseAuth mAuth;
+
+    String idConnectedCooker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +47,8 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_demande_achat);
 
+        mAuth=FirebaseAuth.getInstance();
+        idConnectedCooker = mAuth.getUid();
 
         listViewDemandes = (ListView) findViewById(R.id.listViewDemandes);
         databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
@@ -63,10 +70,11 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         /*
-        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25, "QBK2NcQWtQWy2y6WmhkpezrbP452");
         Demande demande = new Demande("amin_nna@gmail.com", repas);
         demande.addDemandeDatabase();
          */
+
 
 
 
@@ -79,7 +87,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
                     Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
-                    if ( demande.getDemandeTraitee().equals("false")) {
+                    if ( demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeTraitee().equals("false")) {
                         demandesArrayList.add(demande);
                     }
                 }
