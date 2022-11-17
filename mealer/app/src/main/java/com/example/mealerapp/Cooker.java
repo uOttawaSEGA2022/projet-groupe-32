@@ -10,6 +10,9 @@ public class Cooker extends User{
     int nombreRepasVendus;
     String moyenne;
     List<Integer> notesRecues = new ArrayList();
+    private boolean suspended ;
+    private ArrayList<Repas> MealsList ;
+    private ArrayList<Repas> proposedMealsList ;
 
     //Constructeur
     //On a en paramettre les paramètres nécessaires à la création de l'objet
@@ -22,14 +25,14 @@ public class Cooker extends User{
         this.nombreRepasVendus=0;
         this.moyenne="";
         this.UserType="Cooker";
+        this.suspended = false ; //suspension initialisée par défaut à false
     }
     public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
         super(prenom, nom, courriel, motDePasse, UserType, adresse);
         this.listePlaintes=listePlaintes;
     };
-    public Cooker(){
+    public Cooker(){}
 
-    }
     public List <Plainte> getList(){
         return listePlaintes;
     }
@@ -75,6 +78,11 @@ public class Cooker extends User{
 
     public void setNote(int note){
         notesRecues.add(note);
+    }
+
+    @Override
+    public String getCourriel() {
+        return super.getCourriel();
     }
 
     public int getnombreRepasVendus(){
