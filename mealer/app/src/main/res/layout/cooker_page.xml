@@ -203,10 +203,13 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="Retirer un repas"
+                                android:layout_marginBottom="25dp"
+                                android:gravity="center"
+                                android:text="Changer votre chèque "
                                 android:textStyle="bold" />
 
                             <View
@@ -216,12 +219,13 @@
                                 android:background="@color/lightgray" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
                                 android:gravity="center"
-                                android:padding="5dp"
-                                android:text="Retirez un repas de votre menu"
-                                android:textColor="@android:color/darker_gray" />
+                                android:text="Changer la description"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
