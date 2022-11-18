@@ -12,7 +12,7 @@
         android:layout_above="@+id/calendarView"
         android:layout_marginBottom="-50dp"
         android:text="Please choose the suspension ending date"
-        android:textColor="#D6A204"
+        android:textColor="#070707"
         android:textSize="20sp" />
 
     <RelativeLayout

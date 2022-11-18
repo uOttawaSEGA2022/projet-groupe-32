@@ -41,10 +41,10 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Cooker"
-            android:textColor="#D9EF02"
+            android:textColor="#FFFFFF"
             android:textColorHighlight="#ABBC05"
             android:textColorLink="#B8CA07"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:visibility="visible" />
 
         <Button
@@ -54,7 +54,7 @@
             android:layout_marginTop="20dp"
             android:padding="8dp"
             android:text="Client"
-            android:textColor="#CADD06"
+            android:textColor="#F6F6F6"
             android:textColorHighlight="#BCCF03"
             android:textSize="24sp" />
     </LinearLayout>
