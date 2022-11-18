@@ -90,7 +90,6 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
     }
     @Override
     protected void onStart() {
-
         super.onStart();
 
     }

@@ -52,11 +52,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 ////
 ////
 //       String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-////        String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//       Plainte plainte1 = new Plainte(Id4,"Indigeste", "amin_nna@gmail.com", "wwe@gmail.com","03/11/2022","oui oui");
-////        Plainte plainte2 = new Plainte(Id14,"Moisissure", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
-//       FirebaseDatabase.getInstance().getReference("Plaintes").child(Id4).setValue(plainte1);
-////        FirebaseDatabase.getInstance().getReference("Plaintes").child(Id14).setValue(plainte2);
+////     String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
+//       Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "wwe@gmail.com","03/11/2022","oui oui");
+
 
 
         super.onCreate(savedInstanceState);//C'est quoi saved instances ?
@@ -71,6 +69,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextAdresseCourriel = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.LogInPassword);
         mAuth = FirebaseAuth.getInstance();
+
+        /*
+        Plainte plainte2 = new Plainte("Moisissure", "aichalfakir@gmail.com", "cooker@gmail.com","03/11/2022","Il y'avait de la moisissure dans le repas que j'ai reçu");
+        plainte2.addPlainteDatabase();
+        Plainte plainte3 = new Plainte("Indisgeste", "aichalfakir@gmail.com", "aguigma@gmail.com","03/11/2022","J'ai eu une intxoiquation alimentaire aprè avoir consomé ce plat");
+        plainte3.addPlainteDatabase();
+        Plainte plainte4 = new Plainte("Indisgeste", "aichalfakir@gmail.com", "cookcook@gmail.com","03/11/2022","Un goût de brulé");
+        plainte4.addPlainteDatabase();
+        Log.i("Plaintes Firebase", "OK");
+         */
+
     }
 
 
