@@ -45,7 +45,8 @@ ImageView chequePicture ;
     protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        chequePicture.setImageURI(data.getData());
-
+        if (requestCode==RESULT_LOAD_IMAGE)  {
+            chequePicture.setImageURI(data.getData());
+        }
      }
 }

@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class Cooker extends User{
-    String description;
+    String description="";
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;

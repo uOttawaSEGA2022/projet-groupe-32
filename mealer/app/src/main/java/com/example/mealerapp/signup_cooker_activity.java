@@ -18,8 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
-
 public class signup_cooker_activity extends AppCompatActivity implements View.OnClickListener{
     private Button SignUp;
     public EditText editTextPrenom, editTextNom, editTextAdresseCourriel, editTextMotDePasse, editTextAdresse, editTextConfirm;
@@ -40,7 +38,7 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         editTextAdresseCourriel = findViewById(R.id.AdresseCourriel1);
         editTextMotDePasse = findViewById(R.id.SignInPassword);
         editTextConfirm = findViewById(R.id.confirm_password1);
-        editTextAdresse = findViewById(R.id.address);
+        editTextAdresse = findViewById(R.id.new_description);
 
     }
     @Override

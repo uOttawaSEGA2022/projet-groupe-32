@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,7 +66,12 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
             startActivity(new Intent(cooker_page_activity.this, ajouter_Repas_Activity.class));
         }
 
-        if(view.getId()==R.id.retirerUnRepas){
+        if(view.getId()==R.id.changer_description){
+            //Page avec la liste des repas associes au cuisiner
+            startActivity(new Intent(cooker_page_activity.this, changer_description_cooker_activity.class));
+        }
+
+        if(view.getId()==R.id.changer_cheque){
             //Page avec la liste des repas associes au cuisiner
             startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
         }
@@ -88,9 +92,6 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
     protected void onStart() {
 
         super.onStart();
-        /*String idConnectedCooker = FirebaseAuth.getInstance().getUid();
-        Log.i("idConnectedCooker", idConnectedCooker);
-        DataSnapshot refCuisinier = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).get().getResult();
-        Cooker cuisinier = refCuisinier.getValue(Cooker.class);*/
+
     }
 }

@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="543dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp">
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/complementary_informations"
+                android:text="Informations complémentaires"
                 tools:layout_editor_absoluteX="37dp"
                 tools:layout_editor_absoluteY="226dp" />
 
@@ -50,24 +50,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upload the picture of a void cheque here"
-                android:textColor="#FFEB3B" />
+                android:textColor="#FFFFFF" />
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="340dp"
+                android:layout_width="322dp"
                 android:layout_height="171dp"
-                card_view:srcCompat="@drawable/ic_baseline_person_24" />
+                card_view:srcCompat="@drawable/ic_baseline_person_24"
+                tools:srcCompat="@android:drawable/ic_menu_gallery" />
 
             <EditText
-                android:id="@+id/address"
+                android:id="@+id/new_description"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_edittext"
-                android:hint="@string/cooker_s_description"
+                android:hint="Entrez votre description"
                 android:inputType="textMultiLine"
-                android:singleLine="false"
                 android:padding="8dp"
+                android:singleLine="false"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background" />
 
@@ -80,6 +81,6 @@
         android:layout_width="134dp"
         android:layout_height="wrap_content"
         android:text="Continue"
-        android:textColor="#ABBC0B" />
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
