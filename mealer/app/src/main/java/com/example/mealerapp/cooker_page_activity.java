@@ -32,8 +32,8 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
         viewNote = (EditText) findViewById(R.id.viewNote);
         mAuth=FirebaseAuth.getInstance();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users") ;
-        uid=mAuth.getCurrentUser().getUid() ;
+        reference = FirebaseDatabase.getInstance().getReference("Users") ;
+        uid=mAuth.getCurrentUser().getUid();
         if (!uid.isEmpty()) {
             getUserData() ;
         }

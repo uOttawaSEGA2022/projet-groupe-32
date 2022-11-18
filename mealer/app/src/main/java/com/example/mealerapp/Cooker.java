@@ -85,8 +85,8 @@ public class Cooker extends User{
         return super.getCourriel();
     }
 
-    public int getnombreRepasVendus(){
-        return nombreRepasVendus;
+    public String getnombreRepasVendus(){
+        return nombreRepasVendus+"";
     }
 
 
