@@ -26,7 +26,7 @@ public class ajouter_Repas_Activity extends AppCompatActivity {
     EditText editTextNom, editTextIngredients, editTextTypedeCuisine, editTextPrice, editTextDescription;
     FirebaseAuth mAuth;
     String idConnectedCooker;
-
+    ///
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
