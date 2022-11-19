@@ -62,9 +62,9 @@ StorageReference storageRef ;*/
     }
     public void onClick(View view){
         if(view.getId()==R.id.Continue_Btn){
-            uid=mAuth.getCurrentUser().getUid();
-            if (!uid.isEmpty()) {
-                updateCookerData() ; }
+            //uid=mAuth.getCurrentUser().getUid();
+            //if (!uid.isEmpty()) {
+                //updateCookerData() ; }
             //uploadPicture() ;
             startActivity(new Intent(this, signup_cooker_activity.class));
         }

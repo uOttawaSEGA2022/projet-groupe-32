@@ -55,7 +55,6 @@
                 android:id="@+id/image"
                 android:layout_width="322dp"
                 android:layout_height="171dp"
-                app:srcCompat="@android:drawable/ic_menu_camera"
                 card_view:srcCompat="@drawable/ic_baseline_person_24"
                 tools:srcCompat="@android:drawable/ic_menu_camera" />
 
