@@ -7,7 +7,7 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
-    int nombreRepasVendus;
+    String nombreRepasVendus;
     String moyenne;
     List<Integer> notesRecues = new ArrayList();
     private boolean suspended ;
@@ -22,7 +22,7 @@ public class Cooker extends User{
         this.description=description;
         this.suspension="non";
         this.suspensionEndTime="";
-        this.nombreRepasVendus=0;
+        this.nombreRepasVendus="0";
         this.moyenne="";
         this.UserType="Cooker";
         this.suspended = false ; //suspension initialisée par défaut à false

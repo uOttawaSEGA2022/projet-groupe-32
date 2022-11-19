@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -62,11 +63,12 @@ StorageReference storageRef ;*/
     }
     public void onClick(View view){
         if(view.getId()==R.id.Continue_Btn){
-            //uid=mAuth.getCurrentUser().getUid();
-            //if (!uid.isEmpty()) {
-                //updateCookerData() ; }
+            uid=mAuth.getCurrentUser().getUid();
+            Log.i("uid", uid);
+            if (!uid.isEmpty()) {
+                updateCookerData() ; }
             //uploadPicture() ;
-            startActivity(new Intent(this, signup_cooker_activity.class));
+            startActivity(new Intent(signup_cooker_suite_activity.this, cooker_page_activity.class));
         }
 
         if (view.getId()==R.id.pictureButton) {
@@ -122,15 +124,16 @@ StorageReference storageRef ;*/
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Update note et nombre de repas vendus
-                loggedCooker=snapshot.getValue(Cooker.class) ;
-                assert loggedCooker != null;
+                //loggedCooker=snapshot.getValue(Cooker.class) ;
+                //assert loggedCooker != null;
                 descriptionInput=cookerBio.getText().toString().trim();
                 if (descriptionInput.equals("")) {
-                    loggedCooker.setDescription("No description yet") ; }
+                    reference.child(uid).child("description").setValue("No description yet");
+                }
                 else {
-                    loggedCooker.setDescription(descriptionInput) ; }
+                    reference.child(uid).child("description").setValue(descriptionInput); }
 
-                reference.child(uid).child("description").setValue(loggedCooker.getDescription());
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

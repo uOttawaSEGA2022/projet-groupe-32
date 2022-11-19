@@ -138,7 +138,7 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
 
                                     if(task.isSuccessful()){
                                         Toast.makeText(signup_cooker_activity.this,"user registered success",Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(signup_cooker_activity.this, cooker_page_activity.class));
+                                        startActivity(new Intent(signup_cooker_activity.this, signup_cooker_suite_activity.class));
                                     }else{
                                         Toast.makeText(signup_cooker_activity.this,"Failed",Toast.LENGTH_LONG).show();
                                     }
