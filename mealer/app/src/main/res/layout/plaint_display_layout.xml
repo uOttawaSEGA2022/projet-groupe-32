@@ -4,14 +4,17 @@
     android:layout_height="match_parent">
 
      <LinearLayout
+         android:id="@+id/plaintesContainer"
          android:layout_width="match_parent"
          android:layout_height="match_parent"
+         android:foreground="@drawable/custom_edittext"
          android:orientation="vertical">
 
           <TextView
               android:id="@+id/textViewPlaintTitle"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:layout_margin="10dp"
               android:text=""
               android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 

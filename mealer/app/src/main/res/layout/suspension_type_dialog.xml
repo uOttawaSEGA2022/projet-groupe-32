@@ -14,8 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Temporaire"
-            android:textColor="#FFC107" />
+            android:text="Temporairement"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/buttonIndefiniment"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Indefiniment"
-            android:textColor="#EFB711" />
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

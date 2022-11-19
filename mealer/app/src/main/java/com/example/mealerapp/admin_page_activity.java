@@ -87,8 +87,8 @@ public class admin_page_activity extends AppCompatActivity {
                     // Log.i("admin_page_activity","la cle de plainte est "+plainte.tString());
                     plaintsArrayList.add(plainte);
                 }
-                ArrayAdapter<Plainte> plaintsAdapter = new ArrayAdapter<Plainte>(admin_page_activity.this, android.R.layout.simple_list_item_1, plaintsArrayList);
-                plaintsListView.setAdapter(plaintsAdapter);
+                plainteListe demandesAdapter = new plainteListe(admin_page_activity.this, plaintsArrayList) ;
+                plaintsListView.setAdapter(demandesAdapter) ;
             }
 
             @Override
@@ -149,6 +149,7 @@ public class admin_page_activity extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.suspension_type_dialog, null);
         dialogBuilder.setView(dialogView);
+        dialogBuilder.setTitle("Durée de suspension");
         final Button buttonTemporaire = (Button) dialogView.findViewById(R.id.buttonTemporaire);
         final Button buttonIndefiniment = (Button) dialogView.findViewById(R.id.buttonIndefiniment);
         final AlertDialog b = dialogBuilder.create();
@@ -191,11 +192,7 @@ public class admin_page_activity extends AppCompatActivity {
         });
     }
 
-        /*
-        Cette page va afficher la iste des plaintes
-        De cette page en cliquant sur une plainte, on voit item_activity
-        Sur item activity
-         */
+
 
     private void showRejectSuspendDialog(String id, Plainte plainte) {
 
@@ -218,6 +215,7 @@ public class admin_page_activity extends AppCompatActivity {
         editTextPlaintDescription.setText(plainte.getDescriptionPlainte());
 
         /////////////////////////////////////////////////////////////////////detail de la plaite a afficher
+        dialogBuilder.setTitle("Accepter et suspendre ou rejetter");
         final AlertDialog b = dialogBuilder.create();
         b.show();
         buttonSuspend.setOnClickListener(new View.OnClickListener() {

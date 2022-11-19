@@ -10,18 +10,21 @@
     android:gravity="center"
     android:background="@drawable/fonddecran"
     tools:context=".MainActivity">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
+        android:background="@drawable/custom_edittext"
+        android:paddingTop="20dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        app:cardElevation="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
             android:padding="24dp">
 
             <TextView
