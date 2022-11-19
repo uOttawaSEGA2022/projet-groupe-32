@@ -80,9 +80,10 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
             startActivity(new Intent(cooker_page_activity.this, traiter_menu_activity.class));
         }
 
-        if(view.getId()==R.id.traiterDemandes){
+        if(view.getId()==R.id.traiterDemande){
             startActivity(new Intent(cooker_page_activity.this, traiter_demande_achat_activity.class));
         }
+
         if(view.getId()==R.id.logout_Button_traiter_demande){
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
