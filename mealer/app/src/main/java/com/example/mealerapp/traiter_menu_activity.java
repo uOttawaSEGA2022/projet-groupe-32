@@ -145,6 +145,9 @@ public class traiter_menu_activity extends AppCompatActivity {
 
         repas.traiterRepas(repas);
         Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
+        if(repas.getRepasStatus()=="false"){
+            repasArrayList.remove(repas);
+        }
     }
 
     /*public void desoffrirRepas(Repas repas) {
