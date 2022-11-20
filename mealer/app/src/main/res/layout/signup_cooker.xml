@@ -109,7 +109,7 @@
         android:layout_marginTop="30dp"
         android:backgroundTint="#4CAF50"
         android:text="@string/sign_up"
-        android:textColor="#B7CA00"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:cornerRadius="20dp" />
 
