@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -19,19 +21,24 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.ArrayList;
 
 public class signup_cooker_suite_activity extends AppCompatActivity implements View.OnClickListener{
 
 private Button continuE;
     private static final int RESULT_LOAD_IMAGE = 1000 ;
+    private static final String TAG = "signup_cooker_suite_activity" ;
 Button uploadImage ;
 ImageView chequePicture ;
 FirebaseAuth mAuth ;
@@ -40,14 +47,16 @@ DatabaseReference reference ;
 Cooker loggedCooker ;
 EditText cookerBio ;
 String descriptionInput ;
-/*Uri imageURL ;
-StorageReference storageRef ;*/
+Uri imageURL ;
+StorageReference storageRef ;
+ProgressDialog myProgressDialog ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_cooker_suite);
 
-        //storageRef=StorageReference.getInstance().getReference("CookersCheques");
+        storageRef=FirebaseStorage.getInstance().getReference("CookersCheques");
         reference = FirebaseDatabase.getInstance().getReference("Users") ;
         cookerBio = (EditText) findViewById(R.id.new_description) ;
         continuE= (Button) findViewById(R.id.Continue_Btn);
@@ -58,14 +67,17 @@ StorageReference storageRef ;*/
 
         chequePicture=(ImageView) findViewById(R.id.image) ;
 
-        mAuth=FirebaseAuth.getInstance();
+        /*mAuth=FirebaseAuth.getInstance();
+        storageRef= FirebaseStorage.getInstance().getReference() ;
+        myProgressDialog= new ProgressDialog(signup_cooker_suite_activity.this) ;
+        pathArray= new ArrayList<>() ;*/
     }
     public void onClick(View view){
         if(view.getId()==R.id.Continue_Btn){
             uid=mAuth.getCurrentUser().getUid();
             if (!uid.isEmpty()) {
                 updateCookerData() ; }
-            //uploadPicture() ;
+            uploadPicture() ;
             startActivity(new Intent(this, signup_cooker_activity.class));
         }
 
@@ -84,35 +96,42 @@ StorageReference storageRef ;*/
     }
 
     /*private void uploadPicture() {
-        if (imageURL!= null) {
-            StorageReference fileRef = storageRef.child(System.currentTimeMillis()+"."+getFileExtension(imageURL)) ;
+        Log.d(TAG, "Uploading the image ...") ;
+        myProgressDialog.setMessage("Uploading image ...");
+        myProgressDialog.show();
 
-            fileRef.putFile(imageURL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        FirebaseUser onlineCook = mAuth.getCurrentUser() ;
+        String userID=onlineCook.getUid() ;
+
+        StorageReference storageReference = storageRef.child(userID) ;
+        storageReference.putFile()
+    }*/
+    private void uploadPicture() {
+        if (imageURL!= null) {
+            storageRef=FirebaseStorage.getInstance().getReference();
+
+            storageRef.putFile(imageURL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                    chequePicture.setImageURI(null) ;
+                    Toast.makeText(signup_cooker_suite_activity.this, "Succesfully uploaded", Toast.LENGTH_SHORT).show();
                 }
-            })
-            .addOnFailureListener(new OnFailureListener() {
+            }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(signup_cooker_suite_activity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    if (myProgressDialog.isShowing()){
+                        myProgressDialog.dismiss() ; }
+                    Toast.makeText(signup_cooker_suite_activity.this, "Upload failed", Toast.LENGTH_SHORT).show();
                 }
-            })
-            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                    double progress =(100.0*snapshot.getBytesTransferred()/snapshot.getTotalByteCount()) ;
-                }
-            };
+            });
         }
-    }*/
+    }
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==RESULT_LOAD_IMAGE)  {
+        if (requestCode==RESULT_LOAD_IMAGE && data != null & data.getData()!= null)  {
             chequePicture.setImageURI(data.getData());
         }
      }
