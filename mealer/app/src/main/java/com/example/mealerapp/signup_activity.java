@@ -26,7 +26,7 @@ public class signup_activity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.SignUpAsCookButton) {
-            startActivity(new Intent(this, signup_cooker_suite_activity.class));
+            startActivity(new Intent(this, signup_cooker_activity.class));
         }
         if (view.getId() == R.id.SignUpAsClientButton) {
             startActivity(new Intent(this, signup_client_activity.class));

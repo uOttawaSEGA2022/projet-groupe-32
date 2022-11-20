@@ -39,7 +39,8 @@ public class Demande {
         mAuth=FirebaseAuth.getInstance();
         idConnectedCooker = mAuth.getUid();
         DatabaseReference valueRef = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).child("nombreRepasVendus");
-        if ( this.demandeTraitee=="false"){
+        Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
+        if ( this.demandeTraitee.equals("false")){
             Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
             valueRef.setValue(ServerValue.increment(1));
             this.demandeTraitee="true";

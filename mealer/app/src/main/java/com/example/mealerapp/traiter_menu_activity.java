@@ -1,11 +1,13 @@
 package com.example.mealerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,11 +31,22 @@ public class traiter_menu_activity extends AppCompatActivity {
     List<Repas> repasArrayList;
 
     DatabaseReference databaseRepas;
+    public ImageButton LogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_menu);
+        LogOut = (ImageButton)findViewById(R.id.logout_Button_traiter_menu);
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentL=new Intent(traiter_menu_activity.this,MainActivity.class);
+                startActivity(intentL);
+                finish();
+                Toast.makeText(traiter_menu_activity.this,"Succesfully Logout",Toast.LENGTH_LONG).show();
+            }
+        });
 
         /*
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25);
@@ -100,9 +113,10 @@ public class traiter_menu_activity extends AppCompatActivity {
                     Repas repas = data.getValue(Repas.class) ;
                     Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
 
-                    repasArrayList.add(repas);
+                    if(repas.getRepasStatus().equals("true")){
+                        repasArrayList.add(repas);
+                    }
 
-                    //Si idCuisnier de repas == id du cuisinier connecte
                 }
 
                 RepasList repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
@@ -145,6 +159,7 @@ public class traiter_menu_activity extends AppCompatActivity {
 
         repas.traiterRepas(repas);
         Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
+
     }
 
     /*public void desoffrirRepas(Repas repas) {
