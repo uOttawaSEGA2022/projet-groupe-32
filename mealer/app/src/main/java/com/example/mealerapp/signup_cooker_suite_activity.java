@@ -33,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class signup_cooker_suite_activity extends AppCompatActivity implements View.OnClickListener{
 
@@ -68,11 +69,15 @@ ProgressDialog myProgressDialog ;
         chequePicture=(ImageView) findViewById(R.id.image) ;
     }
     public void onClick(View view){
+
         if(view.getId()==R.id.Continue_Btn){
-            uid=mAuth.getCurrentUser().getUid();
+
+            uid= Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+
             if (!uid.isEmpty()) {
-                updateCookerData() ; }
-            uploadPicture() ;
+                updateCookerData() ;
+                uploadPicture() ; }
+
             startActivity(new Intent(this, signup_cooker_activity.class));
         }
 
