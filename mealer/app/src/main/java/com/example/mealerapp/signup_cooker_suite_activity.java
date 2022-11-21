@@ -66,11 +66,6 @@ ProgressDialog myProgressDialog ;
         uploadImage.setOnClickListener(this);
 
         chequePicture=(ImageView) findViewById(R.id.image) ;
-
-        /*mAuth=FirebaseAuth.getInstance();
-        storageRef= FirebaseStorage.getInstance().getReference() ;
-        myProgressDialog= new ProgressDialog(signup_cooker_suite_activity.this) ;
-        pathArray= new ArrayList<>() ;*/
     }
     public void onClick(View view){
         if(view.getId()==R.id.Continue_Btn){
@@ -88,24 +83,6 @@ ProgressDialog myProgressDialog ;
         }
     }
 
-    private String getFileExtension (Uri uri) {
-        ContentResolver cR = getContentResolver() ;
-        MimeTypeMap mime = MimeTypeMap.getSingleton() ;
-
-        return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
-    /*private void uploadPicture() {
-        Log.d(TAG, "Uploading the image ...") ;
-        myProgressDialog.setMessage("Uploading image ...");
-        myProgressDialog.show();
-
-        FirebaseUser onlineCook = mAuth.getCurrentUser() ;
-        String userID=onlineCook.getUid() ;
-
-        StorageReference storageReference = storageRef.child(userID) ;
-        storageReference.putFile()
-    }*/
     private void uploadPicture() {
         if (imageURL!= null) {
             storageRef=FirebaseStorage.getInstance().getReference();
