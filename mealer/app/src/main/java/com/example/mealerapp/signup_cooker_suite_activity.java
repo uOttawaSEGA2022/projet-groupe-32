@@ -120,13 +120,17 @@ ProgressDialog myProgressDialog ;
                 //Update note et nombre de repas vendus
                 loggedCooker=snapshot.getValue(Cooker.class) ;
                 assert loggedCooker != null;
+
+                loggedCooker.setChequeImageURL(imageURL);
                 descriptionInput=cookerBio.getText().toString().trim();
+
                 if (descriptionInput.equals("")) {
                     loggedCooker.setDescription("No description yet") ; }
                 else {
                     loggedCooker.setDescription(descriptionInput) ; }
 
                 reference.child(uid).child("description").setValue(loggedCooker.getDescription());
+                reference.child(uid).child("chequeImageUrl").setValue(loggedCooker.getChequeImageURL());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

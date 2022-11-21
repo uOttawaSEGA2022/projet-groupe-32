@@ -1,4 +1,6 @@
 package com.example.mealerapp;
+import android.net.Uri;
+
 import java.util.*;
 import java.io.*;
 
@@ -10,6 +12,7 @@ public class Cooker extends User{
     Long nombreRepasVendus;
     String moyenne;
     List<Integer> notesRecues = new ArrayList();
+    Uri chequeImageUrl ;
     private boolean suspended ;
     private ArrayList<Repas> MealsList ;
     private ArrayList<Repas> proposedMealsList ;
@@ -25,6 +28,7 @@ public class Cooker extends User{
         this.nombreRepasVendus=0l;
         this.moyenne="";
         this.UserType="Cooker";
+        this.chequeImageUrl=null ;
         this.suspended = false ; //suspension initialisée par défaut à false
     }
     public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
@@ -84,6 +88,15 @@ public class Cooker extends User{
     public String getCourriel() {
         return super.getCourriel();
     }
+
+    public Uri getChequeImageURL() {
+        return this.chequeImageUrl ;
+    }
+
+    public void setChequeImageURL(Uri data) {
+        this.chequeImageUrl=data ;
+    }
+
 
     public String getnombreRepasVendus(){
         return nombreRepasVendus+"";
