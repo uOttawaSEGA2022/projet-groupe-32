@@ -13,6 +13,13 @@
         android:theme="@style/Theme.MealerApp"
         tools:targetApi="31">
         <activity
+            android:name=".menu_general_du_cooker"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".changer_cheque_cooker_activity"
             android:exported="false">
             <meta-data

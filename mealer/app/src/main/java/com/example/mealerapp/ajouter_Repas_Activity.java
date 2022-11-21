@@ -117,27 +117,4 @@ public class ajouter_Repas_Activity extends AppCompatActivity {
 
     }
 
-//    public void retirerUnRepas(Repas repas) {
-//        /*
-//         * cette fonction retire un repas de la liste des repas du cuisinier*/
-//        if (!(repas == null)) {
-//
-//            databaseReference.child(repas.getId()).
-//                    addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            databaseReference.removeValue();
-//                            Toast.makeText(ajouter_Repas_Activity.this, "repas supprimer", Toast.LENGTH_LONG).show();
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
-//
-//        } else {
-//            Toast.makeText(this, "Repas non supprimer Reessayer", Toast.LENGTH_LONG).show();
-//        }
-//    }
 }

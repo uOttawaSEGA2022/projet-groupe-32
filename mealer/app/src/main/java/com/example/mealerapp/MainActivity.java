@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         //Logout
-        if (view.getId() == R.id.logout_Button_traiter_demande) {
+        if (view.getId() == R.id.logout_Button) {
             UserLogout();
         }
     }

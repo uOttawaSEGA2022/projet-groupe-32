@@ -46,13 +46,13 @@ public class Repas {
 
 
     public  void traiterRepas(Repas repas){
-        if ( this.repasStatus=="false"){
-            this.repasStatus="true";
+        if ( repas.repasStatus=="false"){
+            repas.repasStatus="true";
             FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas()).child("repasStatus").setValue("true");
             return;
         }
         else {
-            this.repasStatus = "false";
+            repas.repasStatus = "false";
             FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas()).child("repasStatus").setValue("false");
 
         }
@@ -60,5 +60,9 @@ public class Repas {
 
     public String getRepasStatus(){
         return this.repasStatus;
+    }
+
+    public String getId() {
+        return idRepas;
     }
 }

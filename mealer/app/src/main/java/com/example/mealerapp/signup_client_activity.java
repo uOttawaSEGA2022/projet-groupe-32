@@ -20,8 +20,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signup_client_activity extends AppCompatActivity implements View.OnClickListener {
 
+
     public Button SignUp;
-    protected EditText editTextPrenom, editTextNom, editTextAdresseCourriel, editTextMotDePasse, editTextCVV, editTextAdresse, editTextConfirm, editTextInformationsCarteCredit;
+    protected static EditText editTextPrenom;
+    protected EditText editTextNom;
+    protected EditText editTextAdresseCourriel;
+    protected EditText editTextMotDePasse;
+    protected EditText editTextCVV;
+    protected EditText editTextAdresse;
+    protected EditText editTextConfirm;
+    protected EditText editTextInformationsCarteCredit;
     //private ProgressBar progressBar;
     public FirebaseAuth mAuth;
 

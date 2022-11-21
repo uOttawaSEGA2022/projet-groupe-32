@@ -37,7 +37,7 @@ public class traiter_menu_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_menu);
-        LogOut = (ImageButton)findViewById(R.id.logout_Button_traiter_menu);
+        LogOut = (ImageButton)findViewById(R.id.logout_Button);
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,11 +113,10 @@ public class traiter_menu_activity extends AppCompatActivity {
                     Repas repas = data.getValue(Repas.class) ;
                     Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
 
-                    if(repas.getRepasStatus().equals("true")){
-                        Log.i("Repas ajouté",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
-                        repasArrayList.add(repas);
-                    }
-
+//                    if(repas.getRepasStatus().equals("true")){
+//                        repasArrayList.add(repas);
+//                    }
+                    repasArrayList.add(repas);
                 }
 
                 RepasList repasAdapter = new RepasList(traiter_menu_activity.this, repasArrayList) ;
@@ -152,8 +151,6 @@ public class traiter_menu_activity extends AppCompatActivity {
                 b.dismiss();
             }
         });
-
-
     }
 
     private void offrirdesoffrirRepas(Repas repas) {

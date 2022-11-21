@@ -30,12 +30,15 @@ public class Cooker extends User{
         this.UserType="Cooker";
         this.chequeImageUrl=null ;
         this.suspended = false ; //suspension initialisée par défaut à false
+
     }
     public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
         super(prenom, nom, courriel, motDePasse, UserType, adresse);
         this.listePlaintes=listePlaintes;
     };
-    public Cooker(){}
+    public Cooker(){
+
+    }
 
     public List <Plainte> getList(){
         return listePlaintes;
