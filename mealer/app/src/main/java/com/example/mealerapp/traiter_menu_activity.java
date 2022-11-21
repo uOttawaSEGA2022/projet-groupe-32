@@ -114,6 +114,7 @@ public class traiter_menu_activity extends AppCompatActivity {
                     Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
 
                     if(repas.getRepasStatus().equals("true")){
+                        Log.i("Repas ajouté",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
                         repasArrayList.add(repas);
                     }
 

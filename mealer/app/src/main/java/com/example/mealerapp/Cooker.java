@@ -9,10 +9,10 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
-    Long nombreRepasVendus;
+    String nombreRepasVendus;
     String moyenne;
     List<Integer> notesRecues = new ArrayList();
-    Uri chequeImageUrl ;
+    Uri chequeImageUrl = null ;
     private boolean suspended ;
     private ArrayList<Repas> MealsList ;
     private ArrayList<Repas> proposedMealsList ;
@@ -25,7 +25,7 @@ public class Cooker extends User{
         this.description=description;
         this.suspension="non";
         this.suspensionEndTime="";
-        this.nombreRepasVendus=0l;
+        this.nombreRepasVendus="0";
         this.moyenne="";
         this.UserType="Cooker";
         this.chequeImageUrl=null ;

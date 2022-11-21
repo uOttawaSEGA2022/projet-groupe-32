@@ -56,7 +56,7 @@ ProgressDialog myProgressDialog ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_cooker_suite);
-
+        mAuth = FirebaseAuth.getInstance();
         storageRef=FirebaseStorage.getInstance().getReference("CookersCheques");
         reference = FirebaseDatabase.getInstance().getReference("Users") ;
         cookerBio = (EditText) findViewById(R.id.new_description) ;
@@ -78,7 +78,7 @@ ProgressDialog myProgressDialog ;
                 updateCookerData() ;
                 uploadPicture() ; }
 
-            startActivity(new Intent(this, signup_cooker_activity.class));
+            startActivity(new Intent(this, cooker_page_activity.class));
         }
 
         if (view.getId()==R.id.pictureButton) {
