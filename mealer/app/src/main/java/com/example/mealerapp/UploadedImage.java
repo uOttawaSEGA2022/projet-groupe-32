@@ -1,3 +1,5 @@
+package com.example.mealerapp;
+
 public class UploadedImage {
     String name ;
     String imageURL ;
