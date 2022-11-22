@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     String idConnectedCooker;
+    public ImageButton LogOut1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,17 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_demande_achat);
+        LogOut1 = (ImageButton)findViewById(R.id.logout_Button_traiter_demande);
+        LogOut1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentL=new Intent(traiter_demande_achat_activity.this,MainActivity.class);
+                startActivity(intentL);
+                finish();
+                Toast.makeText(traiter_demande_achat_activity.this,"Succesfully Logout",Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         mAuth=FirebaseAuth.getInstance();
         idConnectedCooker = mAuth.getUid();
