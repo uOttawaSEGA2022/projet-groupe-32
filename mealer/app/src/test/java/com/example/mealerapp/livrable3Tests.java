@@ -12,6 +12,7 @@ public class livrable3Tests {
 
     @Test
     public void checkRepasName() {
+        //Test1
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
         assertEquals("Vérifie le nom du repas", "Toast à l'avocat et au saumon fumé", repas.getRepasName());
     }
