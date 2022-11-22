@@ -206,7 +206,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="Menu"
+                                android:text="Menu du jour"
                                 android:textStyle="bold" />
 
                             <View
@@ -220,7 +220,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:padding="5dp"
-                                android:text="Changez le statut d'un repas dans votre menu."
+                                android:text="Gerer votre menu du jour."
                                 android:textColor="@android:color/darker_gray" />
 
                         </LinearLayout>
@@ -264,7 +264,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="Retirer un repas"
+                                android:text="Menu"
                                 android:textStyle="bold" />
 
                             <View
@@ -278,7 +278,7 @@
                                 android:layout_height="61dp"
                                 android:gravity="center"
                                 android:padding="5dp"
-                                android:text="Retirez un repas de votre menu"
+                                android:text="Gerer votre menu"
                                 android:textColor="@android:color/darker_gray" />
 
                         </LinearLayout>
