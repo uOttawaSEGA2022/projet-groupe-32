@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/projet-groupe-32
     docker:
-      - image: circleci/android:api-28-alpha
+      - image: cimg/base:stable
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
