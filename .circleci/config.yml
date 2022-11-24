@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /projet-groupe-32/mealer/app
+    working_directory: ~/projet-groupe-32
     docker:
       - image: circleci/android:api-28-alpha
     environment:
