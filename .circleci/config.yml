@@ -27,4 +27,4 @@ jobs:
           path: app/build/outputs/apk/debug/
           destination: apks/
       - store_test_results:
-          path: ~/test-result
+          path: ~/tests-results
