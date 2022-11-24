@@ -2,8 +2,11 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/projet-groupe-32
-     services: 
-      - docker 
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+    services: 
+        - docker 
       name: Build And Test 
       script: 
         # Install gcloud CLI 
@@ -14,9 +17,6 @@ jobs:
         - gcloud --version 
         - java -version 
         - docker --version
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
