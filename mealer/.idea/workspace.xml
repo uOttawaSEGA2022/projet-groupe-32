@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51dafec9-fabf-49cb-9698-848aab92c60a" name="Changes" comment="Commit" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/amina_anna/.android/avd/Pixel_3_XL_API_33.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MealerApp" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2GvBKdMPBellJuZu1pzwz38Di2D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="directory" />
+    <property name="PROJECT_TRUSTED_KEY" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="android-custom-view/Users/amina_anna/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.5.1/ffb6d2b7e47daaa4a24b434db111ab9e411c33a0/appcompat-1.5.1-sources.jar!/androidx/appcompat/widget/AppCompatImageView.java_SELECTED" value="AppCompatImageView" />
+    <property name="android-custom-view/Users/amina_anna/.gradle/caches/modules-2/files-2.1/androidx.drawerlayout/drawerlayout/1.1.1/d95f7d9cd7d95cc0c038bbcf9c65f521b56fee55/drawerlayout-1.1.1-sources.jar!/androidx/drawerlayout/widget/DrawerLayout.java_SELECTED" value="DrawerLayout" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="com.example.mealerapp.Repas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1667891142823" />
+    <property name="project.structure.last.edited" value="SDK Location" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Signing Configs" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.106886180">
+      <recent name="com.example.mealerapp" />
+    </key>
+    <key name="android.template.-75088766">
+      <recent name="com.example.mealerapp" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+    </key>
+    <key name="android.template.-1249947943">
+      <recent name="com.example.mealerapp" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="com.example.mealerapp.Repas" />
+    </key>
+    <key name="android.template.-2051496430">
+      <recent name="com.example.mealerapp" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.mealerapp" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.mealerapp" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="MealerApp.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+        <option name="PROFILING_MODE" value="NOT_SET" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests in 'MealerApp.app.unitTest'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Tests in 'MealerApp.app.unitTest'" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51dafec9-fabf-49cb-9698-848aab92c60a" name="Changes" comment="" />
+      <created>1667259114666</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667259114666</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Traiter Demande achat">
+      <created>1667972991372</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1667972991372</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Traiter Demande achat">
+      <created>1667978058718</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1667978058718</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Finalisation demandes">
+      <created>1667978417242</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1667978417242</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Deamnde mise à jour avec Repas">
+      <created>1668016551633</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1668016551633</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Ajout de demandes a partir du code">
+      <created>1668018975115</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1668018975115</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Correction">
+      <created>1668024276743</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1668024276743</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Dashbooard Cooker Avec les fonctionalités du cooker &#10;Les bouttons mènent aux pages adaptées, sauf Ajouter un repas et Retier un repas qui ne sont pas encore implémentées">
+      <created>1668138903565</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1668138903565</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Mise à jour pour que l'aplication ne plante pas si on essaie de se connecter à un compte qui n'existe pas. &#10;Mise à jour des pages liées aux plaintes.">
+      <created>1668275753349</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1668275753349</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Dashboard Cooker : nombre de repas vendu et calcul de la moyenne reçue">
+      <created>1668375828044</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1668375828044</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Etat du repas dans le menu">
+      <created>1668397286721</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1668397286721</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Etat du repas dans le menu">
+      <created>1668403208910</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1668403208910</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Enfin, le traitement des demandes est mis à jour dans Firebase">
+      <created>1668443896097</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1668443896097</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Enfin, le traitement des repas est mis à jour dans Firebase">
+      <created>1668450008672</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1668450008672</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Enfin, le cooker peut se déconnecter">
+      <created>1668450858939</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1668450858939</updated>
+    </task>
+    <task id="LOCAL-00047" summary="J'ai mis à jour le editTesRepasDescription, j'ai mis un multipleline editText.&#10;J'ai mis à jour la classe Repas avec id du Cuisinier connecté. &#10;J'ai mis à jour le constructeur pour prendre idCuisinier et ajouter à firebase.">
+      <created>1668624846085</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1668624846085</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Mise à jour sign up Cooker &#10;Incrémenter le field repasVendus du cuisinier.">
+      <created>1668629615695</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1668629615695</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Mise à jour pour que seules les demandes  liées au cuisinier connecté s'affichent sur sa page des demandes">
+      <created>1668630765981</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1668630765981</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Résolution bug">
+      <created>1668729605839</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1668729605839</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Résolution bug">
+      <created>1668730051457</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1668730051457</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Changer chèque et changer description">
+      <created>1668730892759</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1668730892759</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Changer chèque">
+      <created>1668731286339</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1668731286339</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Commit.">
+      <created>1668739128677</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1668739128677</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Commit">
+      <created>1668801238740</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1668801238740</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Commit">
+      <created>1668804285126</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1668804285126</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Commit">
+      <created>1668833876956</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1668833876956</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Commit">
+      <created>1668898460637</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1668898460637</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Commit">
+      <created>1668901686651</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1668901686651</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Commit">
+      <created>1668903671718</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1668903671719</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Commit">
+      <created>1669073674367</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1669073674368</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Tests">
+      <created>1669159261167</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1669159261167</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Clean cache">
+      <created>1669159669468</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1669159669469</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Clean cache">
+      <created>1669160354226</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1669160354226</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Clean cache">
+      <created>1669160951371</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1669160951371</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Clean cache">
+      <created>1669161138047</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1669161138047</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Clean cache">
+      <created>1669163048707</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1669163048707</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Clean cache">
+      <created>1669164463046</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1669164463046</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Clean cache">
+      <created>1669164633821</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1669164633821</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Tests successfully done">
+      <created>1669165394101</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1669165394101</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Commit">
+      <created>1669256381639</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1669256381639</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Commit">
+      <created>1669256447290</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1669256447290</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Commit">
+      <created>1669257222104</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1669257222104</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Commit">
+      <created>1669257700410</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1669257700410</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Commit">
+      <created>1669261526522</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1669261526522</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Commit">
+      <created>1669261719630</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1669261719630</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Commit">
+      <created>1669263926805</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1669263926805</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Commit">
+      <created>1669263973626</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1669263973626</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Commit">
+      <created>1669264049174</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1669264049174</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Commit">
+      <created>1669264334843</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1669264334843</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Commit">
+      <created>1669264714801</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1669264714801</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Traiter Demande achat" />
+    <MESSAGE value="Finalisation demandes" />
+    <MESSAGE value="Deamnde mise à jour avec Repas" />
+    <MESSAGE value="Ajout de demandes a partir du code" />
+    <MESSAGE value="Correction" />
+    <MESSAGE value="Dashbooard Cooker Avec les fonctionalités du cooker &#10;Les bouttons mènent aux pages adaptées, sauf Ajouter un repas et Retier un repas qui ne sont pas encore implémentées" />
+    <MESSAGE value="Mise à jour pour que l'aplication ne plante pas si on essaie de se connecter à un compte qui n'existe pas ." />
+    <MESSAGE value="Mise à jour pour que l'aplication ne plante pas si on essaie de se connecter à un compte qui n'existe pas. &#10;Mise à jour des pages liées aux plaintes." />
+    <MESSAGE value="Dashboard Cooker : nombre de repas vendu et calcul de la moyenne reçu" />
+    <MESSAGE value="Dashboard Cooker : nombre de repas vendu et calcul de la moyenne reçue" />
+    <MESSAGE value="Etat du repas dans le menu" />
+    <MESSAGE value="Enfin, le traitement des demandes est mis à jour dans Firebase" />
+    <MESSAGE value="Enfin, le traitement des repas est mis à jour dans Firebase" />
+    <MESSAGE value="Enfin, le cooker peut se déconnecter" />
+    <MESSAGE value="J'ai mis à jour le editTesRepasDescription, j'ai mis un multipleline editText.&#10;J'ai mis à jour la classe Repas avec id du Cuisinier connecté. &#10;J'ai mis à jour le constructeur pour prendre idCuisinier et ajouter à firebase." />
+    <MESSAGE value="Mise à jour sign up Cooker &#10;Incrémenter le field repasVendus du cuisinier." />
+    <MESSAGE value="Mise à jour pour que seules les demandes  liées au cuisinier connecté s'affichent sur sa page des demandes" />
+    <MESSAGE value="Résolution bug" />
+    <MESSAGE value="Changer chèque et changer description" />
+    <MESSAGE value="Changer chèque" />
+    <MESSAGE value="Commit." />
+    <MESSAGE value="Tests" />
+    <MESSAGE value="Clean cache" />
+    <MESSAGE value="Tests successfully done" />
+    <MESSAGE value="Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/mealerapp/traiter_demande_achat_activity.java</url>
+          <line>82</line>
+          <properties class="com.example.mealerapp.traiter_demande_achat_activity" method="onStart">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
