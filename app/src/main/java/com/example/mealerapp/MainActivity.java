@@ -184,7 +184,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
                                     database.addListenerForSingleValueEvent(new ValueEventListener() {
 
-
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             String idUser = mAuth.getCurrentUser().getUid();
