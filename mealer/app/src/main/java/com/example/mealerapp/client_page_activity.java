@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+
 public class client_page_activity extends AppCompatActivity{
     private TextView logOut;
-
+    ArrayList <Repas> repasList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,4 +29,15 @@ public class client_page_activity extends AppCompatActivity{
         });
     }
 
+
+//Client client;
+//
+//
+//
+//    public  void recherParTypeCuisine(){
+//        repasList= client.RechercherTypeCuisine("Ce que l'utilisateur a tape");
+//    }
+//    public  void recherParTypeCuisine(){
+//        repasList= RechercherTypeCuisine("Ce que l'utilisateur a tape");
+//    }
 }

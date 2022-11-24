@@ -118,7 +118,7 @@ ProgressDialog myProgressDialog ;
         }
      }
 
-    private void updateCookerData() {
+    private void updateCookerData(){
         reference.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

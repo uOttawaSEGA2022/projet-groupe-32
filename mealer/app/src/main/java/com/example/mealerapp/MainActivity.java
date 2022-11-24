@@ -35,26 +35,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     protected void onCreate(Bundle savedInstanceState) {
 
-////      //  String Id="ZDCRr9A2xqSEuV9jBKJ82wVdmrn2";
-//   //     String Id1="9ji8VUyh0VNmDYW7CgYRaLU06lE2";
+//         String Id="PKybFftQpVOLMwv1164ehqTJ57I3";
+//           String Id1="9ji8VUyh0VNmDYW7CgYRaLU06lE2";
 //             String Id2="LPjxf4C8b9TDO8Vy4iNFPtfJU742";
-//     String Id3="bDeWI33UPrYCm5RjWaZxqsu56gu1";
-////        //User user=new User("Admin","Admin","administrator23@gmail.com","Administrator23","Administrator","12 street");
-//  //      Cooker cook1= new Cooker("ht","dhg","aguig@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
+//          String Id3="bDeWI33UPrYCm5RjWaZxqsu56gu1";
+//        //User user=new User("Admin","Admin","administrator23@gmail.com","Administrator23","Administrator","12 street");
+//        Cooker cook1= new Cooker("ht","dhg","aguig@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
 //        Cooker cook2= new Cooker("qqww","lhsgchgjh","aguigma@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
 //       Cooker cook3= new Cooker("hserfrdsgfg","yhjtfjh","wwe@gmail.com","12345678","Cooker","12 wwe","je suis cook","non"," ",null);
-////       // FirebaseDatabase.getInstance().getReference("Users").child(Id).setValue(user);
-//  //     FirebaseDatabase.getInstance().getReference("Users").child(Id1).setValue(cook1);
+//        FirebaseDatabase.getInstance().getReference("Users").child(Id).setValue(user);
+//       FirebaseDatabase.getInstance().getReference("Users").child(Id1).setValue(cook1);
 //        FirebaseDatabase.getInstance().getReference("Users").child(Id2).setValue(cook2);
 //       FirebaseDatabase.getInstance().getReference("Users").child(Id3).setValue(cook3);
-////
-////
-////
-////
-//       String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-////     String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//       Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "wwe@gmail.com","03/11/2022","oui oui");
 
+       //String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
+//       String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
+//       Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "cooker4@gmail.com","03/11/2022","oui je suis malade");
+//        plainte1.addPlainteDatabase();
 
 
         super.onCreate(savedInstanceState);//C'est quoi saved instances ?

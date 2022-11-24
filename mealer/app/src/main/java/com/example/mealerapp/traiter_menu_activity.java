@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,14 +30,16 @@ public class traiter_menu_activity extends AppCompatActivity {
     ListView listViewRepas;
 
     List<Repas> repasArrayList;
-
+    FirebaseAuth mAuth;
     DatabaseReference databaseRepas;
     public ImageButton LogOut;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_menu);
+        mAuth=FirebaseAuth.getInstance();
         LogOut = (ImageButton)findViewById(R.id.logout_Button);
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +105,7 @@ public class traiter_menu_activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
+        String uid=mAuth.getCurrentUser().getUid();
         databaseRepas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -111,9 +114,10 @@ public class traiter_menu_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class) ;
+                    String repasUid=repas.getIdCuisinier();
                     Log.i("Repas non offert",  repas.getRepasStatus() + " id : " + repas.getIdRepas());
 
-                    if(repas.getRepasStatus().equals("true")){
+                    if(repas.getRepasStatus().equals("true") && uid.equals(repasUid)){
                         repasArrayList.add(repas);
                     }
                     //repasArrayList.add(repas);
