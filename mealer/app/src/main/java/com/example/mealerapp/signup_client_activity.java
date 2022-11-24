@@ -138,14 +138,21 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             return;
         }
 
-        Client client =new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,Adresse2,CVC,InformationsCarteCredit2);
+        Client client =new Client(Prenom2,Nom2,adressecourriel2,MotDePasse2,"Client",Adresse2);
 
         mAuth.createUserWithEmailAndPassword(client.getCourriel(),client.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Client Itulisateur = client;
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(Itulisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    Client utilisateur = new Client();
+                    utilisateur.setNom(client.getNom());
+                    utilisateur.setPrenom(client.getPrenom());
+                    utilisateur.setAdresse(client.getAdresse());
+                    utilisateur.setMotDePasse(client.getMotDePasse());
+                    utilisateur.setUserType(client.getUserType());
+                    utilisateur.setCourriel(client.getCourriel());
+                    utilisateur.setInformationsCarteCredit(CVC, client.getInformationsCarteCredit());
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(utilisateur).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){

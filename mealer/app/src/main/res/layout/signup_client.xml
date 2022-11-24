@@ -117,7 +117,7 @@
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/cardview_dark_background" />
 
-                <TextView
+                <EditText
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,14 +139,14 @@
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/cardview_dark_background" />
 
-                <TextView
+                <EditText
                     android:id="@+id/cvv"
+                    android:inputType="number"
                     android:layout_width="297dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/custom_edittext"
                     android:hint="@string/cvv_code"
-                    android:inputType="textPassword"
                     android:minHeight="48dp"
                     android:padding="8dp"
                     android:textColor="@color/black"

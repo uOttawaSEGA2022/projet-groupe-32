@@ -79,7 +79,7 @@
         android:id="@+id/Continue_Btn"
         android:layout_width="134dp"
         android:layout_height="wrap_content"
-        android:text="Continue"
+        android:text="sign up"
         android:textColor="#FFFFFF" />
 
 </LinearLayout>

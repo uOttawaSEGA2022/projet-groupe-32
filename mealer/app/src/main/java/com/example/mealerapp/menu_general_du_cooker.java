@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class menu_general_du_cooker extends AppCompatActivity {
     ListView listViewRepas;
-
+    FirebaseAuth mAuth;
     List<Repas> repasArrayList;
 
     DatabaseReference databaseRepas;
@@ -36,6 +37,7 @@ public class menu_general_du_cooker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_general_du_cooker);
+        mAuth = FirebaseAuth.getInstance();
         LogOut = (ImageButton) findViewById(R.id.logOUt_Button);
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,7 @@ public class menu_general_du_cooker extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
+        String uid = mAuth.getCurrentUser().getUid();
         databaseRepas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -75,9 +77,13 @@ public class menu_general_du_cooker extends AppCompatActivity {
                 repasArrayList.clear();
 
                 for (DataSnapshot data : snapshot.getChildren()) {
+
                     Repas repas = data.getValue(Repas.class);
+                    String repasUid = repas.getIdCuisinier();
                     Log.i("Repas non offert", repas.getRepasStatus() + " id : " + repas.getIdRepas());
-                    repasArrayList.add(repas);
+                    if (repasUid.equals(uid)) {
+                        repasArrayList.add(repas);
+                    }
                     //repasArrayList.add(repas);
                 }
 
@@ -100,7 +106,7 @@ public class menu_general_du_cooker extends AppCompatActivity {
 
 
         final Button buttonRetirerRepas = (Button) dialogView.findViewById(R.id.button_retirer_Repas);
-        final Button buttonChangerStatusRepas=(Button) dialogView.findViewById(R.id.button_changerStatus_Repas);
+        final Button buttonChangerStatusRepas = (Button) dialogView.findViewById(R.id.button_changerStatus_Repas);
         dialogBuilder.setTitle("");
         final AlertDialog b = dialogBuilder.create();
         b.show();

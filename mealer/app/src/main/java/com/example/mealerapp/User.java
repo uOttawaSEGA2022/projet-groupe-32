@@ -1,11 +1,11 @@
 package com.example.mealerapp;
 public  class User{
+    protected String UserType;
     String Prenom;
     String Nom;
     String Courriel;
     String MotDePasse;
     String Adresse;
-    String UserType;
     Boolean authorized=true;
 
     public User (String prenom,String nom, String courriel, String motDePasse,String UserType, String adresse){
