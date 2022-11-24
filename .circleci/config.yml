@@ -2,8 +2,18 @@ version: 2.1
 jobs:
   build:
     working_directory: ~/projet-groupe-32
-    docker:
-      - image: cimg/base:stable
+     services: 
+      - docker 
+      name: Build And Test 
+      script: 
+        # Install gcloud CLI 
+        - export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" 
+        - echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list 
+        - curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - 
+        - sudo apt-get update && sudo apt-get install -y google-cloud-sdk 
+        - gcloud --version 
+        - java -version 
+        - docker --version
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
