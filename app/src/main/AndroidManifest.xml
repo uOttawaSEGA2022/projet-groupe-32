@@ -83,13 +83,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".item_activity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".admin_page_activity"
             android:exported="false">
             <meta-data
@@ -98,13 +91,6 @@
         </activity>
         <activity
             android:name=".signup_activity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".client_page_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
