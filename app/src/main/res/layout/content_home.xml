@@ -8,15 +8,45 @@
     tools:showIn="@layout/app_bar_home">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="-131dp"
+        tools:layout_editor_absoluteY="88dp">
 
-        <ListView
-            android:id="@+id/listViewResearch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        </ListView>
     </LinearLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchRecherche"
+        android:layout_width="397dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginHorizontal="0.5dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/search_view"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Search Here ....." />
+
+    <ListView
+        android:id="@+id/listViewRecherche"
+        android:layout_width="409dp"
+        android:layout_height="617dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchRecherche" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,144 +33,167 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class client_page_activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    ArrayList <Repas>repasArrayList;
-    ListView listViewResearch;
+public class client_page_activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    ArrayList<Repas> repasArrayList;
+    ListView listViewRecherche;
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_page);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
-        //setSupportActionBar(toolbar);
-
+        setSupportActionBar(toolbar);
+        searchView = findViewById(R.id.searchRecherche);
+        searchView.clearFocus();
+        listViewRecherche = findViewById(R.id.listViewRecherche);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener((view)->{
-            Snackbar.make(view,"Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action",null).show();
+        fab.setOnClickListener((view) -> {
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        listViewResearch=findViewById(R.id.listViewResearch);
+        //listViewResearch=findViewById(R.id.listViewResearch);
         DatabaseReference databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
         repasArrayList = new ArrayList<Repas>();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            boolean a = false;
 
-        listViewResearch.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Repas repas = repasArrayList.get(i);
-                Toast.makeText(client_page_activity.this, "element de la liste de recherche", Toast.LENGTH_LONG).show();
+            public boolean onQueryTextSubmit(String query) {
+
+                searchView.clearFocus();
+                Log.i("client_page_activity", "la cle recherche esttttttttttttttttttttttt  " + query.toString());
+                repasArrayList = RechercherTypeCuisineAndNom(query);
+                RepasList repasAdapter = new RepasList(client_page_activity.this, repasArrayList);
+                if (!(repasArrayList == null)){
+                    listViewRecherche.setAdapter(repasAdapter);
+                    a = true;
+                } else {
+                    Toast.makeText(client_page_activity.this, "Aucun produit ne correspond a votre recherche", Toast.LENGTH_LONG).show();
+                }
                 return true;
             }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (a == true) {
+                    repasArrayList = RechercherTypeCuisineAndNom(newText);
+                    RepasList repasAdapter = new RepasList(client_page_activity.this, repasArrayList);
+                    if (!(repasArrayList == null)) {
+                        listViewRecherche.setAdapter(repasAdapter);
+                    } else {
+                        Toast.makeText(client_page_activity.this, "Aucun produit ne correspond a votre recherche", Toast.LENGTH_LONG).show();
+                    }
+                }
+                return false;
+            }
         });
-
-
     }
-
-
-
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
+    //    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        int id = item.getItemId();
+//
+//        if (id==R.id.search){
+//            Toast.makeText(client_page_activity.this, "Failed to login check your credentials", Toast.LENGTH_LONG).show();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        if (id==R.id.search){
-            Toast.makeText(client_page_activity.this, "Failed to login check your credentials", Toast.LENGTH_LONG).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item){
+    public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if(id==R.id.nav_menu){
-        }else if (id==R.id.nav_panier){
-        }else if (id==R.id.nav_orders){
-        }else if (id==R.id.nav_log_out){
+        if (id == R.id.nav_menu) {
+        } else if (id == R.id.nav_panier) {
+        } else if (id == R.id.nav_orders) {
+        } else if (id == R.id.nav_log_out) {
         }
         return false;
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.home,menu);
-        MenuItem searchViewItem = findViewById(R.id.search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
-        Log.i("client_page_activity","la cle recherche est  " +" je suis lance");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-//                Log.i("client_page_activity","la cle recherche est  " +query.toString());
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        MenuInflater inflater=getMenuInflater();
+//        inflater.inflate(R.menu.home,menu);
+//        MenuItem searchViewItem = findViewById(R.id.search);
+//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+//        Log.i("client_page_activity","la cle recherche est  " +" je suis lance");
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+////                Log.i("client_page_activity","la cle recherche est  " +query.toString());
+////                searchView.clearFocus();
+////                repasArrayList=RechercherTypeCuisineAndNom(query);
+////                RepasList repasAdapter = new RepasList(client_page_activity.this, repasArrayList);
+////                listViewResearch.setAdapter(repasAdapter);
+//                return false;
+//            }
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                Log.i("client_page_activity","la cle recherche est  " +newText.toString());
 //                searchView.clearFocus();
-//                repasArrayList=RechercherTypeCuisineAndNom(query);
+//                repasArrayList=RechercherTypeCuisineAndNom(newText);
 //                RepasList repasAdapter = new RepasList(client_page_activity.this, repasArrayList);
 //                listViewResearch.setAdapter(repasAdapter);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Log.i("client_page_activity","la cle recherche est  " +newText.toString());
-                searchView.clearFocus();
-                repasArrayList=RechercherTypeCuisineAndNom(newText);
-                RepasList repasAdapter = new RepasList(client_page_activity.this, repasArrayList);
-                listViewResearch.setAdapter(repasAdapter);
-
-                return false;
-            }
-        });
-        return true;
-    }
+//
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
 
 
     public ArrayList<Repas> RechercherTypeCuisineAndNom(String rechercheCle) {
         //recupuer les resultats d'une recherche selon le typeDecuisine
-        ArrayList<Repas> repasList = null;
+        ArrayList<Repas> repasList = new ArrayList<Repas>();
         DatabaseReference dataRepas;
         rechercheCle = rechercheCle.trim().toLowerCase();
         dataRepas = FirebaseDatabase.getInstance().getReference("Repas");
         String finalRechercheCle = rechercheCle;
         // recupere tout les repas ayant ce mot dans leur type de cuisine
-        dataRepas.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        Log.i("client_page_activity", "la cle recherche est dans rechercheeeeeeeeeeeeeeee " + rechercheCle);
+        dataRepas.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        for (DataSnapshot data : snapshot.getChildren()) {
-                            Repas repas = data.getValue(Repas.class);
-                            String repasCuisineType = repas.getCuisineType().toString().trim().toLowerCase();
-                            String[] repasType = repasCuisineType.split(" ");
-                            for (String s : repasType) {
-                                if (s.equals(finalRechercheCle)) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Repas repas = data.getValue(Repas.class);
+                    String repasCuisineType = repas.getCuisineType().toString().trim().toLowerCase();
+                    String[] repasType = repasCuisineType.split(" ");
+                    for (String s : repasType) {
+                        if (s.equals(finalRechercheCle)) {
+                            if (!(repasList == null)) {
+                                if (!repasList.contains(repas)) {
+                                    Log.i("client_page_activity", "la liste contient ttttttttttttttt " + finalRechercheCle);
                                     repasList.add(repas);
                                 }
+                            } else {
+                                repasList.add(repas);
                             }
                         }
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
                 }
-        );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         dataRepas.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -183,7 +206,12 @@ public class client_page_activity extends AppCompatActivity implements Navigatio
                         if (str.length() > 2) {
                             for (String s : repasNom2) {
                                 if (s.equals(str)) {
-                                    if (!repasList.contains(repas)){
+                                    if (!(repasList == null)) {
+                                        if (!repasList.contains(repas)) {
+                                            Log.i("client_page_activity", "la liste contient 111111111111111111111111111111 " + finalRechercheCle);
+                                            repasList.add(repas);
+                                        }
+                                    } else {
                                         repasList.add(repas);
                                     }
                                 }
@@ -192,31 +220,31 @@ public class client_page_activity extends AppCompatActivity implements Navigatio
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         //retirer les repas appartenant aux cuisinier qui sont suspendu du resultats de la recherche
-        if (!repasList.isEmpty()) {
-            for (Repas repa : repasList) {
-                final String[] suspension = new String[1];
-                String repasCuisinierId = repa.getIdCuisinier();
-                FirebaseDatabase.getInstance().getReference("Users").
-                        child(repasCuisinierId).child("suspension").
-                        addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                suspension[0] = snapshot.getValue(String.class).trim();
-                            }
+        if (!(repasList == null)) {
+            if (!repasList.isEmpty()) {
+                for (Repas repa : repasList) {
+                    final String[] suspension = new String[1];
+                    String repasCuisinierId = repa.getIdCuisinier();
+                    FirebaseDatabase.getInstance().getReference("Users").child(repasCuisinierId).child("suspension").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            suspension[0] = snapshot.getValue(String.class).trim();
+                        }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
-                if (suspension[0].equals("oui Temporairement") || suspension[0].equals("oui Indefinement")) {
-                    repasList.remove(repa);
+                        }
+                    });
+                    if (suspension[0].equals("oui Temporairement") || suspension[0].equals("oui Indefinement")) {
+                        repasList.remove(repa);
+                    }
                 }
             }
         }
