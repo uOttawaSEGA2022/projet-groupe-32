@@ -9,7 +9,7 @@
             android:id="@+id/searchAmeal"
             android:icon="@drawable/ic_baseline_search_24"
             android:iconTint="@color/backgroundcolor"
-            android:title="Search_a_meal" />
+            android:title="Search a meal" />
         <item
             android:id="@+id/nav_menu"
             android:icon="@drawable/ic_baseline_notifications_24"
