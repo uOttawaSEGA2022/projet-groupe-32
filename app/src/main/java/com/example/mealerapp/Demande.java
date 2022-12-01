@@ -27,7 +27,6 @@ public class Demande {
     }
 
     public void addDemandeDatabase(){
-
         FirebaseDatabase.getInstance().getReference("Demandes").child(idDemande).setValue(this);
     }
 
