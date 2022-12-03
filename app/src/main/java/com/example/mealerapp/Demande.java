@@ -1,5 +1,7 @@
 package com.example.mealerapp;
 
+import static java.lang.String.valueOf;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class Demande {
     private String dateDemande;
     private String idClient;
     private String demandeTraitee;
+    private String demandeExists="true";
     private Repas repas;
 
     public Demande(){}
@@ -37,6 +40,7 @@ public class Demande {
     }
 
     public String getDemandeTraitee(){return this.demandeTraitee;};
+    public String getDemandeExists(){return this.demandeExists;}
 
     public void traiterDemande(){
         String idConnectedCooker;
@@ -47,7 +51,7 @@ public class Demande {
         Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
         if ( this.demandeTraitee.equals("false")){
             Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-            valueRef.setValue(ServerValue.increment(1));
+            valueRef.setValue(valueOf(ServerValue.increment(1)));
             this.demandeTraitee="true";
             FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
             return;
@@ -59,11 +63,9 @@ public class Demande {
         mAuth=FirebaseAuth.getInstance();
         idConnectedCooker = mAuth.getUid();
         DatabaseReference valueRef = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).child("nombreRepasVendus");
-        //Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-        if ( this.demandeTraitee.equals("false")){
-            Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-            valueRef.setValue(ServerValue.increment(1));
-            this.demandeTraitee="true";
+        Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
+        if ( this.demandeExists.equals("true")){
+            this.demandeExists="false";
             FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
             return;
         }

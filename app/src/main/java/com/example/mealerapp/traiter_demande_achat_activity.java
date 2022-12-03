@@ -44,9 +44,8 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     DatabaseReference databaseDemandes;
 
     FirebaseAuth mAuth;
-    NotificationCompat.Builder builderRef ;
-    NotificationCompat.Builder builderAcc ;
-    NotificationManagerCompat notificationManager ;
+
+
 
     String idConnectedCooker;
     public ImageButton LogOut1;
@@ -76,6 +75,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
         demandesArrayList = new ArrayList<>();
 
+
         listViewDemandes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -86,34 +86,14 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
             }
         });
 
-        builderRef = new NotificationCompat.Builder(this, "Ref").setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Notification").setContentText("Votre notification a été refusée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
-        builderAcc = new NotificationCompat.Builder(this, "Acc").setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Notification").setContentText("Votre notification a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
-        notificationManager = NotificationManagerCompat.from(this);
 
-        createNotificationChannelRef();
-        createNotificationChannelAcc();
+
+
 
 
     }
 
-    private void createNotificationChannelRef() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("Ref","Notification", importance);
-            channel.setDescription("description");
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-    private void createNotificationChannelAcc() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("Acc","Notification", importance);
-            channel.setDescription("description");
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
+
 
 
 
@@ -138,7 +118,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
                     Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
-                    if ( demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeTraitee().equals("false")) {
+                    if ( demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true")) {
                         demandesArrayList.add(demande);
                     }
                 }
@@ -195,7 +175,8 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
         //FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("demandeTraitee").setValue("true");
         Toast.makeText(getApplicationContext(), "Demande acceptée", Toast.LENGTH_LONG).show();
-        notificationManager.notify(0, builderRef.build());
+
+
 
     }
 
@@ -203,7 +184,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
         demande.rejetterDemande(demande);
         Toast.makeText(getApplicationContext(), "Demande refusée", Toast.LENGTH_LONG).show();
-        notificationManager.notify(1, builderAcc.build());
+
     }
 
 

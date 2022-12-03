@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,21 +113,13 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
             return;
         }
 
-        //On créé notre objet avec ses attributs prioritaires
-        /*
-        List<Plainte> list = null; //liste associer a chaque cook
-       Cooker cooker = new Cooker(Prenom1,Nom1,
-               adressecourriel1,MotDePasse1,"Cooker",
-               Adresse1,"je suis un cook",
-                "non", "non",list);
-        */
 
         Cooker user=new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,"Cooker",Adresse1);
         mAuth.createUserWithEmailAndPassword(user.getCourriel() , user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-        //mAuth.createUserWithEmailAndPassword(cooker.getCourriel() , cooker.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
+         @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    Log.i("succes", "is connnected");
                     //user.setUserType("Administrator");
                     //cooker.setUserType("Cooker");
                     //Cooker Itulisateur =cooker; //On lui affecte l'objet plus haut

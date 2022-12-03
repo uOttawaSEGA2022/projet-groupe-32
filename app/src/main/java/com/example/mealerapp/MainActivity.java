@@ -79,16 +79,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 //
+            /*
+          Repas repas1 = new Repas("test1", "test1", "test1", "test1", 10, "FeEbt2nOVDfgyq4Og8Y0bmwnINt1");
+          Repas repas2 = new Repas("test2", "test2", "test2", "test2", 20, "FeEbt2nOVDfgyq4Og8Y0bmwnINt1");
+          Repas repas3 = new Repas("test3", "test3", "test3", "test3", 30, "FeEbt2nOVDfgyq4Og8Y0bmwnINt1");
+          Repas repas4 = new Repas("test4", "test4", "test4", "test4", 40, "FeEbt2nOVDfgyq4Og8Y0bmwnINt1");
+          Demande demande = new Demande("amin_nna@gmail.com", repas1);
+          demande.addDemandeDatabase();
+        Demande demande2 = new Demande("amin_nna@gmail.com", repas2);
+        demande2.addDemandeDatabase();
+        Demande demande3 = new Demande("amin_nna@gmail.com", repas3);
+        demande3.addDemandeDatabase();
+        Demande demande4 = new Demande("amin_nna@gmail.com", repas4);
+        demande4.addDemandeDatabase();
+
+        */
 
 
-//        Demande demande = new Demande("amin_nna@gmail.com", repas);
-//        demande.addDemandeDatabase();
-//        Demande demande2 = new Demande("amin_nna@gmail.com", repas2);
-//        demande2.addDemandeDatabase();
-//        Demande demande3 = new Demande("amin_nna@gmail.com", repas3);
-//        demande3.addDemandeDatabase();
-//        Demande demande4 = new Demande("amin_nna@gmail.com", repas4);
-//        demande4.addDemandeDatabase();
 
 
 
@@ -181,8 +188,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             User user = snapshot.getValue(User.class);
                                             Cooker cook =snapshot.getValue(Cooker.class);
                                             //Client client=snapshot.getValue(Client.class);
-                                          String suspension =cook.getSuspension();
-                                          String suspensionEndTime =cook.getSuspensionEndTime();
+                                            String suspension =cook.getSuspension();
+                                            String suspensionEndTime =cook.getSuspensionEndTime();
 
                                             if (user == null) {
                                                 Toast.makeText(MainActivity.this, "You don't have an account, Please sign up !", Toast.LENGTH_LONG).show();
