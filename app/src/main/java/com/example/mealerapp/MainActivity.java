@@ -77,30 +77,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.i("Plaintes Firebase", "OK");
          */
 
-    /*
-        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
-        repas.addRepasDatabase();
 
-        Repas repas2 = new Repas("Tajine au poulet","citron,coriandre,cumin,gingembre frais,oignon,navet,carottes,huile d'olive, poulet avec os,safran,eau bouillante","Ce plat typique du maroc fait un excellent repas à manger en famille ou avec des invités.","Marocaine",100,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
-        repas2.addRepasDatabase();
-
-        Repas repas3 = new Repas("Tajine au boeuf ","citron,coriandre,cumin,gingembre frais,oignon,navet,carottes,huile d'olive, viande de boeuf avec os,safran,eau bouillante","Ce plat typique du maroc fait un excellent repas à manger en famille ou avec des invités.","Marocaine",100,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
-        repas3.addRepasDatabase();
-
-        Repas repas4 = new Repas("Gyozas","Vinaigre de riz,Sauce soja,Porc,Huile de sésame,Sauce soja,Ail,Choux chinois,huile d'olive,Gingembre frais,Huile de tournesol,Ciboulette","Raviolis japonais.","Japonaise",50,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
-        repas4.addRepasDatabase();
-
-        Demande demande = new Demande("amin_nna@gmail.com", repas);
-        demande.addDemandeDatabase();
-        Demande demande2 = new Demande("amin_nna@gmail.com", repas2);
-        demande2.addDemandeDatabase();
-        Demande demande3 = new Demande("amin_nna@gmail.com", repas3);
-        demande3.addDemandeDatabase();
-        Demande demande4 = new Demande("amin_nna@gmail.com", repas4);
-        demande4.addDemandeDatabase();
+//
 
 
-     */
+//        Demande demande = new Demande("amin_nna@gmail.com", repas);
+//        demande.addDemandeDatabase();
+//        Demande demande2 = new Demande("amin_nna@gmail.com", repas2);
+//        demande2.addDemandeDatabase();
+//        Demande demande3 = new Demande("amin_nna@gmail.com", repas3);
+//        demande3.addDemandeDatabase();
+//        Demande demande4 = new Demande("amin_nna@gmail.com", repas4);
+//        demande4.addDemandeDatabase();
+
+
+
 
 
 

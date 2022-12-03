@@ -3,8 +3,13 @@ package com.example.mealerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,6 +36,7 @@ import java.util.UUID;
 
 public class traiter_demande_achat_activity extends AppCompatActivity {
 
+
     ListView listViewDemandes;
 
     List<Demande> demandesArrayList;
@@ -38,6 +44,9 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
     DatabaseReference databaseDemandes;
 
     FirebaseAuth mAuth;
+    NotificationCompat.Builder builderRef ;
+    NotificationCompat.Builder builderAcc ;
+    NotificationManagerCompat notificationManager ;
 
     String idConnectedCooker;
     public ImageButton LogOut1;
@@ -76,7 +85,36 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
                 return true;
             }
         });
+
+        builderRef = new NotificationCompat.Builder(this, "Ref").setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Notification").setContentText("Votre notification a été refusée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+        builderAcc = new NotificationCompat.Builder(this, "Acc").setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Notification").setContentText("Votre notification a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+        notificationManager = NotificationManagerCompat.from(this);
+
+        createNotificationChannelRef();
+        createNotificationChannelAcc();
+
+
     }
+
+    private void createNotificationChannelRef() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Ref","Notification", importance);
+            channel.setDescription("description");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+    private void createNotificationChannelAcc() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Acc","Notification", importance);
+            channel.setDescription("description");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 
 
     @Override
@@ -143,6 +181,9 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
             public void onClick(View view) {
                 refuserDemande(demande);
                 b.dismiss();
+
+
+
             }
         });
 
@@ -154,13 +195,15 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
         //FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("demandeTraitee").setValue("true");
         Toast.makeText(getApplicationContext(), "Demande acceptée", Toast.LENGTH_LONG).show();
+        notificationManager.notify(0, builderRef.build());
 
     }
 
     private void refuserDemande(Demande demande) {
 
-        demande.traiterDemande();
+        demande.rejetterDemande(demande);
         Toast.makeText(getApplicationContext(), "Demande refusée", Toast.LENGTH_LONG).show();
+        notificationManager.notify(1, builderAcc.build());
     }
 
 
