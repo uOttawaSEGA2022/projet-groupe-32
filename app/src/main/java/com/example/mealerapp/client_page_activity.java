@@ -78,9 +78,9 @@ public class client_page_activity extends AppCompatActivity {
             public void onDataChange (@NonNull DataSnapshot snapshot){
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class) ;
-                    String emailClient=demande.getIdClient();
+                    String idClient=demande.getIdClient();
 
-                    if(emailClient.equals(FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("courriel"))){
+                    if(idClient.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                         if ( demande.getDemandeTraitee().equals("true")){
                             NotificationCompat.Builder builderAcc ;
                             builderAcc = new NotificationCompat.Builder(client_page_activity.this, "Acc").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
