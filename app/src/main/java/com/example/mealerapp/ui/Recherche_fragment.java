@@ -261,6 +261,5 @@ public class Recherche_fragment extends Fragment {
 
     private void Addtopanier(Repas repas) {
         Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
-        demande.addDemandeDatabase();
     }
 }
