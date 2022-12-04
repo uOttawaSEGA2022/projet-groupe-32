@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".traiter_demande_dialogue_activity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/button_retirer_Repas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Commande OK"
+            android:textColor="#F8F5F5" />
+
+        <Button
+            android:id="@+id/button_changerStatus_Repas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pick up adresse"
+            android:textColor="#F8F5F5" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonRefuserDemande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Evaluer le cuisinier"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#FFFFFF"
+                app:iconTint="#F4F1F1"
+                app:rippleColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/buttonAccepterDemande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Deposer une plainte "
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

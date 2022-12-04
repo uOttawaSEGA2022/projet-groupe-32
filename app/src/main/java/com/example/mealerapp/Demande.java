@@ -26,6 +26,7 @@ public class Demande {
     private String demandeExists="true";
     private Repas repas;
 
+
     public Demande(){}
 
     public Demande(String idClient, Repas repas){
@@ -102,6 +103,7 @@ public class Demande {
     public String getIdClient(){
         return idClient;
     }
+    public String getDemandeStatus(){ return this.demandeTraitee;}
 
 
 
