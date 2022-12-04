@@ -32,52 +32,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Recherche_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Recherche_fragment extends Fragment {
     ArrayList<Repas> repasArrayList;
     ListView listViewRecherche;
     private SearchView searchView;
     View root;
 
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-
     public Recherche_fragment() {
         // Required empty public constructor
     }
 
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment Recherche_fragment.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static Recherche_fragment newInstance(String param1, String param2) {
-//        Recherche_fragment fragment = new Recherche_fragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
     @Override
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_recherche_fragment, container, false);
         searchView = root.findViewById(R.id.searchRecherche);
         searchView.clearFocus();
@@ -86,10 +54,8 @@ public class Recherche_fragment extends Fragment {
         repasArrayList = new ArrayList<Repas>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             boolean a = false;
-
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 searchView.clearFocus();
                 Log.i("client_page_activity", "la cle recherche esttttttttttttttttttttttt  " + query.toString());
                 repasArrayList = RechercherTypeCuisineAndNom(query);
@@ -294,18 +260,7 @@ public class Recherche_fragment extends Fragment {
     }
 
     private void Addtopanier(Repas repas) {
-
-        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("courriel").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String courriel = snapshot.getValue(String.class);
-                Demande demande = new Demande(courriel, repas);
-                demande.addDemandeDatabase();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
+        demande.addDemandeDatabase();
     }
 }

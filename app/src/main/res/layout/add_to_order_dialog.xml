@@ -23,7 +23,6 @@
                 android:id="@+id/texviewnaame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Food 01"
                 android:textStyle="bold"
                 android:textAllCaps="true"
                 android:gravity="center_vertical|start"
@@ -32,16 +31,16 @@
                 android:id="@+id/textViewPriice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100,000"
                 android:textStyle="italic"
                 android:textAllCaps="true"
                 android:gravity="center_vertical|start"
                 android:layout_marginLeft="10dp"/>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
