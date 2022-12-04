@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".changer_description_cooker_activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fonddecran"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/custom_edittext"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewtitrePlainte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Titre Plainte" />
+
+                    <EditText
+                        android:id="@+id/titre_plainte"
+                        android:layout_width="258dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/custom_edittext"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:singleLine="false"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewDescriptionPlainte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Description Plainte" />
+
+                    <EditText
+                        android:id="@+id/plainte_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="165dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/custom_edittext"
+                        android:hint="Entrez votre plainte"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:singleLine="false"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/cardview_dark_background" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/deposer_plainte"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="Déposer Plainte"
+            android:textColor="#FBFBFA" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

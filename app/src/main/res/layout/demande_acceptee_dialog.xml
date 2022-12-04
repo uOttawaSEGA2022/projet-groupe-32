@@ -14,19 +14,12 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
-        <Button
-            android:id="@+id/button_retirer_Repas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Commande OK"
-            android:textColor="#F8F5F5" />
 
-        <Button
-            android:id="@+id/button_changerStatus_Repas"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pick up adresse"
-            android:textColor="#F8F5F5" />
+            android:text="Commande OK, Pick up address" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,23 +34,23 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonRefuserDemande"
+                android:id="@+id/buttonEvaluerCuisinier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
                 android:layout_weight="1"
                 android:text="Evaluer le cuisinier"
-                android:layout_marginTop="100dp"
-                android:layout_marginLeft="10dp"
                 android:textColor="#FFFFFF"
                 app:iconTint="#F4F1F1"
                 app:rippleColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/buttonAccepterDemande"
+                android:id="@+id/buttonDeposerPlainte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
                 android:layout_weight="1"
                 android:text="Deposer une plainte "
                 android:textColor="#FFFFFF" />
