@@ -1,7 +1,10 @@
 package com.example.mealerapp;
 
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,6 +39,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 
 import androidx.core.view.MenuItemCompat;
@@ -57,6 +62,7 @@ public class client_page_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();;
         setContentView(R.layout.client_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
@@ -64,6 +70,40 @@ public class client_page_activity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         textViewUserConnected = headerView.findViewById(R.id.txtFullName);
+        createNotificationChannelRef();
+        createNotificationChannelAcc();
+
+        FirebaseDatabase.getInstance().getReference("Demandes").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange (@NonNull DataSnapshot snapshot){
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Demande demande = data.getValue(Demande.class) ;
+                    String emailClient=demande.getIdClient();
+
+                    if(emailClient.equals(FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("courriel"))){
+                        if ( demande.getDemandeTraitee().equals("true")){
+                            NotificationCompat.Builder builderAcc ;
+                            builderAcc = new NotificationCompat.Builder(client_page_activity.this, "Acc").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(client_page_activity.this);
+                            notificationManager.notify(0, builderAcc.build());
+                            Log.i("notification acceptée", "visible");
+                        }
+                        else if ( demande.getDemandeExists().equals("false")){
+                            NotificationCompat.Builder builderRef ;
+                            builderRef = new NotificationCompat.Builder(client_page_activity.this, "Ref").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande a été refusée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(client_page_activity.this);
+                            notificationManager.notify(1, builderRef.build());
+                            Log.i("notification rejettée", "visible");
+                        }
+                    }
+                    //repasArrayList.add(repas);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,6 +124,8 @@ public class client_page_activity extends AppCompatActivity {
 
             }
         });
+
+
 //        searchView = findViewById(R.id.searchRecherche);
 //        searchView.clearFocus();
 //        listViewRecherche = findViewById(R.id.listViewRecherche);
@@ -172,6 +214,24 @@ public class client_page_activity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
+    }
+    private void createNotificationChannelRef() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Ref","Notification", importance);
+            channel.setDescription("description");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+    private void createNotificationChannelAcc() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Acc","Notification", importance);
+            channel.setDescription("description");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     @Override
@@ -376,4 +436,6 @@ public class client_page_activity extends AppCompatActivity {
 //            }
 //        });
 //    }
+
+
 }
