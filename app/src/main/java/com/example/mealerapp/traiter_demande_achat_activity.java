@@ -118,7 +118,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
                     Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
-                    if ( demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true")) {
+                    if ( demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true")& demande.getDemandeTraitee().equals("False")) {
                         demandesArrayList.add(demande);
                     }
                 }
