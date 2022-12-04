@@ -156,8 +156,8 @@ public class client_page_activity extends AppCompatActivity {
                     replaceFragments(new NotificationFragment());
                     // startActivity(new Intent(client_page_activity.this,. class));
                 } if (id == R.id.nav_panier) {
-                    Intent cartIntent = new Intent(client_page_activity.this,panier_page_activity.class);
-                    startActivity(cartIntent);
+//                    Intent cartIntent = new Intent(client_page_activity.this,panier_page_activity.class);
+//                    startActivity(cartIntent);
                     //startActivity(new Intent(client_page_activity.this, panier_page_activity.class));
                     replaceFragments(new PanierFragment());
                 } if (id == R.id.nav_orders) {

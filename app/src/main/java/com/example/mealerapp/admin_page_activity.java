@@ -87,8 +87,8 @@ public class admin_page_activity extends AppCompatActivity {
                     // Log.i("admin_page_activity","la cle de plainte est "+plainte.tString());
                     plaintsArrayList.add(plainte);
                 }
-                plainteListe demandesAdapter = new plainteListe(admin_page_activity.this, plaintsArrayList) ;
-                plaintsListView.setAdapter(demandesAdapter) ;
+                plainteListe plaitesAdapter = new plainteListe(admin_page_activity.this, plaintsArrayList) ;
+                plaintsListView.setAdapter(plaitesAdapter) ;
             }
 
             @Override
