@@ -17,6 +17,7 @@ public class Client extends User {
     String UserType;
     String CVC;
     String InformationsCarteCredit;
+    ArrayList<Repas> panier=new ArrayList<Repas>();
     //Constructeur
     //On a en paramettre les paramètres nécessaires à la création de l'objet
 
@@ -35,7 +36,7 @@ public class Client extends User {
     public String getInformationsCarteCredit() {
         return InformationsCarteCredit;
     }
-
+public ArrayList<Repas> getPanier(){return panier;}
     public String getTypeUser() {
         return "Client";
     }
@@ -45,4 +46,7 @@ public class Client extends User {
         InformationsCarteCredit = informationsCarteCredit + " " + cvv;
     }
 
+    public void setPanier(ArrayList<Repas> nouveauPanier) {
+     panier=nouveauPanier;
     }
+}

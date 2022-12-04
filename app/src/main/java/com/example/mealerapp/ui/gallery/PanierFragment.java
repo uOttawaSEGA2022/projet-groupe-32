@@ -15,9 +15,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.mealerapp.Client;
 import com.example.mealerapp.Demande;
 import com.example.mealerapp.DemandeListe;
 import com.example.mealerapp.R;
+import com.example.mealerapp.Repas;
 import com.example.mealerapp.RepasListRecherche;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,9 +33,10 @@ import java.util.UUID;
 
 
 public class PanierFragment extends Fragment {
-    ArrayList<Demande> demandeArrayList;
+    ArrayList<Repas> repasArrayList;
     ListView listViewRecherche;
     DatabaseReference myRef;
+    Client client;
     String uid;
 @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState){
@@ -44,36 +47,32 @@ public class PanierFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view,savedInstanceState);
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        myRef = FirebaseDatabase.getInstance().getReference("Demandes");
+        myRef = FirebaseDatabase.getInstance().getReference("Users");
         listViewRecherche = (ListView) view.findViewById(R.id.listViewPanierp);
         listViewRecherche.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Demande demande = (Demande) listViewRecherche.getItemAtPosition(position);
-                showHnadleDemande(demande);
+                Repas repas = (Repas) listViewRecherche.getItemAtPosition(position);
+                showHnadleDemande(repas);
                 return true;
             }
         });
     }
-
     public void onStart() {
         super.onStart();
-        demandeArrayList = new ArrayList<Demande>();
+        repasArrayList=new ArrayList<Repas>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                demandeArrayList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    Demande demande1 = data.getValue(Demande.class);
-                    String clientId = demande1.getIdClient();
-                    if (clientId.equals(uid)) {
-                        Log.i("PanierFragment","je suis egale a "+uid+"   "+clientId);
-                        demandeArrayList.add(demande1);
+                    if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(data.toString())) {
+                        client = data.getValue(Client.class);
+                        repasArrayList=client.getPanier();
                     }
                 }
-                DemandeListe demandeListe = new DemandeListe(getActivity(), demandeArrayList);
-                if(demandeArrayList!=null){
-                    Log.i("PanierFragment","la taille de demandeArralist est   "+demandeArrayList.size());
+                DemandeListe demandeListe = new DemandeListe(getActivity(), repasArrayList);
+                if(repasArrayList!=null){
+                    Log.i("PanierFragment","la taille de demandeArralist est   "+repasArrayList.size());
                     listViewRecherche.setAdapter(demandeListe);
                 }
             }
@@ -84,7 +83,7 @@ public class PanierFragment extends Fragment {
     }
 
 
-    private void showHnadleDemande(Demande demande) {
+    private void showHnadleDemande(Repas repas) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.add_to_order_dialog, null);
@@ -93,8 +92,8 @@ public class PanierFragment extends Fragment {
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.deletefromPanier);
         final TextView textViewName = (TextView) dialogView.findViewById(R.id.texviewnaame);
         final TextView textViewPrice = dialogView.findViewById(R.id.textViewPriice);
-        textViewName.setText(demande.getRepas().getRepasName());
-        textViewPrice.setText(String.valueOf(demande.getRepas().getPrice()));
+        textViewName.setText(repas.getRepasName());
+        textViewPrice.setText(String.valueOf(repas.getPrice()));
 
         final AlertDialog b = dialogBuilder.create();
         b.show();
@@ -102,37 +101,26 @@ public class PanierFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 b.dismiss();
-                AddtoOrders(demande);
+                AddtoOrders(repas);
             }
         });
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 b.dismiss();
-                deleteDemande(demande);
+                deleteDemande(repas);
             }
-
         });
     }
 
-    private void AddtoOrders(Demande demande) {
-        FirebaseDatabase.getInstance().getReference("Achats").child(UUID.randomUUID().toString()).setValue(demande);
-        deleteDemande(demande);
+    private void AddtoOrders(Repas repas) {
+        Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
+        demande.addDemandeDatabase();
     }
 
 
-    private void deleteDemande(Demande demande) {
-        DatabaseReference data = FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande());
-        data.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                data.removeValue();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+    private void deleteDemande(Repas repas) {
+        repasArrayList.remove(repas);
+        client.setPanier(repasArrayList);
     }
 }

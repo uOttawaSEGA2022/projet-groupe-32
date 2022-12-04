@@ -9,15 +9,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class DemandeListe extends ArrayAdapter<Demande> {
+public class DemandeListe extends ArrayAdapter<Repas> {
 
     private Activity context;
-    ArrayList<Demande> demandeArrayList;
+    ArrayList<Repas> repasArrayList;
 
-    public DemandeListe(Activity context, ArrayList<Demande> demandeArrayList) {
-        super(context, R.layout.item_panier_view, demandeArrayList);
+    public DemandeListe(Activity context, ArrayList<Repas> repasArrayList) {
+        super(context, R.layout.item_panier_view, repasArrayList);
         this.context = context;
-        this.demandeArrayList = demandeArrayList;
+        this.repasArrayList = repasArrayList;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -27,9 +27,9 @@ public class DemandeListe extends ArrayAdapter<Demande> {
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.panier_item_name);
         TextView textViewPrice = (TextView) listViewItem.findViewById(R.id.panier_item_Prix);
 
-        Demande demande = demandeArrayList.get(position);
-        textViewName.setText(demande.getRepas().getRepasName());
-        textViewPrice.setText(String.valueOf(demande.getRepas().getPrice()));
+        Repas repas =repasArrayList.get(position);
+        textViewName.setText(repas.getRepasName());
+        textViewPrice.setText(String.valueOf(repas.getPrice()));
         return listViewItem;
     }
 }

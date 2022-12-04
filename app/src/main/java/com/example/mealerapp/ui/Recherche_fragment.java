@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mealerapp.Client;
 import com.example.mealerapp.Demande;
 import com.example.mealerapp.R;
 import com.example.mealerapp.Repas;
@@ -38,7 +39,7 @@ public class Recherche_fragment extends Fragment {
     ListView listViewRecherche;
     private SearchView searchView;
     View root;
-
+    DatabaseReference connectedClientpanier;
     public Recherche_fragment() {
         // Required empty public constructor
     }
@@ -50,6 +51,7 @@ public class Recherche_fragment extends Fragment {
         searchView = root.findViewById(R.id.searchRecherche);
         searchView.clearFocus();
         listViewRecherche = root.findViewById(R.id.listViewRecherche);
+        connectedClientpanier=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier");;
         DatabaseReference databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
         repasArrayList = new ArrayList<Repas>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -220,7 +222,6 @@ public class Recherche_fragment extends Fragment {
         textViewCuisineType.setText(repas.getCuisineType());
         textViewIngredient.setText(repas.getRepasIngredients());
         textViewDescription.setText(repas.getRepasDescription());
-
         FirebaseDatabase.getInstance().getReference("Users").child(repas.getIdCuisinier()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -254,13 +255,17 @@ public class Recherche_fragment extends Fragment {
             public void onClick(View view) {
                 b.dismiss();
                 Addtopanier(repas);
+
             }
         });
 
     }
 
     private void Addtopanier(Repas repas) {
-        Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
-        demande.addDemandeDatabase();
+
+        repasArrayList.add(repas);
+        connectedClientpanier.setValue(repasArrayList);
+        //Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
+       // demande.addDemandeDatabase();
     }
 }
