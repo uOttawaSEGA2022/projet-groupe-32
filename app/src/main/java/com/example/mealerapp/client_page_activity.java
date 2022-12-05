@@ -73,7 +73,7 @@ public class client_page_activity extends AppCompatActivity {
         createNotificationChannelRef();
         createNotificationChannelAcc();
 
-        FirebaseDatabase.getInstance().getReference("Demandes").addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("Achats").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange (@NonNull DataSnapshot snapshot){
                 for (DataSnapshot data : snapshot.getChildren()) {
