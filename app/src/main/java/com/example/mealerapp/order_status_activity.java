@@ -175,6 +175,7 @@ public class order_status_activity extends AppCompatActivity {
                     editTextDescription.setError("Description est requise");
                     editTextDescription.requestFocus();
                     return;
+
                 }
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
                 Date date = new Date();
