@@ -39,7 +39,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
     ListView listViewDemandes;
 
-    List<Demande> demandesArrayList;
+    ArrayList<Demande> demandesArrayList;
 
     DatabaseReference databaseDemandes;
 
@@ -52,7 +52,6 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.traiter_demande_achat);
@@ -69,34 +68,24 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
 
         mAuth=FirebaseAuth.getInstance();
-        idConnectedCooker = mAuth.getUid();
+        idConnectedCooker = mAuth.getCurrentUser().getUid();
 
         listViewDemandes = (ListView) findViewById(R.id.listViewDemandes);
-        databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
-        demandesArrayList = new ArrayList<>();
+        databaseDemandes = FirebaseDatabase.getInstance().getReference("Achats");
+        demandesArrayList = new ArrayList<Demande>();
 
 
         listViewDemandes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Demande demande = demandesArrayList.get(i);
+                Demande demande = (Demande) listViewDemandes.getItemAtPosition(i);
                 Log.i("Demande ajoutée",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
                 showAccepterRejeter(demande);
                 return true;
             }
         });
 
-
-
-
-
-
     }
-
-
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -105,10 +94,6 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         Demande demande = new Demande("amin_nna@gmail.com", repas);
         demande.addDemandeDatabase();
          */
-
-
-
-
         databaseDemandes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,11 +103,11 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
                     Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
-                    if ( demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true")& demande.getDemandeTraitee().equals("false")) {
+                    if (demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true")& demande.getDemandeTraitee().equals("false")) {
                         demandesArrayList.add(demande);
-                    }
                 }
-
+                }
+                Log.i("Demande parcourue ",  "La taille de demandeArrayListe est   "+demandesArrayList.size());
                 DemandeList demandesAdapter = new DemandeList(traiter_demande_achat_activity.this, demandesArrayList) ;
                 listViewDemandes.setAdapter(demandesAdapter) ;
             }
@@ -171,7 +156,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
 
     private void accepterDemande(Demande demande) {
 
-        demande.traiterDemande();
+        demande.traiterDemande(demande);
 
         //FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("demandeTraitee").setValue("true");
         Toast.makeText(getApplicationContext(), "Demande acceptée", Toast.LENGTH_LONG).show();

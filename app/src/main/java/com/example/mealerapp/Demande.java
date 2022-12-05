@@ -37,50 +37,61 @@ public class Demande {
     }
 
     public void addDemandeDatabase(){
-        FirebaseDatabase.getInstance().getReference("Demandes").child(idDemande).setValue(this);
+        FirebaseDatabase.getInstance().getReference("Achats").child(idDemande).setValue(this);
     }
 
     public String getDemandeTraitee(){return this.demandeTraitee;};
     public String getDemandeExists(){return this.demandeExists;}
 
-    public void traiterDemande(){
+    public void traiterDemande(Demande demande){
         String idConnectedCooker;
         FirebaseAuth mAuth;
         mAuth=FirebaseAuth.getInstance();
-        idConnectedCooker = mAuth.getUid();
+        idConnectedCooker = mAuth.getCurrentUser().getUid();
         DatabaseReference valueRef = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).child("nombreRepasVendus");
         Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-        if ( this.demandeTraitee.equals("false")){
+        if ( demande.getDemandeTraitee().equals("false")){
             Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-            valueRef.setValue(valueOf(ServerValue.increment(1)));
+            valueRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    long repasVendu=snapshot.getValue(Long.class);
+                   long  newnombreRepasVendu= repasVendu +1;
+                   valueRef.setValue(newnombreRepasVendu);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+            //valueRef.setValue(valueOf(ServerValue.increment(1)));
             this.demandeTraitee="true";
-            FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
+            FirebaseDatabase.getInstance().getReference("Achats").child(demande.getIdDemande()).child("demandeTraitee").setValue("true");
             return;
         }
     };
-    public void rejetterDemande(){
-        String idConnectedCooker;
-        FirebaseAuth mAuth;
-        mAuth=FirebaseAuth.getInstance();
-        idConnectedCooker = mAuth.getUid();
-        DatabaseReference valueRef = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).child("nombreRepasVendus");
-        Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-        if ( this.demandeExists.equals("true")){
-            this.demandeExists="false";
-            FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
-            return;
-        }
-    };
+//    public void rejetterDemande(){
+//        String idConnectedCooker;
+//        FirebaseAuth mAuth;
+//        mAuth=FirebaseAuth.getInstance();
+//        idConnectedCooker = mAuth.getUid();
+//        DatabaseReference valueRef = FirebaseDatabase.getInstance().getReference("Users").child(idConnectedCooker).child("nombreRepasVendus");
+//        Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
+//        if ( this.demandeExists.equals("true")){
+//            this.demandeExists="false";
+//            FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
+//            return;
+//        }
+//    };
 
 
     public void rejetterDemande(Demande demande) {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande());
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Achats").child(demande.getIdDemande());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 database.removeValue();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
