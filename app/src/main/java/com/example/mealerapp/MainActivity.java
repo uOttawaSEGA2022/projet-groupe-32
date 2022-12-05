@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //
 //
+        /*
           Repas repas1 = new Repas("test1", "test1", "test1", "test1", 10, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
           Repas repas2 = new Repas("test2", "test2", "test2", "test2", 20, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
           Repas repas3 = new Repas("test3", "test3", "test3", "test3", 30, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
@@ -92,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         demande3.addDemandeDatabase();
         Demande demande4 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas4);
         demande4.addDemandeDatabase();
+
+         */
 
 
 

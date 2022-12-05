@@ -7,20 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mealerapp.Client;
 import com.example.mealerapp.Demande;
 import com.example.mealerapp.DemandeListe;
 import com.example.mealerapp.R;
 import com.example.mealerapp.Repas;
-import com.example.mealerapp.RepasListRecherche;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 
 public class PanierFragment extends Fragment {
@@ -40,6 +39,7 @@ public class PanierFragment extends Fragment {
     DatabaseReference myRef;
     Client client;
     String uid;
+    DemandeListe repasAdapter;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState){
     View view=inflater.inflate(R.layout.fragment_panier, container, false);
@@ -62,8 +62,12 @@ public class PanierFragment extends Fragment {
                 else {
                     client=task.getResult().getValue(Client.class);
                     repasArrayList=client.getPanier();
-                    DemandeListe repasAdapter = new DemandeListe(getActivity(), repasArrayList);
-                    listViewPanier.setAdapter(repasAdapter);
+                    Log.i("PanierFragment create","la taille de repas est   "+repasArrayList.size());
+                    repasAdapter = new DemandeListe(getActivity(), repasArrayList);
+                    if(repasArrayList!=null){
+                        Log.i("create not null","la taille de demandeArralist est   "+repasArrayList.size());
+                        listViewPanier.setAdapter(repasAdapter);
+                    }
                     Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
                 }
             }
@@ -90,15 +94,21 @@ public class PanierFragment extends Fragment {
                     if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(data.getKey())) {
                         client = data.getValue(Client.class);
                         repasArrayList=client.getPanier();
-                        Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
+                        if (repasAdapter==null ){
+                            Log.i("respas adapter","est null "+repasArrayList.size());
+                        }
+                        if (repasArrayList==null ){
+                            Log.i("respas list","est null "+repasArrayList.size());
+                        }
+
+                        Log.i("PanierFragment change","la taille de repas est   "+repasArrayList.size());
                     }
                 }
-                Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
-                DemandeListe repasAdapter = new DemandeListe(getActivity(), repasArrayList);
-                if(repasArrayList!=null){
-                    Log.i("PanierFragment","la taille de demandeArralist est   "+repasArrayList.size());
-                    listViewPanier.setAdapter(repasAdapter);
-                }
+                repasAdapter.notifyDataSetChanged();
+
+
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -142,12 +152,28 @@ public class PanierFragment extends Fragment {
         demande.addDemandeDatabase();
         repasArrayList.remove(repas);
         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
+        replaceFragments(new PanierFragment());
     }
 
 
     private void deleteDemande(Repas repas) {
         repasArrayList.remove(repas);
+        if (repasArrayList==null){
+            repasArrayList=new ArrayList<Repas>();
+        }
+
         //client.setPanier(repasArrayList);
         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
+        replaceFragments(new PanierFragment());
     }
+    private void replaceFragments(Fragment fragment) {
+        //remplacer les differents fragment
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentLayout, fragment);
+        fragmentTransaction.commit();
+    }
+
+
+
 }

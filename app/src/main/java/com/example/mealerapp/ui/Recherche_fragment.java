@@ -284,7 +284,9 @@ public class Recherche_fragment extends Fragment {
     }
 
     private void Addtopanier(Repas repas) {
-
+        if (repasArrayList==null){
+            repasArrayList=new ArrayList<Repas>();
+        }
         repasArrayList.add(repas);
         connectedClientpanier.setValue(repasArrayList);
         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
