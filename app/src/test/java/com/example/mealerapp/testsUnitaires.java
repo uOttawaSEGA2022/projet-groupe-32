@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 
-public class livrable3Tests {
+public class testsUnitaires {
 
     @Before
     public void setUp() throws Exception {
@@ -30,8 +30,9 @@ public class livrable3Tests {
     }
 
     @Test
-    public void checkRepasPrice() {
+    public void checkDemandeId() {
         Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
-        assertEquals("Vérifie le prix", "25.0", repas.getPrice()+"");
+        Demande demande = new Demande("id", repas);
+        assertEquals("Vérifie id demande", "id", demande.getIdClient()+"");
     }
 }

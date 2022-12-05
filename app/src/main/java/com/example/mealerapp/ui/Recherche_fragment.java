@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.mealerapp.Client;
 import com.example.mealerapp.Demande;
+import com.example.mealerapp.DemandeListe;
 import com.example.mealerapp.R;
 import com.example.mealerapp.Repas;
 import com.example.mealerapp.RepasList;
@@ -37,6 +38,8 @@ import java.util.ArrayList;
 public class Recherche_fragment extends Fragment {
     ArrayList<Repas> repasArrayList;
     ListView listViewRecherche;
+    Client client;
+    DatabaseReference myRef;
     private SearchView searchView;
     View root;
     DatabaseReference connectedClientpanier;
@@ -50,6 +53,7 @@ public class Recherche_fragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_recherche_fragment, container, false);
         searchView = root.findViewById(R.id.searchRecherche);
         searchView.clearFocus();
+        myRef = FirebaseDatabase.getInstance().getReference("Users");
         listViewRecherche = root.findViewById(R.id.listViewRecherche);
         connectedClientpanier=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier");;
         DatabaseReference databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
@@ -222,6 +226,24 @@ public class Recherche_fragment extends Fragment {
         textViewCuisineType.setText(repas.getCuisineType());
         textViewIngredient.setText(repas.getRepasIngredients());
         textViewDescription.setText(repas.getRepasDescription());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Log.i("Panier a changé"," ");
+                    Log.i("current user"," "+data.toString());
+                    if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(data.getKey())) {
+                        client = data.getValue(Client.class);
+                        repasArrayList=client.getPanier();
+                        Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         FirebaseDatabase.getInstance().getReference("Users").child(repas.getIdCuisinier()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -265,6 +287,7 @@ public class Recherche_fragment extends Fragment {
 
         repasArrayList.add(repas);
         connectedClientpanier.setValue(repasArrayList);
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
         //Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
        // demande.addDemandeDatabase();
     }

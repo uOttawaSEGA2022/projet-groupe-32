@@ -161,8 +161,6 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         //FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("demandeTraitee").setValue("true");
         Toast.makeText(getApplicationContext(), "Demande acceptée", Toast.LENGTH_LONG).show();
 
-
-
     }
 
     private void refuserDemande(Demande demande) {

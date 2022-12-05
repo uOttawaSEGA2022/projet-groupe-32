@@ -21,6 +21,8 @@ import com.example.mealerapp.DemandeListe;
 import com.example.mealerapp.R;
 import com.example.mealerapp.Repas;
 import com.example.mealerapp.RepasListRecherche;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,11 +36,11 @@ import java.util.UUID;
 
 public class PanierFragment extends Fragment {
     ArrayList<Repas> repasArrayList;
-    ListView listViewRecherche;
+    ListView listViewPanier;
     DatabaseReference myRef;
     Client client;
     String uid;
-@Override
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState){
     View view=inflater.inflate(R.layout.fragment_panier, container, false);
     return  view;
@@ -48,32 +50,54 @@ public class PanierFragment extends Fragment {
         super.onViewCreated(view,savedInstanceState);
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         myRef = FirebaseDatabase.getInstance().getReference("Users");
-        listViewRecherche = (ListView) view.findViewById(R.id.listViewPanierp);
-        listViewRecherche.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listViewPanier = (ListView) view.findViewById(R.id.listViewPanierp);
+        repasArrayList=new ArrayList<Repas>();
+
+        myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+                    client=task.getResult().getValue(Client.class);
+                    repasArrayList=client.getPanier();
+                    DemandeListe repasAdapter = new DemandeListe(getActivity(), repasArrayList);
+                    listViewPanier.setAdapter(repasAdapter);
+                    Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
+                }
+            }
+        });
+        listViewPanier.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Repas repas = (Repas) listViewRecherche.getItemAtPosition(position);
+                Repas repas = repasArrayList.get(position);
                 showHnadleDemande(repas);
                 return true;
             }
         });
+
     }
     public void onStart() {
         super.onStart();
-        repasArrayList=new ArrayList<Repas>();
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(data.toString())) {
+                    Log.i("current user"," "+FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    Log.i("current user"," "+data.toString());
+                    if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(data.getKey())) {
                         client = data.getValue(Client.class);
                         repasArrayList=client.getPanier();
+                        Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
                     }
                 }
-                DemandeListe demandeListe = new DemandeListe(getActivity(), repasArrayList);
+                Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
+                DemandeListe repasAdapter = new DemandeListe(getActivity(), repasArrayList);
                 if(repasArrayList!=null){
                     Log.i("PanierFragment","la taille de demandeArralist est   "+repasArrayList.size());
-                    listViewRecherche.setAdapter(demandeListe);
+                    listViewPanier.setAdapter(repasAdapter);
                 }
             }
             @Override
@@ -116,11 +140,14 @@ public class PanierFragment extends Fragment {
     private void AddtoOrders(Repas repas) {
         Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
         demande.addDemandeDatabase();
+        repasArrayList.remove(repas);
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
     }
 
 
     private void deleteDemande(Repas repas) {
         repasArrayList.remove(repas);
-        client.setPanier(repasArrayList);
+        //client.setPanier(repasArrayList);
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
     }
 }

@@ -130,7 +130,7 @@ public class order_status_activity extends AppCompatActivity {
     }
 
     private void showEvaluerDemande(Demande demande) {
-
+        /*
         android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.rating_cooker, null);
@@ -148,6 +148,7 @@ public class order_status_activity extends AppCompatActivity {
 
             }
         });
+         */
     }
 
     private void showPlaiteDescription(Demande demande) {
