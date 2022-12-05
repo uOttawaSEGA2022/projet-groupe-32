@@ -27,6 +27,8 @@ import com.example.mealerapp.ui.Recherche_fragment;
 import com.example.mealerapp.ui.gallery.PanierFragment;
 import com.example.mealerapp.ui.home.OrderFragment;
 import com.example.mealerapp.ui.slideshow.NotificationFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -70,7 +72,9 @@ public class client_page_activity extends AppCompatActivity {
         createNotificationChannelRef();
         createNotificationChannelAcc();
 
-        FirebaseDatabase.getInstance().getReference("Achats").addValueEventListener(new ValueEventListener() {
+
+
+        FirebaseDatabase.getInstance().getReference("Demandes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange (@NonNull DataSnapshot snapshot){
                 for (DataSnapshot data : snapshot.getChildren()) {

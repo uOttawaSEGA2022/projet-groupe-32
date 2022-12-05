@@ -101,8 +101,8 @@ public class Cooker extends User{
     }
 
 
-    public String getnombreRepasVendus(){
-        return nombreRepasVendus+"";
+    public long getnombreRepasVendus(){
+        return nombreRepasVendus;
     }
 
 

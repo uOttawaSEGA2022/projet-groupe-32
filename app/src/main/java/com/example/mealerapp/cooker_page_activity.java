@@ -44,7 +44,7 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Update note et nombre de repas vendus
                 loggedCooker=snapshot.getValue(Cooker.class);
-                viewRepasVendus.setText(loggedCooker.getnombreRepasVendus());
+                viewRepasVendus.setText(loggedCooker.getnombreRepasVendus()+"");
                 viewNote.setText(loggedCooker.getMoyenne());
             }
 
