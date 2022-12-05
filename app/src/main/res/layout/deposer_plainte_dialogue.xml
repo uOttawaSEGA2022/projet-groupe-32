@@ -50,10 +50,12 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/custom_edittext"
                         android:inputType="textMultiLine"
+                        android:minHeight="48dp"
                         android:padding="8dp"
                         android:singleLine="false"
                         android:textColor="@color/black"
-                        android:textColorHighlight="@color/cardview_dark_background" />
+                        android:textColorHighlight="@color/cardview_dark_background"
+                        tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
 
                 <LinearLayout

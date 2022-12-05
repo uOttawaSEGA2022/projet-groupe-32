@@ -144,6 +144,7 @@ public class order_status_activity extends AppCompatActivity {
             public void onClick(View v) {
                 float rating=ratingBar.getRating();
                 //demande.getRepas().setRepasRating(rating);
+                //
 
             }
         });
