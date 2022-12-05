@@ -57,7 +57,7 @@ import java.util.ArrayList;
 
 public class client_page_activity extends AppCompatActivity {
     private TextView textViewUserConnected;
-
+    //MIse à jour
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
