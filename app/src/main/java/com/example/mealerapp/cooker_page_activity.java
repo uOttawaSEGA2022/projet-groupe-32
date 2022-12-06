@@ -1,13 +1,13 @@
 package com.example.mealerapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -73,7 +73,7 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
 
         if(view.getId()==R.id.changer_cheque){
             //Page avec la liste des repas associes au cuisiner
-            startActivity(new Intent(cooker_page_activity.this, MainActivity.class));
+            startActivity(new Intent(cooker_page_activity.this, changer_cheque_cooker_activity.class));
         }
 
         if(view.getId()==R.id.traiterMenu){

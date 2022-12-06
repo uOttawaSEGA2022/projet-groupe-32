@@ -1,8 +1,7 @@
 package com.example.mealerapp;
-import android.net.Uri;
 
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cooker extends User{
     String description="";
@@ -12,7 +11,7 @@ public class Cooker extends User{
     long nombreRepasVendus;
     String moyenne;
     List<Integer> notesRecues = new ArrayList();
-    Uri chequeImageUrl = null ;
+    String chequeImageUrl = "";
     private boolean suspended ;
     private ArrayList<Repas> MealsList ;
     private ArrayList<Repas> proposedMealsList ;
@@ -92,11 +91,11 @@ public class Cooker extends User{
         return super.getCourriel();
     }
 
-    public Uri getChequeImageURL() {
+    public String getChequeImageURL() {
         return this.chequeImageUrl ;
     }
 
-    public void setChequeImageURL(Uri data) {
+    public void setChequeImageURL(String data) {
         this.chequeImageUrl=data ;
     }
 
