@@ -36,7 +36,7 @@ public class orderListe extends ArrayAdapter<Demande> {
 
         else{
             if(demande.getDemandeTraitee().equals("false")) {
-                OrderStatus.setText("En cours");
+                OrderStatus.setText("En cours ");
             }
             else{
                 OrderStatus.setText("Commande acceptee");

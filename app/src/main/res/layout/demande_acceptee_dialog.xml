@@ -19,7 +19,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Commande OK, Pick up address" />
+            android:text="Commande OK,Pick up address" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
