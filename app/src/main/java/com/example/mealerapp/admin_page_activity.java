@@ -1,8 +1,5 @@
 package com.example.mealerapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,13 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -99,7 +98,7 @@ public class admin_page_activity extends AppCompatActivity {
 
     private void suspendre_Cook(String id, String SuspensionType) {
         Log.i("admin_page_activity", "la date est " + suspensionEndTime);
-        Log.i("admin_page_activity", "le type est" + SuspensionType);
+        Log.i("admin_page_activity", "le type est " + SuspensionType);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Plaintes").child(plainteId);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -111,12 +110,13 @@ public class admin_page_activity extends AppCompatActivity {
                 data.addListenerForSingleValueEvent(new ValueEventListener() {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            Log.i("admin_page_activity", "la date est " + postSnapshot.getKey());
                             //going through the database of users to find the right cooker by comparing their email adress
                             if (postSnapshot != null) {
                                 String chemin = postSnapshot.getKey();
-                                // Log.i("admin_page_activity","le chemin est"+chemin);
+                                 Log.i("admin_page_activity","le chemin est"+chemin);
                                 Cooker cook = postSnapshot.getValue(Cooker.class);
-                                //Log.i("admin_page_activity","Ca aurait pu prendre comme email *****************************"+cook.getCourriel());
+                                Log.i("admin_page_activity","Ca aurait pu prendre comme email *****************************"+cook.getCourriel());
                                 String ckk = "Cooker";
                                 if (cook.getCourriel().equals(cook_email)) {
                                     data.child(chemin).child("suspension").setValue(SuspensionType);

@@ -2,9 +2,6 @@ package com.example.mealerapp;
 
 import static android.util.Patterns.EMAIL_ADDRESS;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
        //String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
 //       String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
-//       Plainte plainte1 = new Plainte("Indigeste", "amin_nna@gmail.com", "cooker4@gmail.com","03/11/2022","oui je suis malade");
-//        plainte1.addPlainteDatabase();
+       //Plainte plainte1 = new Plainte("Indigeste", "lacasseherve@gmail.com", "lacasseherve@gmail","03/11/2022","oui je suis malade");
+       //plainte1.addPlainteDatabase();
 
 
         super.onCreate(savedInstanceState);//C'est quoi saved instances ?
