@@ -67,7 +67,7 @@ public class Cooker extends User{
     }
 
     public String getMoyenne(){
-        if (!notesRecues.isEmpty()){
+        if (notesRecues.size()==0){
             return "Pas de notes";
         }
        else {
