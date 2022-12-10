@@ -71,7 +71,7 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         idConnectedCooker = mAuth.getCurrentUser().getUid();
 
         listViewDemandes = (ListView) findViewById(R.id.listViewDemandes);
-        databaseDemandes = FirebaseDatabase.getInstance().getReference("Achats");
+        databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
         demandesArrayList = new ArrayList<Demande>();
 
 
@@ -97,13 +97,11 @@ public class traiter_demande_achat_activity extends AppCompatActivity {
         databaseDemandes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 demandesArrayList.clear();
-
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
                     Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
-                    if (demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true")& demande.getDemandeTraitee().equals("false")) {
+                    if (demande.getRepas().getIdCuisinier().equals(idConnectedCooker) && demande.getDemandeExists().equals("true") && demande.getDemandeTraitee().equals("false")) {
                         demandesArrayList.add(demande);
                 }
                 }

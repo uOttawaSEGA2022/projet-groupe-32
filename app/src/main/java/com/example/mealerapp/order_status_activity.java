@@ -1,6 +1,6 @@
 package com.example.mealerapp;
 
-import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,17 +20,22 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class order_status_activity extends AppCompatActivity {
 
     ListView listViewOrders;
-
+    ArrayList<Float> list1=new ArrayList<>();
     List<Demande> ordersArrayList;
 
     DatabaseReference databaseDemandes;
@@ -49,7 +52,7 @@ public class order_status_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_status);
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         idConnectedClient = mAuth.getCurrentUser().getUid();
 
         listViewOrders = (ListView) findViewById(R.id.listViewOrders);
@@ -61,7 +64,7 @@ public class order_status_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Demande demande = ordersArrayList.get(i);
-                if(demande.getDemandeExists().equals("true")& demande.getDemandeTraitee().equals("true")){
+                if (demande.getDemandeExists().equals("true") & demande.getDemandeTraitee().equals("true")) {
                     //Log.i("Demande ajoutée",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
                     showEvaluerDeposerPlainte(demande);
                 }
@@ -84,15 +87,16 @@ public class order_status_activity extends AppCompatActivity {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Demande demande = data.getValue(Demande.class);
-                    Log.i("Demande parcourue ",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
+                    Log.i("Demande parcourue ", demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
                     //&& demande.getDemandeExists().equals("true")& demande.getDemandeTraitee().equals("true")
-                    if ( demande.getIdClient().equals(idConnectedClient) ) {
+                    if (demande.getIdClient().equals(idConnectedClient)) {
                         ordersArrayList.add(demande);
                     }
                 }
-                orderListe demandesAdapter = new orderListe(order_status_activity.this, ordersArrayList) ;
-                listViewOrders.setAdapter(demandesAdapter) ;
+                orderListe demandesAdapter = new orderListe(order_status_activity.this, ordersArrayList);
+                listViewOrders.setAdapter(demandesAdapter);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -112,55 +116,131 @@ public class order_status_activity extends AppCompatActivity {
         buttonDeposerPlainte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(demande.getDemandeTraitee().equals("true")){
+                if (demande.getDemandeTraitee().equals("true")) {
                     b.dismiss();
                     showPlaiteDescription(demande);
                 }
             }
         });
-         buttonEvaluerCuisinier.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 if(demande.getDemandeTraitee().equals("true")){
-                 b.dismiss();
-                 showEvaluerDemande(demande);
-                 }
-             }
-         });
+        buttonEvaluerCuisinier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (demande.getDemandeTraitee().equals("true")) {
+                    b.dismiss();
+                    showEvaluerDemande(demande);
+                }
+            }
+        });
     }
 
     private void showEvaluerDemande(Demande demande) {
-        /*
-        android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(this);
+        final ArrayList<Float> list;
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.rating_cooker, null);
         dialogBuilder.setView(dialogView);
-        final android.app.AlertDialog b = dialogBuilder.create();
+        final AlertDialog b = dialogBuilder.create();
         b.show();
-        final Button buttonSoumettreEvaluation= (Button) dialogView.findViewById(R.id.buttonSubmit);
-        final RatingBar ratingBar=(RatingBar) dialogView.findViewById(R.id.ratingBar);
+        final Button buttonSoumettreEvaluation = (Button) dialogView.findViewById(R.id.buttonSubmit);
+        final RatingBar ratingBar = (RatingBar) dialogView.findViewById(R.id.ratingBar);
         buttonSoumettreEvaluation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float rating=ratingBar.getRating();
-                //demande.getRepas().setRepasRating(rating);
-                //
+                float rating = ratingBar.getRating();
+                Log.i("je sais pas", " la note est " + rating);
+                // demande.getRepas().setRepasRating(rating);
+               CalculateMoyenne(demande,rating);
+                b.dismiss();
+            }
+        });
+
+    }
+
+    public String getMoyenne(ArrayList<Float> list){
+        if (list.isEmpty()){
+            return "0";
+        }
+        else {
+            float moy=0;
+            if ( list.size() != 0) {
+                for (float i : list) {
+                    moy += i;
+                }
+                moy /= list.size();
+            }
+            return moy +"";
+        }
+    }
+
+    private void CalculateMoyenne(Demande demande,Float rating) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(demande.getRepas().getIdCuisinier());
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean note = false;
+                String moyenne;
+                Cooker cook = snapshot.getValue(Cooker.class);
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    if(dataSnapshot.getKey().equals("noteRecu")){
+                        note=true;
+                        break;
+                    }
+                }
+                if(note==true){
+                    getCookerGrade(demande);
+                    ArrayList<Float> list = list1;
+                    list.add(rating);
+                    moyenne = getMoyenne(list);
+                    Log.i("je sais pas", " la size est   " + list.size());
+                    Log.i("je sais pas", " la moyenne est " + getMoyenne(list));
+                    cook.setMoyenne(moyenne);
+                    ref.child("noteRecu").setValue(list);
+                    ref.child("moyenne").setValue(moyenne);
+                }else{
+                    ArrayList<Float> mylist=new ArrayList<>();
+                    ref.child(demande.getRepas().getIdCuisinier()).child("noteRecu").setValue(mylist);
+                    mylist.add(rating);
+                    moyenne = getMoyenne(mylist);
+                    Log.i("je sais pas", " la size est else  " + mylist.size());
+                    Log.i("je sais pas", " la moyenne est else " + getMoyenne(mylist));
+                    cook.setMoyenne(moyenne);
+                    ref.child(demande.getRepas().getIdCuisinier()).child("noteRecu").setValue(mylist);
+                    ref.child(demande.getRepas().getIdCuisinier()).child("moyenne").setValue(moyenne);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-         */
+    }
+
+    void getCookerGrade(Demande demande){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(demande.getRepas().getIdCuisinier());
+        ref.child("noteRecu").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                GenericTypeIndicator<ArrayList<Float>> genericTypeIndicator = new GenericTypeIndicator<ArrayList<Float>>() {};
+                list1 = snapshot.getValue(genericTypeIndicator);
+               // list1 = snapshot.getValue(ArrayList.class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void showPlaiteDescription(Demande demande) {
-        android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.deposer_plainte_dialogue, null);
         dialogBuilder.setView(dialogView);
-        final android.app.AlertDialog b = dialogBuilder.create();
+        final AlertDialog b = dialogBuilder.create();
         b.show();
-        final EditText editTextTitre = findViewById(R.id.titre_plainte);
-        final EditText editTextDescription = findViewById(R.id.plainte_description);
-        final Button buttonSoumettreplainte = (Button) dialogView.findViewById(R.id.deposer_plainte);
+        final EditText editTextTitre = dialogView.findViewById(R.id.titre_plainte1);
+        final EditText editTextDescription = dialogView.findViewById(R.id.plainte_description1);
+        final Button buttonSoumettreplainte = (Button) dialogView.findViewById(R.id.deposer_plainte1);
         buttonSoumettreplainte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,8 +259,10 @@ public class order_status_activity extends AppCompatActivity {
                 }
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
                 Date date = new Date();
-                Plainte plainte=new Plainte(Titre,FirebaseAuth.getInstance().getCurrentUser().getUid(),demande.getRepas().getIdCuisinier(),date.toString(),Description);
+                Plainte plainte = new Plainte(Titre, FirebaseAuth.getInstance().getCurrentUser().getUid(), demande.getRepas().getIdCuisinier(), date.toString(), Description);
                 plainte.addPlainteDatabase();
+                editTextDescription.getText().clear();
+                editTextTitre.getText().clear();
             }
         });
 

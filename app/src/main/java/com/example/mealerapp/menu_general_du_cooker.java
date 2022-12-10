@@ -113,6 +113,7 @@ public class menu_general_du_cooker extends AppCompatActivity {
         buttonRetirerRepas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 retirerRepas(repas);
                 b.dismiss();
             }
@@ -146,7 +147,6 @@ public class menu_general_du_cooker extends AppCompatActivity {
                 database.removeValue();
                 Toast.makeText(getApplicationContext(), "Repas retiré de la base de donnée", Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }

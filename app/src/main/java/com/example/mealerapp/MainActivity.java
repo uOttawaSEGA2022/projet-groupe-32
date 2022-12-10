@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        FirebaseDatabase.getInstance().getReference("Users").child(Id2).setValue(cook2);
 //       FirebaseDatabase.getInstance().getReference("Users").child(Id3).setValue(cook3);
 
-       //String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
+        //String Id4=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
 //       String Id14=FirebaseDatabase.getInstance().getReference("Plaintes").push().getKey();
        //Plainte plainte1 = new Plainte("Indigeste", "lacasseherve@gmail.com", "lacasseherve@gmail","03/11/2022","oui je suis malade");
        //plainte1.addPlainteDatabase();
@@ -81,30 +81,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //
         /*
-          Repas repas1 = new Repas("test1", "test1", "test1", "test1", 10, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
-          Repas repas2 = new Repas("test2", "test2", "test2", "test2", 20, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
-          Repas repas3 = new Repas("test3", "test3", "test3", "test3", 30, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
-          Repas repas4 = new Repas("test4", "test4", "test4", "test4", 40, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
-          Demande demande = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas1);
-          demande.addDemandeDatabase();
-        Demande demande2 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas2);
-        demande2.addDemandeDatabase();
-        Demande demande3 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas3);
-        demande3.addDemandeDatabase();
-        Demande demande4 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas4);
-        demande4.addDemandeDatabase();
+//          Repas repas1 = new Repas("test1", "test1", "test1", "test1", 10, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
+//          Repas repas2 = new Repas("test2", "test2", "test2", "test2", 20, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
+//          Repas repas3 = new Repas("test3", "test3", "test3", "test3", 30, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
+//          Repas repas4 = new Repas("test4", "test4", "test4", "test4", 40, "z5xALN2cNSYnVRulqEpuFrjVrsr2");
+//          Demande demande = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas1);
+//          demande.addDemandeDatabase();
+//        Demande demande2 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas2);
+//        demande2.addDemandeDatabase();
+//        Demande demande3 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas3);
+//        demande3.addDemandeDatabase();
+//        Demande demande4 = new Demande("z5xALN2cNSYnVRulqEpuFrjVrsr2", repas4);
+//        demande4.addDemandeDatabase();
 
          */
-
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -131,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth.signOut();
         startActivity(new Intent(MainActivity.this, MainActivity.class));
     }
-
 
 
     private void UserLogin() {
@@ -170,8 +159,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Date date = new Date();
 
 
-
-
         //signing In a user using his firebase Credentials
         mAuth.signInWithEmailAndPassword(adressecourriel, MotDePasse).
                 addOnCompleteListener(
@@ -190,10 +177,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             String idUser = mAuth.getCurrentUser().getUid();
                                             User user = snapshot.getValue(User.class);
-                                            Cooker cook =snapshot.getValue(Cooker.class);
+                                            Cooker cook = snapshot.getValue(Cooker.class);
                                             //Client client=snapshot.getValue(Client.class);
-                                            String suspension =cook.getSuspension();
-                                            String suspensionEndTime =cook.getSuspensionEndTime();
+                                            String suspension = cook.getSuspension();
+                                            String suspensionEndTime = cook.getSuspensionEndTime();
 
                                             if (user == null) {
                                                 Toast.makeText(MainActivity.this, "You don't have an account, Please sign up !", Toast.LENGTH_LONG).show();
@@ -253,8 +240,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     Toast.makeText(MainActivity.this, "Failed to login check your credentials", Toast.LENGTH_LONG).show();
                                 }
                             }
+
                         }
 
                 );
+        editTextPassword.getText().clear();
+        editTextAdresseCourriel.getText().clear();
     }
 }

@@ -104,11 +104,9 @@ public class PanierFragment extends Fragment {
                         Log.i("PanierFragment change","la taille de repas est   "+repasArrayList.size());
                     }
                 }
-                repasAdapter.notifyDataSetChanged();
-
-
-
-
+                if(repasAdapter!=null) {
+                    repasAdapter.notifyDataSetChanged();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

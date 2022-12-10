@@ -128,7 +128,7 @@ public class client_page_activity extends AppCompatActivity {
                 } if (id == R.id.nav_panier) {
                     replaceFragments(new PanierFragment());
                 } if (id == R.id.nav_orders) {
-                    Intent orderIntent = new Intent(client_page_activity.this,orderListe.class);
+                    Intent orderIntent = new Intent(client_page_activity.this,order_status_activity.class);
                     startActivity(orderIntent);
                     replaceFragments(new OrderFragment());
                     // startActivity(new Intent(client_page_activity.this,.class));

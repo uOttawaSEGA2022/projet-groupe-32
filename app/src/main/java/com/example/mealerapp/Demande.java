@@ -37,7 +37,7 @@ public class Demande {
     }
 
     public void addDemandeDatabase(){
-        FirebaseDatabase.getInstance().getReference("Demandes").child(idDemande).setValue(this);
+        FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).setValue(this);
     }
 
     public String getDemandeTraitee(){return this.demandeTraitee;};
@@ -52,7 +52,7 @@ public class Demande {
         Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
         if ( this.demandeTraitee.equals("false")){
             Log.i("Increase",  this.demandeTraitee + " id : " + this.idDemande + " increase ");
-            valueRef.setValue(valueOf(ServerValue.increment(1)));
+            valueRef.setValue(ServerValue.increment(1));
             this.demandeTraitee="true";
             FirebaseDatabase.getInstance().getReference("Demandes").child(this.getIdDemande()).child("demandeTraitee").setValue("true");
             return;

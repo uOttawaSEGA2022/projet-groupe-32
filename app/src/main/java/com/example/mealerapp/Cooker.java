@@ -8,13 +8,11 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
-    long nombreRepasVendus;
+    String nombreRepasVendus;
     String moyenne;
-    List<Integer> notesRecues = new ArrayList();
+    List<Float> notesRecues;
     String chequeImageUrl = "";
     private boolean suspended ;
-    private ArrayList<Repas> MealsList ;
-    private ArrayList<Repas> proposedMealsList ;
 
     //Constructeur
     //On a en paramettre les paramètres nécessaires à la création de l'objet
@@ -24,19 +22,17 @@ public class Cooker extends User{
         this.description=description;
         this.suspension="non";
         this.suspensionEndTime="";
-        this.nombreRepasVendus=0;
+        this.nombreRepasVendus="0";
         this.moyenne="";
         this.UserType="Cooker";
         this.chequeImageUrl=null ;
         this.suspended = false ; //suspension initialisée par défaut à false
-
     }
     public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
         super(prenom, nom, courriel, motDePasse, UserType, adresse);
         this.listePlaintes=listePlaintes;
     };
     public Cooker(){
-
     }
 
     public List <Plainte> getList(){
@@ -66,24 +62,9 @@ public class Cooker extends User{
         this.description = description;
     }
 
-    public String getMoyenne(){
-        if (notesRecues.size()==0){
-            return "Pas de notes";
-        }
-       else {
-           int moy=0;
-           if ( notesRecues.size() != 0) {
-               for (int i : notesRecues) {
-                   moy += i;
-               }
-               moy /= notesRecues.size();
-           }
-            return moy +"";
-        }
-    }
 
-    public void setNote(int note){
-        notesRecues.add(note);
+    public void setNote(float note){
+        this.notesRecues.add(note);
     }
 
     @Override
@@ -100,11 +81,17 @@ public class Cooker extends User{
     }
 
 
-    public long getnombreRepasVendus(){
+    public String getnombreRepasVendus(){
         return nombreRepasVendus;
     }
 
 
+    public String getNoteMoyenne() {
+        return moyenne;
+    }
 
+    public void setMoyenne(String moyenne) {
+        this.moyenne=moyenne;
+    }
 
 }

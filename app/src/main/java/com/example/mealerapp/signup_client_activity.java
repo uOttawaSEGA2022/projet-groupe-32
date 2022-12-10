@@ -128,6 +128,12 @@ public class signup_client_activity extends AppCompatActivity implements View.On
             editTextInformationsCarteCredit.requestFocus();
             return;
         }
+        if (InformationsCarteCredit2.length() != 16) {
+            editTextInformationsCarteCredit.setError(" Numero de carte invalide, il faut 16 carracteres");
+            editTextInformationsCarteCredit.requestFocus();
+            return;
+
+        }
         if (CVC.isEmpty()) {
             editTextCVV.setError("Votre cvc est requis");
             editTextCVV.requestFocus();

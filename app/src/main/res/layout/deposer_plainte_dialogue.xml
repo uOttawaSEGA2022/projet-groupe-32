@@ -44,7 +44,7 @@
                         android:text="Titre Plainte" />
 
                     <EditText
-                        android:id="@+id/titre_plainte"
+                        android:id="@+id/titre_plainte1"
                         android:layout_width="258dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -71,7 +71,7 @@
                         android:text="Description Plainte" />
 
                     <EditText
-                        android:id="@+id/plainte_description"
+                        android:id="@+id/plainte_description1"
                         android:layout_width="match_parent"
                         android:layout_height="165dp"
                         android:layout_marginTop="5dp"
@@ -89,7 +89,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/deposer_plainte"
+            android:id="@+id/deposer_plainte1"
             android:layout_width="199dp"
             android:layout_height="wrap_content"
             android:clickable="true"

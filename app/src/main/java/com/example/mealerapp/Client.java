@@ -30,7 +30,6 @@ public class Client extends User {
     }
 
     public Client() {
-
     }
 
     public String getInformationsCarteCredit() {

@@ -1,5 +1,6 @@
 package com.example.mealerapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,12 +41,14 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
 
     private void getUserData() {
         reference.child(uid).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Update note et nombre de repas vendus
                 loggedCooker=snapshot.getValue(Cooker.class);
+                assert loggedCooker != null;
                 viewRepasVendus.setText(loggedCooker.getnombreRepasVendus()+"");
-                viewNote.setText(loggedCooker.getMoyenne());
+                viewNote.setText(loggedCooker.getNoteMoyenne()+"");
             }
 
             @Override
