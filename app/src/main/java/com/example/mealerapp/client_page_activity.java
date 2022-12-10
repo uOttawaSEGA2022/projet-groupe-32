@@ -62,14 +62,14 @@ public class client_page_activity extends AppCompatActivity {
                     if(idClient.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                         if ( demande.getDemandeTraitee().equals("true")){
                             NotificationCompat.Builder builderAcc ;
-                            builderAcc = new NotificationCompat.Builder(client_page_activity.this, "Acc").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+                            builderAcc = new NotificationCompat.Builder(client_page_activity.this, "Acc").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande pour le repas "+ demande.getRepas().getRepasName()+" a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
                             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(client_page_activity.this);
                             notificationManager.notify(0, builderAcc.build());
                             Log.i("notification acceptée", "visible");
                         }
                         else if ( demande.getDemandeExists().equals("false")){
                             NotificationCompat.Builder builderRef ;
-                            builderRef = new NotificationCompat.Builder(client_page_activity.this, "Ref").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande a été refusée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+                            builderRef = new NotificationCompat.Builder(client_page_activity.this, "Ref").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande pour le repas "+ demande.getRepas().getRepasName()+" a été refusée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
                             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(client_page_activity.this);
                             notificationManager.notify(1, builderRef.build());
                             Log.i("notification rejettée", "visible");

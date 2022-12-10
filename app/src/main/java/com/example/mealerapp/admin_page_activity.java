@@ -122,7 +122,7 @@ public class admin_page_activity extends AppCompatActivity {
                                     data.child(chemin).child("suspension").setValue(SuspensionType);
                                     data.child(chemin).child("suspensionEndTime").setValue(suspensionEndTime);
                                     // data.child(chemin).setValue(new_Cook_Status); // replace the cook with his suspended status
-                                    deletePlainte(id);//remove plainte from databade
+                                    deletePlainte(plainteId);//remove plainte from databade
                                     break;
                                 }
                             }
