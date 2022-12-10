@@ -39,9 +39,8 @@ public class order_status_activity extends AppCompatActivity {
     List<Demande> ordersArrayList;
     String courriel;
     DatabaseReference databaseDemandes;
-
+    GenericTypeIndicator<ArrayList<Float>> genericTypeIndicator;
     FirebaseAuth mAuth;
-
 
     String idConnectedClient;
     String idConnectedCooker;
@@ -51,21 +50,29 @@ public class order_status_activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_status);
-
         mAuth = FirebaseAuth.getInstance();
         idConnectedClient = mAuth.getCurrentUser().getUid();
-
         listViewOrders = (ListView) findViewById(R.id.listViewOrders);
         databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
         ordersArrayList = new ArrayList<>();
-
-
+       genericTypeIndicator = new GenericTypeIndicator<ArrayList<Float>>() {};
         listViewOrders.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Demande demande = ordersArrayList.get(i);
                 if (demande.getDemandeExists().equals("true") & demande.getDemandeTraitee().equals("true")) {
                     //Log.i("Demande ajoutée",  demande.getDemandeTraitee() + " id : " + demande.getIdDemande());
+                    FirebaseDatabase.getInstance().getReference("Users").child(demande.getRepas().getIdCuisinier()).child("courriel").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            courriel=snapshot.getValue(String.class);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                     showEvaluerDeposerPlainte(demande);
                 }
                 return true;
@@ -188,13 +195,12 @@ public class order_status_activity extends AppCompatActivity {
                 }
                 if(note==true){
                     getCookerGrade(demande);
-                    ArrayList<Float> list = list1;
-                    list.add(rating);
-                    moyenne = getMoyenne(list);
-                    Log.i("je sais pas", " la size est   " + list.size());
-                    Log.i("je sais pas", " la moyenne est " + getMoyenne(list));
+                    list1.add(rating);
+                    ref.child("noteRecu").setValue(list1);
+                    moyenne = getMoyenne(list1);
+                    Log.i("je sais pas", " la size est   " + list1.size());
+                    Log.i("je sais pas", " la moyenne est " + getMoyenne(list1));
                     cook.setMoyenne(moyenne);
-                    ref.child("noteRecu").setValue(list);
                     ref.child("noteMoyenne").setValue(moyenne);
                 }else{
                     ArrayList<Float> mylist=new ArrayList<>();
@@ -208,7 +214,6 @@ public class order_status_activity extends AppCompatActivity {
                     ref.child("noteMoyenne").setValue(moyenne);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -221,7 +226,6 @@ public class order_status_activity extends AppCompatActivity {
         ref.child("noteRecu").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                GenericTypeIndicator<ArrayList<Float>> genericTypeIndicator = new GenericTypeIndicator<ArrayList<Float>>() {};
                 list1 = snapshot.getValue(genericTypeIndicator);
                // list1 = snapshot.getValue(ArrayList.class);
             }
@@ -259,17 +263,6 @@ public class order_status_activity extends AppCompatActivity {
                 }
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
                 Date date = new Date();
-                FirebaseDatabase.getInstance().getReference().child(demande.getRepas().getIdCuisinier()).child("courriel").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        courriel=snapshot.getValue(String.class);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
                 Plainte plainte = new Plainte(Titre, FirebaseAuth.getInstance().getCurrentUser().getUid(), courriel,date.toString(), Description);
                 plainte.addPlainteDatabase();
                 editTextDescription.getText().clear();
