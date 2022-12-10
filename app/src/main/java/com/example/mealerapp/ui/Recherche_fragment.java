@@ -190,7 +190,6 @@ public class Recherche_fragment extends Fragment {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
                     if (suspension[0].equals("oui Temporairement") || suspension[0].equals("oui Indefinement")) {

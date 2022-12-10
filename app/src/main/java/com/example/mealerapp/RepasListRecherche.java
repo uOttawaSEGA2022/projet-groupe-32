@@ -38,7 +38,7 @@ public class RepasListRecherche extends ArrayAdapter<Repas> {
 
         Repas repa = repas.get(position);
         textViewName.setText(repa.getRepasName());
-        textViewPrice.setText(String.valueOf(repa.getPrice()));
+        textViewPrice.setText(String.valueOf("$"+repa.getPrice()));
         FirebaseDatabase.getInstance().getReference("Users").
                 child(repa.getIdCuisinier()).child("moyenne").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

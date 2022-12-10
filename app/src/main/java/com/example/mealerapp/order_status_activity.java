@@ -37,7 +37,7 @@ public class order_status_activity extends AppCompatActivity {
     ListView listViewOrders;
     ArrayList<Float> list1=new ArrayList<>();
     List<Demande> ordersArrayList;
-
+    String courriel;
     DatabaseReference databaseDemandes;
 
     FirebaseAuth mAuth;
@@ -195,17 +195,17 @@ public class order_status_activity extends AppCompatActivity {
                     Log.i("je sais pas", " la moyenne est " + getMoyenne(list));
                     cook.setMoyenne(moyenne);
                     ref.child("noteRecu").setValue(list);
-                    ref.child("moyenne").setValue(moyenne);
+                    ref.child("noteMoyenne").setValue(moyenne);
                 }else{
                     ArrayList<Float> mylist=new ArrayList<>();
-                    ref.child(demande.getRepas().getIdCuisinier()).child("noteRecu").setValue(mylist);
                     mylist.add(rating);
+                    ref.child(demande.getRepas().getIdCuisinier()).child("noteRecu").setValue(mylist);
                     moyenne = getMoyenne(mylist);
                     Log.i("je sais pas", " la size est else  " + mylist.size());
                     Log.i("je sais pas", " la moyenne est else " + getMoyenne(mylist));
                     cook.setMoyenne(moyenne);
-                    ref.child(demande.getRepas().getIdCuisinier()).child("noteRecu").setValue(mylist);
-                    ref.child(demande.getRepas().getIdCuisinier()).child("moyenne").setValue(moyenne);
+                    ref.child("noteRecu").setValue(mylist);
+                    ref.child("noteMoyenne").setValue(moyenne);
                 }
             }
 
@@ -259,7 +259,18 @@ public class order_status_activity extends AppCompatActivity {
                 }
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
                 Date date = new Date();
-                Plainte plainte = new Plainte(Titre, FirebaseAuth.getInstance().getCurrentUser().getUid(), demande.getRepas().getIdCuisinier(), date.toString(), Description);
+                FirebaseDatabase.getInstance().getReference().child(demande.getRepas().getIdCuisinier()).child("courriel").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        courriel=snapshot.getValue(String.class);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                Plainte plainte = new Plainte(Titre, FirebaseAuth.getInstance().getCurrentUser().getUid(), courriel,date.toString(), Description);
                 plainte.addPlainteDatabase();
                 editTextDescription.getText().clear();
                 editTextTitre.getText().clear();

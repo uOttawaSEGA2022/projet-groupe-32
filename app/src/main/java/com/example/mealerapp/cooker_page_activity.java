@@ -49,6 +49,7 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
                 assert loggedCooker != null;
                 viewRepasVendus.setText(loggedCooker.getnombreRepasVendus()+"");
                 viewNote.setText(loggedCooker.getNoteMoyenne()+"");
+
             }
 
             @Override
