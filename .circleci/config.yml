@@ -24,7 +24,7 @@ jobs:
           name: Run UnitTest
           command: ./gradlew test
       - store_artifacts:
-          path: app/build/outputs/apk/debug/
-          destination: apks/
+          path: ~/projet-groupe-32/artifacts
+          
       - store_test_results:
           path: ~/projet-groupe-32/tests-results
