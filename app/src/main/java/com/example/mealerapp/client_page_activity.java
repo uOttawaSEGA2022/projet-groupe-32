@@ -60,12 +60,13 @@ public class client_page_activity extends AppCompatActivity {
                     String idClient=demande.getIdClient();
 
                     if(idClient.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-                        if ( demande.getDemandeTraitee().equals("true")){
+                        if ( demande.getDemandeTraitee().equals("true") && demande.getNotified().equals("false")){
                             NotificationCompat.Builder builderAcc ;
                             builderAcc = new NotificationCompat.Builder(client_page_activity.this, "Acc").setSmallIcon(R.drawable.ic_baseline_notifications_24).setContentTitle("Notification").setContentText("Votre demande pour le repas "+ demande.getRepas().getRepasName()+" a été acceptée").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
                             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(client_page_activity.this);
                             notificationManager.notify(0, builderAcc.build());
                             Log.i("notification acceptée", "visible");
+                            FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("notified").setValue("true");
                         }
                         else if ( demande.getDemandeExists().equals("false")){
                             NotificationCompat.Builder builderRef ;
@@ -73,6 +74,7 @@ public class client_page_activity extends AppCompatActivity {
                             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(client_page_activity.this);
                             notificationManager.notify(1, builderRef.build());
                             Log.i("notification rejettée", "visible");
+                            FirebaseDatabase.getInstance().getReference("Demandes").child(demande.getIdDemande()).child("notified").setValue("true");
                         }
                     }
                     //repasArrayList.add(repas);
