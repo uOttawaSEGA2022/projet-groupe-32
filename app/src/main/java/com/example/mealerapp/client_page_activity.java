@@ -25,7 +25,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.mealerapp.ui.Recherche_fragment;
 import com.example.mealerapp.ui.gallery.PanierFragment;
 import com.example.mealerapp.ui.home.OrderFragment;
-import com.example.mealerapp.ui.slideshow.NotificationFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -124,10 +123,7 @@ public class client_page_activity extends AppCompatActivity {
                 int id = item.getItemId();
                 item.setChecked(true);
                 drawer.closeDrawer(GravityCompat.START);
-                if (id == R.id.nav_menu) {
-                    replaceFragments(new NotificationFragment());
-                    // startActivity(new Intent(client_page_activity.this,. class));
-                } if (id == R.id.nav_panier) {
+                 if (id == R.id.nav_panier) {
                     replaceFragments(new PanierFragment());
                 } if (id == R.id.nav_orders) {
                     Intent orderIntent = new Intent(client_page_activity.this,order_status_activity.class);

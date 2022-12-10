@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,8 +27,8 @@ public class cooker_page_activity extends AppCompatActivity implements  View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cooker_page);
-        viewRepasVendus = (EditText) findViewById(R.id.viewNbRepasVendus);
-        viewNote = (EditText) findViewById(R.id.viewNote);
+        viewRepasVendus = (TextView) findViewById(R.id.viewNbRepasVendus);
+        viewNote = (TextView) findViewById(R.id.viewNote);
         mAuth=FirebaseAuth.getInstance();
 
         reference = FirebaseDatabase.getInstance().getReference("Users");
