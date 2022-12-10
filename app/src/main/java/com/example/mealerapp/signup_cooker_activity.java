@@ -114,7 +114,7 @@ public class signup_cooker_activity extends AppCompatActivity implements View.On
         }
 
         //Administrator user=new Administrator(Prenom1,Nom1,adressecourriel1,MotDePasse1,Adresse1);
-        Cooker user=new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,"Administrator",Adresse1);
+       Cooker user=new Cooker(Prenom1,Nom1,adressecourriel1,MotDePasse1,"Administrator",Adresse1);
         mAuth.createUserWithEmailAndPassword(user.getCourriel() , user.getMotDePasse()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
          @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
