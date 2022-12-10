@@ -35,4 +35,32 @@ public class testsUnitaires {
         Demande demande = new Demande("id", repas);
         assertEquals("Vérifie id demande", "id", demande.getIdClient()+"");
     }
+
+    @Test
+    public void checkDemandeExists() {
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
+        Demande demande = new Demande("id", repas);
+        assertEquals("Vérifie demand exists", "true", demande.getDemandeExists()+"");
+    }
+
+    @Test
+    public void checkDemandeStatus() {
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
+        Demande demande = new Demande("id", repas);
+        assertEquals("Vérifie demande status", "false", demande.getDemandeStatus()+"");
+    }
+
+    @Test
+    public void checkDemandeTraitee() {
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
+        Demande demande = new Demande("id", repas);
+        assertEquals("Vérifie demande traitée", "false", demande.getDemandeTraitee()+"");
+    }
+
+    @Test
+    public void checkDemandenNotified() {
+        Repas repas = new Repas("Toast à l'avocat et au saumon fumé","Tartinade de cajou à l'aneth, œuf poché, oignons rouge et graines de sésame","Repas délicieux et nutritionnel", "Européenne", 25,"7f2kYe1NE6TmCtXoeiYQ7DNb9733");
+        Demande demande = new Demande("id", repas);
+        assertEquals("Vérifie demande notifies", "true", demande.getNotified()+"");
+    }
 }
