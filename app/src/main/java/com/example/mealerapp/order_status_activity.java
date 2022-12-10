@@ -1,5 +1,9 @@
 package com.example.mealerapp;
 
+import static android.content.Intent.ACTION_VIEW;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,11 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,9 +41,10 @@ public class order_status_activity extends AppCompatActivity {
     List<Demande> ordersArrayList;
     String courriel;
     DatabaseReference databaseDemandes;
-
+    TextView adresseCueillette;
+    DatabaseReference myRef;
     FirebaseAuth mAuth;
-
+    Cooker client;
 
     String idConnectedClient;
     String idConnectedCooker;
@@ -53,7 +61,7 @@ public class order_status_activity extends AppCompatActivity {
         listViewOrders = (ListView) findViewById(R.id.listViewOrders);
         databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
         ordersArrayList = new ArrayList<>();
-
+        myRef = FirebaseDatabase.getInstance().getReference("Users");
 
         listViewOrders.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -102,9 +110,25 @@ public class order_status_activity extends AppCompatActivity {
         android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.demande_acceptee_dialog, null);
+        adresseCueillette = (TextView) dialogView.findViewById(R.id.textViewCueillette);
         dialogBuilder.setView(dialogView);
         final android.app.AlertDialog b = dialogBuilder.create();
         b.show();
+
+        myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("firebase", "Error getting data", task.getException());
+                }
+                else {
+
+                    client=task.getResult().getValue(Cooker.class);
+                    Log.e("Cokker adresse", client.getAdresse());
+                    adresseCueillette.setText(client.getAdresse()+"");
+                    }
+            }
+        });
 
         final Button buttonDeposerPlainte = (Button) dialogView.findViewById(R.id.buttonDeposerPlainte);
         final Button buttonEvaluerCuisinier = (Button) dialogView.findViewById(R.id.buttonEvaluerCuisinier);
@@ -126,7 +150,26 @@ public class order_status_activity extends AppCompatActivity {
                 }
             }
         });
+        adresseCueillette.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a Uri from an intent string. Use the result to create an Intent
+                Uri gmmIntentUri = Uri.parse("http://maps.google.co.in/maps?q=" +adresseCueillette.getText());
+
+                // Create an Intent from gmmIntentUri. Set the action to ACTION VIEW
+                Intent mapIntent = new Intent(ACTION_VIEW,gmmIntentUri);
+
+                //Make the Intent explicit by setting the Google Maps package
+                mapIntent.setPackage("com.google.android.apps.maps");
+
+                // Attempt to start an activity that can handle the Intent
+                startActivity(mapIntent);
+            }
+        });
+
     }
+
+
 
     private void showEvaluerDemande(Demande demande) {
         final ArrayList<Float> list;
@@ -135,6 +178,7 @@ public class order_status_activity extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.rating_cooker, null);
         dialogBuilder.setView(dialogView);
         final AlertDialog b = dialogBuilder.create();
+
         b.show();
         final Button buttonSoumettreEvaluation = (Button) dialogView.findViewById(R.id.buttonSubmit);
         final RatingBar ratingBar = (RatingBar) dialogView.findViewById(R.id.ratingBar);
