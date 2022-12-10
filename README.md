@@ -16,3 +16,14 @@ Le cuisinier peut aussi mettre à jour sa description et son chèque.
 Le client a accès à un menu à partir duquel il peut rechercher un repas et l’ajouter à son panier s'il le souhaite. 
 Dans son panier, il peut passer une commande ou retirer un repas de son panier. 
 En ce qui concerne ses achats, il peut, pour une commande acceptée, choisir d’évaluer le cuisinier et/ou de déposer une plainte contre ce cuisinier. 
+
+Identifiants de connexion Administrateur:
+Courriel: administrator23@gmail.com Mot de passe: Administrator 23
+
+Identifiants de connexion Cuisinier:
+Courriel: chef@gmail.com Mot de passe: 12345678
+
+Identifiants de connexion Client:
+Courriel: mohaseb@gmail.com Mot de passe: 12345678
+
+Vous pouvez bien sûr inscrire d'autres utilisateur et les utiliser !
