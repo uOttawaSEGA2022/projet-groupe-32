@@ -81,7 +81,7 @@ public class menu_general_du_cooker extends AppCompatActivity {
                     Repas repas = data.getValue(Repas.class);
                     String repasUid = repas.getIdCuisinier();
                     Log.i("Repas non offert", repas.getRepasStatus() + " id : " + repas.getIdRepas());
-                    if (repasUid.equals(uid) && repas.getRepasStatus().equals("false")) {
+                    if (repasUid.equals(uid)) {
                         repasArrayList.add(repas);
                     }
                     //repasArrayList.add(repas);
@@ -113,7 +113,6 @@ public class menu_general_du_cooker extends AppCompatActivity {
         buttonRetirerRepas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 retirerRepas(repas);
                 b.dismiss();
             }
@@ -130,23 +129,28 @@ public class menu_general_du_cooker extends AppCompatActivity {
 
 
     private void offrirdesoffrirRepas(Repas repas) {
-
-        repas.traiterRepas(repas);
-        Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
+        if(repas.traiterRepas(repas)==true) {
+            Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Retirer", Toast.LENGTH_LONG).show();
+        }
 
     }
 
-    public void retirerRepas(Repas repas) {
+    public void retirerRepas(Repas repa) {
 
         // supprimer un repas de la base des données
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repas.getIdRepas());
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Repas").child(repa.getIdRepas());
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                database.removeValue();
-                Toast.makeText(getApplicationContext(), "Repas retiré de la base de donnée", Toast.LENGTH_LONG).show();
-            }
+                if(repa.getRepasStatus().equals("false")){
+                    database.removeValue();
+                }else{
+                Toast.makeText(getApplicationContext(), "Ce repas est offert dans le menu du jour", Toast.LENGTH_LONG).show();
+            }}
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }

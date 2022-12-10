@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mealerapp.Client;
+import com.example.mealerapp.Cooker;
 import com.example.mealerapp.Demande;
 import com.example.mealerapp.DemandeListe;
 import com.example.mealerapp.R;
@@ -42,24 +43,28 @@ public class Recherche_fragment extends Fragment {
     DatabaseReference myRef;
     private SearchView searchView;
     View root;
+    String suspension = "";
     DatabaseReference connectedClientpanier;
+
     public Recherche_fragment() {
         // Required empty public constructor
     }
 
     @Override
 
-    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_recherche_fragment, container, false);
         searchView = root.findViewById(R.id.searchRecherche);
         searchView.clearFocus();
         myRef = FirebaseDatabase.getInstance().getReference("Users");
         listViewRecherche = root.findViewById(R.id.listViewRecherche);
-        connectedClientpanier=FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier");;
+        connectedClientpanier = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier");
+        ;
         DatabaseReference databaseRepas = FirebaseDatabase.getInstance().getReference("Repas");
         repasArrayList = new ArrayList<Repas>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             boolean a = false;
+
             @Override
             public boolean onQueryTextSubmit(String query) {
                 searchView.clearFocus();
@@ -124,17 +129,15 @@ public class Recherche_fragment extends Fragment {
 
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Repas repas = data.getValue(Repas.class);
-                    String repasCuisineType = repas.getCuisineType().toString().trim().toLowerCase();
+                    String repasCuisineType = repas.getCuisineType().trim().toLowerCase();
                     String[] repasType = repasCuisineType.split(" ");
                     for (String s : repasType) {
                         if (s.equals(finalRechercheCle)) {
                             if (!(repasList == null)) {
-                                if (!repasList.contains(repas)) {
+                                if (!(repasList.contains(repas))) {
                                     Log.i("client_page_activity", "la liste contient ttttttttttttttt " + finalRechercheCle);
                                     repasList.add(repas);
                                 }
-                            } else {
-                                repasList.add(repas);
                             }
                         }
                     }
@@ -154,18 +157,45 @@ public class Recherche_fragment extends Fragment {
                     String[] repasNom2 = repasNom.split(" ");
                     String[] rechercheCler = finalRechercheCle.split(" ");
                     for (String str : rechercheCler) {
-                        if (str.length() > 2) {
+                        if (str.length() >= 2) {
                             for (String s : repasNom2) {
                                 if (s.equals(str)) {
                                     if (!(repasList == null)) {
-                                        if (!repasList.contains(repas)) {
-                                            Log.i("client_page_activity", "la liste contient 111111111111111111111111111111 " + finalRechercheCle);
+                                        if (!(repasList.contains(repas))) {
+                                            Log.i("client_page_activity", "la liste contient 3333333333333333333333333 " + finalRechercheCle);
                                             repasList.add(repas);
                                         }
-                                    } else {
-                                        repasList.add(repas);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+                if (!(repasList == null)) {
+                    if (!repasList.isEmpty()) {
+                        for (int i = 0; i< repasList.size();i++) {
+                            Repas repa = repasList.get(i);
+                            String status = repa.getRepasStatus();
+                            String repasCuisinierId = repa.getIdCuisinier();
+                            FirebaseDatabase.getInstance().getReference("Users").child(repasCuisinierId).
+                                    addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Cooker cooker = snapshot.getValue(Cooker.class);
+                                            suspension = cooker.getSuspension().trim().toLowerCase();
+                                            Log.i("client_page_activity", "suspension " + suspension);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    });
+                            if ((suspension.equals("oui temporairement")) || (suspension.equals("oui indefinement")) ) {
+                                repasList.remove(repa);
+                                Log.i("client_page_activity", "la liste contient 444444444444444444444444 " + status);
+                            }
+                            if((status.equals("false"))){
+                                repasList.remove(repa);
                             }
                         }
                     }
@@ -177,27 +207,7 @@ public class Recherche_fragment extends Fragment {
             }
         });
         //retirer les repas appartenant aux cuisinier qui sont suspendu du resultats de la recherche
-        if (!(repasList == null)) {
-            if (!repasList.isEmpty()) {
-                for (Repas repa : repasList) {
-                    final String[] suspension = new String[1];
-                    String repasCuisinierId = repa.getIdCuisinier();
-                    FirebaseDatabase.getInstance().getReference("Users").child(repasCuisinierId).child("suspension").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            suspension[0] = snapshot.getValue(String.class).trim();
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-                    if (suspension[0].equals("oui Temporairement") || suspension[0].equals("oui Indefinement")) {
-                        repasList.remove(repa);
-                    }
-                }
-            }
-        }
         return repasList;
     }
 
@@ -229,16 +239,17 @@ public class Recherche_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    Log.i("Panier a changé"," ");
-                    Log.i("current user"," "+data.toString());
+                    Log.i("Panier a changé", " ");
+                    Log.i("current user", " " + data.toString());
                     if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(data.getKey())) {
                         client = data.getValue(Client.class);
-                        repasArrayList=client.getPanier();
-                        Log.i("PanierFragment","la taille de repas est   "+repasArrayList.size());
+                        repasArrayList = client.getPanier();
+                        Log.i("PanierFragment", "la taille de repas est   " + repasArrayList.size());
                     }
                 }
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -283,13 +294,13 @@ public class Recherche_fragment extends Fragment {
     }
 
     private void Addtopanier(Repas repas) {
-        if (repasArrayList==null){
-            repasArrayList=new ArrayList<Repas>();
+        if (repasArrayList == null) {
+            repasArrayList = new ArrayList<Repas>();
         }
         repasArrayList.add(repas);
         connectedClientpanier.setValue(repasArrayList);
         FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("panier").setValue(repasArrayList);
         //Demande demande = new Demande(FirebaseAuth.getInstance().getCurrentUser().getUid(), repas);
-       // demande.addDemandeDatabase();
+        // demande.addDemandeDatabase();
     }
 }
