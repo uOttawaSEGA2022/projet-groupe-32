@@ -19,7 +19,21 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Commande OK,Pick up address" />
+            android:gravity="center"
+            android:text="Cueillez votre repas à cette adresse" />
+
+        <TextView
+            android:id="@+id/textViewCueillette"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Cliquez sur l'adresse pour la visualiser sur google maps" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
