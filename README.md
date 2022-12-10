@@ -1,5 +1,7 @@
 Ottawa's mealer App
+
 <img width="288" alt="Screenshot 2022-12-10 at 3 23 39 PM" src="https://user-images.githubusercontent.com/96390957/206874075-ece32c05-33e4-42c0-a84d-c1f1c5863972.png">
+
 
 L’administrateur dispose d’une boite de réception dans laquelle il peut visualiser les plaintes déposées par les clients.  
 En acceptant une plainte il peut suspendre un cuisinier temporairement ou bien, indéfiniment.  
