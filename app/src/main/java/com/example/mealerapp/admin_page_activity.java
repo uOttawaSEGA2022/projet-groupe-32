@@ -107,14 +107,18 @@ public class admin_page_activity extends AppCompatActivity {
                 String cook_email = idCuisinierEnCause;
                 // Log.i("admin_page_activity","Ca prend comme email $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+cook_email);
                 DatabaseReference data = FirebaseDatabase.getInstance().getReference("Users");
+
                 data.addListenerForSingleValueEvent(new ValueEventListener() {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                             Log.i("admin_page_activity", "la date est " + postSnapshot.getKey());
+                            deletePlainte(plainteId);//remove plainte from database
+
                             //going through the database of users to find the right cooker by comparing their email adress
+
                             if (postSnapshot != null) {
                                 String chemin = postSnapshot.getKey();
-                                 Log.i("admin_page_activity","le chemin est"+chemin);
+                                Log.i("admin_page_activity","le chemin est"+chemin);
                                 Cooker cook = postSnapshot.getValue(Cooker.class);
                                 Log.i("admin_page_activity","Ca aurait pu prendre comme email *****************************"+cook.getCourriel());
                                 String ckk = "Cooker";
@@ -126,6 +130,7 @@ public class admin_page_activity extends AppCompatActivity {
                                     break;
                                 }
                             }
+
                         }
                     }
 

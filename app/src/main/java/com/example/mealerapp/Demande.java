@@ -1,9 +1,6 @@
 package com.example.mealerapp;
 
-import static java.lang.String.valueOf;
-
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -19,6 +16,7 @@ import java.util.UUID;
 
 public class Demande {
     private String idDemande;
+    private String notified;
     private String idCooker;
     private String dateDemande;
     private String idClient;
@@ -34,6 +32,7 @@ public class Demande {
         this.idClient = idClient;
         this.idDemande = UUID.randomUUID().toString();
         this.demandeTraitee="false";
+        this.notified="false";
     }
 
     public void addDemandeDatabase(){
@@ -109,6 +108,9 @@ public class Demande {
 
     public String getIdClient(){
         return idClient;
+    }
+    public String getNotified(){
+        return notified;
     }
     public String getDemandeStatus(){ return this.demandeTraitee;}
 
