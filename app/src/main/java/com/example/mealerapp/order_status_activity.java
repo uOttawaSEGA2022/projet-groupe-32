@@ -1,6 +1,5 @@
 package com.example.mealerapp;
 
-import android.drm.DrmStore;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,14 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class order_status_activity extends AppCompatActivity {
 
@@ -145,7 +140,7 @@ public class order_status_activity extends AppCompatActivity {
         final RatingBar ratingBar = (RatingBar) dialogView.findViewById(R.id.ratingBar);
         buttonSoumettreEvaluation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 float rating = ratingBar.getRating();
                 Log.i("je sais pas", " la note est " + rating);
                 // demande.getRepas().setRepasRating(rating);
