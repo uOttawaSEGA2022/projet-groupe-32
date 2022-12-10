@@ -8,7 +8,7 @@ public class Cooker extends User{
     List<Plainte> listePlaintes = new ArrayList<Plainte>();
     String suspension;
     String suspensionEndTime;
-    String nombreRepasVendus;
+    long nombreRepasVendus;
     String moyenne;
     List<Float> notesRecues;
     String chequeImageUrl = "";
@@ -22,11 +22,11 @@ public class Cooker extends User{
         this.description=description;
         this.suspension="non";
         this.suspensionEndTime="";
-        this.nombreRepasVendus="0";
+        this.nombreRepasVendus=0;
         this.moyenne="";
         this.UserType="Cooker";
-        this.chequeImageUrl=null ;
-        this.suspended = false ; //suspension initialisée par défaut à false
+        this.chequeImageUrl=null;
+        this.suspended = false; //suspension initialisée par défaut à false
     }
     public Cooker(String prenom,String nom, String courriel, String motDePasse,String UserType,String adresse,String description,String suspension,String suspensionEndTime,List<Plainte> listePlaintes){
         super(prenom, nom, courriel, motDePasse, UserType, adresse);
@@ -82,7 +82,7 @@ public class Cooker extends User{
     }
 
 
-    public String getnombreRepasVendus(){
+    public long getnombreRepasVendus(){
         return nombreRepasVendus;
     }
 
@@ -94,5 +94,4 @@ public class Cooker extends User{
     public void setMoyenne(String moyenne) {
         this.moyenne=moyenne;
     }
-
 }
