@@ -57,7 +57,7 @@ public class order_status_activity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         idConnectedClient = mAuth.getCurrentUser().getUid();
-
+        //update
         listViewOrders = (ListView) findViewById(R.id.listViewOrders);
         databaseDemandes = FirebaseDatabase.getInstance().getReference("Demandes");
         ordersArrayList = new ArrayList<>();
