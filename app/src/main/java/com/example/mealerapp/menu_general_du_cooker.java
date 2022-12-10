@@ -1,9 +1,5 @@
 package com.example.mealerapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +10,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -81,7 +81,7 @@ public class menu_general_du_cooker extends AppCompatActivity {
                     Repas repas = data.getValue(Repas.class);
                     String repasUid = repas.getIdCuisinier();
                     Log.i("Repas non offert", repas.getRepasStatus() + " id : " + repas.getIdRepas());
-                    if (repasUid.equals(uid)) {
+                    if (repasUid.equals(uid) && repas.getRepasStatus().equals("false")) {
                         repasArrayList.add(repas);
                     }
                     //repasArrayList.add(repas);
