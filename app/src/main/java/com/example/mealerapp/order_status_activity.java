@@ -115,7 +115,7 @@ public class order_status_activity extends AppCompatActivity {
         final android.app.AlertDialog b = dialogBuilder.create();
         b.show();
 
-        myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        myRef.child(demande.getRepas().getIdCuisinier()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -124,7 +124,7 @@ public class order_status_activity extends AppCompatActivity {
                 else {
 
                     client=task.getResult().getValue(Cooker.class);
-                    Log.e("Cokker adresse", client.getAdresse());
+                    Log.e("Cokker adresse", client.getAdresse() +" "+client.getNom());
                     adresseCueillette.setText(client.getAdresse()+"");
                     }
             }
