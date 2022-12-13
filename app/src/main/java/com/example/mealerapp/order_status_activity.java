@@ -298,18 +298,7 @@ public class order_status_activity extends AppCompatActivity {
                 }
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
                 Date date = new Date();
-                FirebaseDatabase.getInstance().getReference().child(demande.getRepas().getIdCuisinier()).child("courriel").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        courriel=snapshot.getValue(String.class);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                Plainte plainte = new Plainte(Titre, FirebaseAuth.getInstance().getCurrentUser().getUid(), courriel,date.toString(), Description);
+                Plainte plainte = new Plainte(Titre, FirebaseAuth.getInstance().getCurrentUser().getUid(), demande.getRepas().getIdCuisinier(),date.toString(), Description);
                 plainte.addPlainteDatabase();
                 editTextDescription.getText().clear();
                 editTextTitre.getText().clear();

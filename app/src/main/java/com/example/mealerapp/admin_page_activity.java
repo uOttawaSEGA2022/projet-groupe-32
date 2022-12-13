@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class admin_page_activity extends AppCompatActivity {
 
@@ -111,24 +112,34 @@ public class admin_page_activity extends AppCompatActivity {
                 data.addListenerForSingleValueEvent(new ValueEventListener() {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            Log.i("admin_page_activity", "la date est " + postSnapshot.getKey());
-                            deletePlainte(plainteId);//remove plainte from database
+
+
+//                            Log.i("admin_page_activity", "la date est " + postSnapshot.getKey());
+//                            deletePlainte(plainteId);//remove plainte from database
 
                             //going through the database of users to find the right cooker by comparing their email adress
-
+                            String i=postSnapshot.getKey().toString();
+                            Log.i("admin_page_activity","le chemin est"+"00000000000000000000000000000000000000000000000    "+i);
+                            Log.i("admin_page_activity","le chemin est"+"00000000000000000000000000000000000000000000000   "+idCuisinierEnCause);
                             if (postSnapshot != null) {
-                                String chemin = postSnapshot.getKey();
-                                Log.i("admin_page_activity","le chemin est"+chemin);
-                                Cooker cook = postSnapshot.getValue(Cooker.class);
-                                Log.i("admin_page_activity","Ca aurait pu prendre comme email *****************************"+cook.getCourriel());
-                                String ckk = "Cooker";
-                                if (cook.getCourriel().equals(cook_email)) {
-                                    data.child(chemin).child("suspension").setValue(SuspensionType);
-                                    data.child(chemin).child("suspensionEndTime").setValue(suspensionEndTime);
-                                    // data.child(chemin).setValue(new_Cook_Status); // replace the cook with his suspended status
+                                if(idCuisinierEnCause.equals(i)){
+                                    data.child(idCuisinierEnCause).child("suspension").setValue(SuspensionType);
+                                    data.child(idCuisinierEnCause).child("suspensionEndTime").setValue(suspensionEndTime);
                                     deletePlainte(plainteId);//remove plainte from databade
                                     break;
                                 }
+//                                String chemin = postSnapshot.getKey();
+//                                Log.i("admin_page_activity","le chemin est"+chemin);
+//                                Cooker cook = postSnapshot.getValue(Cooker.class);
+//                                Log.i("admin_page_activity","Ca aurait pu prendre comme email *****************************"+cook.getCourriel());
+//                                String ckk = "Cooker";
+//                                if (cook.getCourriel().equals(cook_email)) {
+//                                    data.child(chemin).child("suspension").setValue(SuspensionType);
+//                                    data.child(chemin).child("suspensionEndTime").setValue(suspensionEndTime);
+//                                    // data.child(chemin).setValue(new_Cook_Status); // replace the cook with his suspended status
+//                                    deletePlainte(plainteId);//remove plainte from databade
+//                                    break;
+//                                }
                             }
 
                         }
