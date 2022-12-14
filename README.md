@@ -18,7 +18,7 @@ Dans son panier, il peut passer une commande ou retirer un repas de son panier.
 En ce qui concerne ses achats, il peut, pour une commande acceptée, choisir d’évaluer le cuisinier et/ou de déposer une plainte contre ce cuisinier. 
 
 Identifiants de connexion Administrateur:
-Courriel: administrator23@gmail.com Mot de passe: Administrator 23
+Courriel: administrator23@gmail.com Mot de passe: Administrator23
 
 Identifiants de connexion Cuisinier:
 Courriel: chef@gmail.com Mot de passe: 12345678
